@@ -115,6 +115,7 @@ portfolio-evolution/
 │   ├── master_config.yaml              # Simulation parameters
 │   ├── pipeline_transitions.yaml       # Stage transition probabilities
 │   ├── funded_behaviour.yaml           # Funded evolution rules
+│   ├── deposit_behaviour.yaml          # Deposit evolution rules (Phase 1.1)
 │   ├── rating_migration.yaml           # Transition matrices
 │   ├── archetypes/
 │   │   ├── conservative_regional.yaml
@@ -131,15 +132,20 @@ portfolio-evolution/
 │
 ├── schemas/
 │   ├── canonical_schema.yaml           # Engine's internal model
+│   ├── deposit_canonical_schema.yaml   # Deposit internal model (Phase 1.1)
 │   ├── source_schema.yaml              # Client data shape definition
+│   ├── deposit_source_schema.yaml      # Deposit data shape (Phase 1.1)
 │   ├── target_schema.yaml              # Output shape definition
 │   ├── schema_mapping.yaml             # Source → canonical mapping
+│   ├── deposit_schema_mapping.yaml     # Deposit source → canonical (Phase 1.1)
 │   ├── output_mapping.yaml             # Canonical → target mapping
 │   └── lookups/
 │       ├── rating_crosswalk.yaml
 │       ├── stage_crosswalk.yaml
 │       ├── segment_taxonomy.yaml
-│       └── industry_taxonomy.yaml
+│       ├── industry_taxonomy.yaml
+│       ├── deposit_type_crosswalk.yaml          # Phase 1.1
+│       └── liquidity_category_crosswalk.yaml    # Phase 1.1
 │
 ├── src/
 │   └── portfolio_evolution/
@@ -149,6 +155,8 @@ portfolio-evolution/
 │       ├── models/                     # Pydantic data models
 │       │   ├── __init__.py
 │       │   ├── instrument.py           # InstrumentPosition
+│       │   ├── deposit.py              # DepositPosition (Phase 1.1)
+│       │   ├── relationship.py         # BankRelationship (Phase 1.1)
 │       │   ├── strategy.py             # StrategySignal
 │       │   ├── scenario.py             # ScenarioDefinition
 │       │   ├── events.py               # Event / transition records
@@ -183,6 +191,8 @@ portfolio-evolution/
 │       │   ├── pipeline_engine.py      # Pipeline transition engine
 │       │   ├── funding_converter.py    # Pipeline → funded conversion
 │       │   ├── funded_engine.py        # Funded portfolio evolution
+│       │   ├── deposit_engine.py       # Deposit evolution engine (Phase 1.1)
+│       │   ├── deposit_pricing_engine.py  # Deposit pricing (Phase 1.1)
 │       │   ├── rating_engine.py        # Rating migration engine
 │       │   ├── utilisation_engine.py   # Utilisation behaviour
 │       │   └── valuation_engine.py     # Valuation / economic measures
@@ -190,6 +200,7 @@ portfolio-evolution/
 │       ├── aggregation/                # Output aggregation
 │       │   ├── __init__.py
 │       │   ├── aggregator.py           # Roll-up by day/path/scenario
+│       │   ├── liquidity.py            # Liquidity metrics (Phase 1.1)
 │       │   ├── distributions.py        # Percentile / distribution calc
 │       │   └── variance_decomp.py      # Driver attribution
 │       │
@@ -213,7 +224,9 @@ portfolio-evolution/
 ├── data/
 │   ├── sample/                         # Synthetic sample data
 │   │   ├── funded_portfolio.csv
-│   │   └── pipeline.csv
+│   │   ├── pipeline.csv
+│   │   ├── deposits.csv                # Synthetic deposit data (Phase 1.1)
+│   │   └── relationships.csv           # Synthetic relationship data (Phase 1.1)
 │   └── generators/
 │       └── synthetic_data_gen.py       # Synthetic data generator
 │
@@ -230,6 +243,14 @@ portfolio-evolution/
     ├── test_schema_mapper.py
     ├── test_pipeline_engine.py
     ├── test_funded_engine.py
+    ├── test_deposit_models.py          # Phase 1.1
+    ├── test_deposit_schema_mapper.py   # Phase 1.1
+    ├── test_deposit_ingestion.py       # Phase 1.1
+    ├── test_deposit_engine.py          # Phase 1.1
+    ├── test_deposit_pricing.py         # Phase 1.1
+    ├── test_deposit_capture.py         # Phase 1.1
+    ├── test_liquidity.py               # Phase 1.1
+    ├── test_deposit_integration.py     # Phase 1.1
     ├── test_rating_engine.py
     ├── test_valuation_engine.py
     ├── test_aggregation.py
@@ -282,12 +303,55 @@ deterministic daily engine with simple transition rules.
 
 ---
 
-### Phase 2: Stochastic Simulation & Intelligence (Weeks 5-9)
+### Phase 1.1: Deposit Layer — Balance Sheet Extension (Weeks 5-7)
+
+**Goal**: Extend the loan-centric simulator into a bank balance-sheet simulator by adding
+deposit objects, deposit behaviour physics, pipeline linkage between loans and deposits,
+liquidity metrics, and deposit pricing dynamics.
+
+#### Sprint 1.1A (Week 5-6): Deposit & Relationship Object Model, Schema Layer
+
+| # | Task | Description | Est |
+|---|------|-------------|-----|
+| 1.1A.1 | Deposit canonical schema | `deposit_canonical_schema.yaml` + Pydantic `DepositPosition` model | 1d |
+| 1.1A.2 | Relationship object | `BankRelationship` Pydantic model linking loans and deposits | 0.5d |
+| 1.1A.3 | Deposit source schema config | `deposit_source_schema.yaml` + `deposit_schema_mapping.yaml` | 1d |
+| 1.1A.4 | Deposit schema mapper | Reuse schema mapper with deposit-specific transforms and crosswalks | 1d |
+| 1.1A.5 | Pipeline deposit extension | Add deposit attachment fields to pipeline schema | 0.5d |
+| 1.1A.6 | Deposit data loader | Load deposit CSV/Parquet/Excel through deposit schema mapping | 1d |
+| 1.1A.7 | Deposit validator & quality report | Deposit-specific validation, balance distributions, type breakdown | 1d |
+| 1.1A.8 | Deposit behaviour config | `deposit_behaviour.yaml` — decay, betas, capture, liquidity rules | 1d |
+| 1.1A.9 | Deposit synthetic data generator | Generate deposit accounts, relationships, pipeline deposit expectations | 1d |
+| 1.1A.10 | Unit tests for deposit ingestion | Schema mapping, validation, model tests | 1d |
+
+**Deliverables**: Deposit data flows through configurable schema layer. Relationship linkage to loans. Synthetic deposit data available.
+
+#### Sprint 1.1B (Week 6-7): Deposit Evolution Engine & Liquidity Metrics
+
+| # | Task | Description | Est |
+|---|------|-------------|-----|
+| 1.1B.1 | Deposit evolution engine | Daily balance evolution: decay, withdrawal, inflow, scenario modifiers | 2d |
+| 1.1B.2 | Deposit capture at funding | Generate deposits when pipeline loans fund, configurable capture probability | 1.5d |
+| 1.1B.3 | Deposit pricing engine | Beta-based rate model with strategy adjustments | 1d |
+| 1.1B.4 | Utilisation-deposit linkage | Operating deposits linked to loan utilisation via operating_balance_ratio | 0.5d |
+| 1.1B.5 | Deposit scenario modifiers | Extend scenario engine with deposit runoff, beta shift, capture multipliers | 1d |
+| 1.1B.6 | Liquidity metrics | LDR, deposit stability, LCR proxy, concentration metrics | 1.5d |
+| 1.1B.7 | Balance sheet aggregation | Extend aggregator with deposit totals, cross-sell metrics, segment view | 1d |
+| 1.1B.8 | Simulation runner extension | Add deposit engine to daily loop, extend CLI summary | 0.5d |
+| 1.1B.9 | Strategy interpreter extension | Translate deposit strategy signals (grow/defend/runoff) into modifiers | 0.5d |
+| 1.1B.10 | Deposit archetype defaults | Add deposit_priors to lender archetype configs | 0.5d |
+| 1.1B.11 | Unit & integration tests | Deposit engine, pricing, capture, liquidity, 30-day co-evolution test | 1.5d |
+
+**Deliverables**: Deposits co-evolve with loans daily. Liquidity metrics computed. Balance sheet view. Pipeline generates deposits at funding.
+
+---
+
+### Phase 2: Stochastic Simulation & Intelligence (Weeks 8-12)
 
 **Goal**: Monte Carlo paths, rating migration, utilisation dynamics, strategy overlays,
 scenario comparison.
 
-#### Sprint 3 (Week 5-6): Stochastic Engine & Rating Migration
+#### Sprint 3 (Week 8-9): Stochastic Engine & Rating Migration
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -302,7 +366,7 @@ scenario comparison.
 
 **Deliverables**: Full stochastic engine with reproducible Monte Carlo and rating migration.
 
-#### Sprint 4 (Week 7-8): Utilisation, Strategy & Scenarios
+#### Sprint 4 (Week 10-11): Utilisation, Strategy & Scenarios
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -316,7 +380,7 @@ scenario comparison.
 
 **Deliverables**: Strategy and scenario overlays as first-class objects. Multi-scenario comparison.
 
-#### Sprint 5 (Week 9): Quality & Performance
+#### Sprint 5 (Week 12): Quality & Performance
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -330,12 +394,12 @@ scenario comparison.
 
 ---
 
-### Phase 3: Decision Intelligence & Productization (Weeks 10-14)
+### Phase 3: Decision Intelligence & Productization (Weeks 13-17)
 
 **Goal**: Valuation, text-to-strategy, sensitivity analysis, explainability reports,
 and intelligence object generation.
 
-#### Sprint 6 (Week 10-11): Valuation & Sensitivity
+#### Sprint 6 (Week 13-14): Valuation & Sensitivity
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -345,7 +409,7 @@ and intelligence object generation.
 | 6.4 | Sensitivity analysis | Tornado charts: which parameter moves outcomes most | 2d |
 | 6.5 | Contribution analysis | By-driver breakdown per scenario | 1d |
 
-#### Sprint 7 (Week 12-13): Text-to-Strategy & Explainability
+#### Sprint 7 (Week 15-16): Text-to-Strategy & Explainability
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -354,7 +418,7 @@ and intelligence object generation.
 | 7.3 | Explainability reports | Per-position change attribution, audit trail formatting | 2d |
 | 7.4 | Scenario comparison notebook | Side-by-side scenario analysis with visualisations | 1d |
 
-#### Sprint 8 (Week 14): Polish & Documentation
+#### Sprint 8 (Week 17): Polish & Documentation
 
 | # | Task | Description | Est |
 |---|------|-------------|-----|
@@ -366,7 +430,7 @@ and intelligence object generation.
 
 ---
 
-### Phase 4: Decision Intelligence Extensions (Weeks 15-20) — Future Backlog
+### Phase 4: Decision Intelligence Extensions (Weeks 18-23) — Future Backlog
 
 | # | Feature | Value |
 |---|---------|-------|
@@ -575,18 +639,21 @@ portfolio_rollforward:
 ```
 Week  1-2   ████ Sprint 1: Schema Layer, Models, Ingestion
 Week  3-4   ████ Sprint 2: Deterministic Daily Engine
-Week  5-6   ████ Sprint 3: Stochastic Engine, Rating Migration
-Week  7-8   ████ Sprint 4: Utilisation, Strategy, Scenarios
-Week  9     ██   Sprint 5: Performance & Quality
-Week 10-11  ████ Sprint 6: Valuation & Sensitivity
-Week 12-13  ████ Sprint 7: Text-to-Strategy & Explainability
-Week 14     ██   Sprint 8: Polish & Documentation
-Week 15-20  ████████████ Phase 4: Decision Intelligence (backlog)
+Week  5-6   ████ Sprint 1.1A: Deposit & Relationship Object Model, Schema Layer
+Week  6-7   ████ Sprint 1.1B: Deposit Evolution Engine, Liquidity Metrics
+Week  8-9   ████ Sprint 3: Stochastic Engine, Rating Migration
+Week 10-11  ████ Sprint 4: Utilisation, Strategy, Scenarios
+Week 12     ██   Sprint 5: Performance & Quality
+Week 13-14  ████ Sprint 6: Valuation & Sensitivity
+Week 15-16  ████ Sprint 7: Text-to-Strategy & Explainability
+Week 17     ██   Sprint 8: Polish & Documentation
+Week 18-23  ████████████ Phase 4: Decision Intelligence (backlog)
 
-Phase 1 ─────────── MVP: deterministic engine with configurable schemas
-Phase 2 ─────────── Full: stochastic simulation, scenarios, strategy
-Phase 3 ─────────── Intelligence: valuation, NLP, explainability
-Phase 4 ─────────── Extensions: optimisation, capital, calibration
+Phase 1   ─────────── MVP: deterministic engine with configurable schemas
+Phase 1.1 ─────────── Deposits: balance sheet extension with liquidity
+Phase 2   ─────────── Full: stochastic simulation, scenarios, strategy
+Phase 3   ─────────── Intelligence: valuation, NLP, explainability
+Phase 4   ─────────── Extensions: optimisation, capital, calibration
 ```
 
 ---
