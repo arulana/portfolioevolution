@@ -37,6 +37,13 @@ deposits:
   pricing_enabled: true
   liquidity_metrics: true
 
+# --- DATABRICKS ---
+
+databricks:
+  enabled: true
+  catalog: bdi_data_201
+  schema: synthetic_bank
+
 # --- SCHEDULER ---
 
 scheduler:

@@ -174,6 +174,36 @@ class SimulationScheduler:
             logger.error("Simulation failed: %s", e, exc_info=True)
             return None
 
+        # Push to Databricks if enabled
+        db_cfg = run_config.get("databricks", {})
+        if db_cfg.get("enabled", False):
+            try:
+                from portfolio_evolution.output.databricks_sync import DatabricksSync
+                from portfolio_evolution.output.system_views import (
+                    format_crm_view, format_los_view,
+                    format_core_view, format_deposits_view,
+                )
+
+                last_sim_day = sim_result.calendar.business_days[-1].sim_day if sim_result.calendar.business_days else 0
+                last_date_val = sim_result.calendar.end_date
+
+                all_positions = sim_result.state.funded + sim_result.state.pipeline
+                crm_df = format_crm_view(all_positions, last_sim_day, last_date_val)
+                los_df = format_los_view(all_positions, last_sim_day, last_date_val)
+                core_df = format_core_view(all_positions, last_sim_day, last_date_val)
+                deposits_df = format_deposits_view(sim_result.state.deposits, last_sim_day, last_date_val)
+
+                with DatabricksSync.from_env() as db_sync:
+                    counts = db_sync.push_system_views(
+                        run_id=sim_result.run_id,
+                        sim_day=last_sim_day,
+                        crm_df=crm_df, los_df=los_df,
+                        core_df=core_df, deposits_df=deposits_df,
+                    )
+                logger.info("Databricks push: %s", counts)
+            except Exception as e:
+                logger.warning("Databricks push failed (non-fatal): %s", e)
+
         # Save ending state (only if persistence available)
         if _PERSISTENCE_AVAILABLE:
             last_date = sim_result.calendar.end_date

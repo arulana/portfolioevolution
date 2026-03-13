@@ -90,8 +90,8 @@ class DatabricksSync:
         host: str,
         http_path: str,
         token: str,
-        catalog: str = "synthetic_bank",
-        schema: str = "simulation",
+        catalog: str = "bdi_data_201",
+        schema: str = "synthetic_bank",
     ) -> None:
         if not _sql_connector_available:
             raise RuntimeError(
@@ -111,8 +111,8 @@ class DatabricksSync:
         host = os.environ.get("DATABRICKS_HOST", "")
         http_path = os.environ.get("DATABRICKS_HTTP_PATH", "")
         token = os.environ.get("DATABRICKS_TOKEN", "")
-        catalog = os.environ.get("DATABRICKS_CATALOG", "synthetic_bank")
-        schema = os.environ.get("DATABRICKS_SCHEMA", "simulation")
+        catalog = os.environ.get("DATABRICKS_CATALOG", "bdi_data_201")
+        schema = os.environ.get("DATABRICKS_SCHEMA", "synthetic_bank")
 
         if not host or not http_path or not token:
             raise ValueError(
