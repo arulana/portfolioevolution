@@ -13,8 +13,7 @@ COPY schemas/ schemas/
 COPY data/ data/
 COPY scripts/ scripts/
 
-RUN pip install -e ".[dev]" 2>/dev/null || pip install -e .
-RUN pip install fastapi uvicorn
+RUN pip install -e .
 
 EXPOSE 8000
 EXPOSE 5433
