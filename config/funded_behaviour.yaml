@@ -23,13 +23,12 @@ amortisation:
     description: "Custom repayment schedule per instrument"
 
 maturity:
-  action: runoff                # runoff | renew (renew logic added in Phase 2)
-  grace_period_days: 0          # Days after maturity before position is removed
-  description: "At maturity, position exits portfolio (Phase 1 behaviour)"
+  action: renew                 # runoff | renew
+  grace_period_days: 0
+  description: "At maturity, eligible loans re-enter underwriting for renewal"
 
-# Phase 2: renewal rules
 renewal:
-  enabled: false
+  enabled: true
   base_renewal_probability: 0.65
   segment_overrides:
     cre: 0.70

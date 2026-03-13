@@ -23,7 +23,7 @@ from portfolio_evolution.engines.pipeline_engine import (
     advance_pipeline_day,
     convert_to_funded,
 )
-from portfolio_evolution.engines.funded_engine import evolve_funded_day
+from portfolio_evolution.engines.funded_engine import evolve_funded_day, attempt_renewal
 from portfolio_evolution.engines.rating_engine import migrate_rating
 from portfolio_evolution.engines.deposit_engine import evolve_deposit_day
 from portfolio_evolution.engines.deposit_capture import capture_deposits_at_funding
@@ -68,6 +68,7 @@ class SimulationState:
     matured_positions: list[InstrumentPosition] = field(default_factory=list)
     dropped_deals: list[InstrumentPosition] = field(default_factory=list)
     funded_conversions: list[InstrumentPosition] = field(default_factory=list)
+    renewal_submissions: list[InstrumentPosition] = field(default_factory=list)
     deposits_captured: list[DepositPosition] = field(default_factory=list)
 
 
@@ -255,6 +256,18 @@ def _persist_day_to_store(
         aggregates_df=aggregates_df,
     )
 
+    from portfolio_evolution.output.system_views import (
+        format_crm_view, format_los_view, format_core_view, format_deposits_view,
+    )
+    store.write_system_views(
+        run_id=run_id,
+        sim_day=day.sim_day,
+        crm_df=format_crm_view(all_positions, day.sim_day, day.date),
+        los_df=format_los_view(all_positions, day.sim_day, day.date),
+        core_df=format_core_view(all_positions, day.sim_day, day.date),
+        deposits_df=format_deposits_view(state.deposits, day.sim_day, day.date),
+    )
+
 
 def _step_day(
     state: SimulationState,
@@ -311,13 +324,16 @@ def _step_day(
             dropped_today.append(pos)
             state.dropped_deals.append(pos)
         else:
-            updated = pos.model_copy(
-                update={
-                    "days_in_stage": result.days_in_stage,
-                    "pipeline_stage": result.new_stage,
-                    "as_of_date": day.date,
-                }
-            )
+            update_fields: dict[str, Any] = {
+                "days_in_stage": result.days_in_stage,
+                "pipeline_stage": result.new_stage,
+                "as_of_date": day.date,
+            }
+            # Route position_type based on stage transition (CRM → LOS boundary)
+            if result.advanced and result.new_stage == "underwriting":
+                update_fields["position_type"] = "pipeline_los"
+                update_fields["source_system"] = "los"
+            updated = pos.model_copy(update=update_fields)
             surviving_pipeline.append(updated)
 
     state.pipeline = surviving_pipeline
@@ -347,6 +363,11 @@ def _step_day(
             matured_today.append(pos)
             state.matured_positions.append(pos)
             maturity_amount += pos.funded_amount
+
+            renewal = attempt_renewal(pos, funded_config, rng, day.date)
+            if renewal.renewed and renewal.renewal_position is not None:
+                state.pipeline.append(renewal.renewal_position)
+                state.renewal_submissions.append(renewal.renewal_position)
         else:
             surviving_funded.append(result.position)
 

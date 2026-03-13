@@ -42,7 +42,7 @@ class TestPipelineTransitionEngine:
         pos = InstrumentPosition(**pipeline_defaults)
 
         config = _load_pipeline_config()
-        config["transitions"]["lead"]["underwriting"]["base_daily_prob"] = 0.0
+        config["transitions"]["lead"]["term_sheet"]["base_daily_prob"] = 0.0
         config["transitions"]["lead"]["dropped"]["base_daily_prob"] = 0.0
 
         result = advance_pipeline_day(pos, config, seeded_rng, date(2026, 1, 15))

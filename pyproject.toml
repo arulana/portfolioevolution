@@ -28,6 +28,9 @@ notebooks = [
     "plotly>=5.0",
     "jupyter>=1.0",
 ]
+databricks = [
+    "databricks-sql-connector>=3.0",
+]
 
 [project.scripts]
 portfolio-evolution = "portfolio_evolution.main:app"

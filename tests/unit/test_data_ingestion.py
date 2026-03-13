@@ -31,7 +31,7 @@ class TestInstrumentPositionContracts:
 
     def test_instrument_position_valid_pipeline(self, pipeline_defaults):
         pos = InstrumentPosition(**pipeline_defaults)
-        assert pos.position_type == "pipeline"
+        assert pos.position_type in ("pipeline", "pipeline_crm", "pipeline_los")
         assert pos.funded_amount == 0.0
         assert pos.pipeline_stage is not None
 
@@ -160,7 +160,7 @@ class TestDataLoader:
         )
         assert len(positions) > 0
         assert all(isinstance(p, InstrumentPosition) for p in positions)
-        assert all(p.position_type == "pipeline" for p in positions)
+        assert all(p.position_type in ("pipeline", "pipeline_crm", "pipeline_los") for p in positions)
 
     def test_ingestion_flags_missing_required_fields(self, project_root, tmp_path):
         from portfolio_evolution.ingestion.loader import load_portfolio

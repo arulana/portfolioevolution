@@ -1,11 +1,15 @@
-"""Funded evolution engine — daily amortisation, maturity, and position lifecycle."""
+"""Funded evolution engine — daily amortisation, maturity, renewal, and position lifecycle."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, timedelta
+from typing import TYPE_CHECKING
 
 from portfolio_evolution.models.instrument import InstrumentPosition
+
+if TYPE_CHECKING:
+    from portfolio_evolution.utils.rng import SeededRNG
 
 
 @dataclass
@@ -118,3 +122,91 @@ def evolve_funded_day(
         events=[],
         deposit_capture_request=None,
     )
+
+
+@dataclass
+class RenewalResult:
+    """Result of a renewal decision for a matured position."""
+
+    renewed: bool
+    renewal_position: InstrumentPosition | None
+    random_draw: float | None
+
+
+def _get_renewal_probability(
+    position: InstrumentPosition,
+    config: dict,
+) -> float:
+    """Look up renewal probability from config, with segment and rating overrides."""
+    renewal_cfg = config.get("renewal", {})
+    base = renewal_cfg.get("base_renewal_probability", 0.65)
+
+    seg_overrides = renewal_cfg.get("segment_overrides", {})
+    if position.segment:
+        seg_key = position.segment.lower().replace(" ", "_")
+        if seg_key in seg_overrides:
+            base = float(seg_overrides[seg_key])
+
+    rat_overrides = renewal_cfg.get("rating_overrides", {})
+    if position.internal_rating_numeric is not None:
+        rat_key = str(position.internal_rating_numeric)
+        if rat_key in rat_overrides:
+            base = float(rat_overrides[rat_key])
+
+    return base
+
+
+def attempt_renewal(
+    position: InstrumentPosition,
+    config: dict,
+    rng: "SeededRNG",
+    sim_date: date,
+) -> RenewalResult:
+    """Decide whether a matured position renews and re-enters underwriting.
+
+    If renewed, creates a new pipeline_los position with:
+    - pipeline_stage = "underwriting"
+    - is_renewal = True
+    - Same counterparty, segment, rating
+    - Potentially adjusted rate
+    - New maturity based on renewal_term_months or original tenor
+    """
+    renewal_cfg = config.get("renewal", {})
+    if not renewal_cfg.get("enabled", False):
+        return RenewalResult(renewed=False, renewal_position=None, random_draw=None)
+
+    prob = _get_renewal_probability(position, config)
+    draw = float(rng.uniform())
+
+    if draw >= prob:
+        return RenewalResult(renewed=False, renewal_position=None, random_draw=draw)
+
+    rate_adj_bps = renewal_cfg.get("renewal_rate_adjustment_bps", 0)
+    new_rate = position.coupon_rate
+    if new_rate is not None and rate_adj_bps:
+        new_rate = new_rate + (float(rate_adj_bps) / 10000.0)
+
+    renewal_term = renewal_cfg.get("renewal_term_months")
+    if renewal_term is None:
+        renewal_term = position.tenor_months or 60
+
+    data = position.model_dump()
+    data.update(
+        instrument_id=f"RNW-{position.instrument_id}-{sim_date.isoformat()}",
+        position_type="pipeline_los",
+        source_system="los",
+        pipeline_stage="underwriting",
+        days_in_stage=0,
+        is_renewal=True,
+        renewed_flag=True,
+        funded_amount=0.0,
+        committed_amount=position.funded_amount,
+        origination_date=None,
+        maturity_date=None,
+        tenor_months=int(renewal_term),
+        coupon_rate=new_rate,
+        as_of_date=sim_date,
+    )
+
+    renewal_pos = InstrumentPosition(**data)
+    return RenewalResult(renewed=True, renewal_position=renewal_pos, random_draw=draw)

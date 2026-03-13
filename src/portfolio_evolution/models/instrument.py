@@ -20,7 +20,7 @@ class InstrumentPosition(BaseModel):
     counterparty_id: str
     counterparty_name: str | None = None
     facility_id: str | None = None
-    position_type: Literal["pipeline", "funded"]
+    position_type: Literal["pipeline", "pipeline_crm", "pipeline_los", "funded"]
 
     # --- CLASSIFICATION ---
     product_type: str | None = None
@@ -102,6 +102,7 @@ class InstrumentPosition(BaseModel):
     renewal_probability: float | None = None
     prepayment_probability: float | None = None
     renewed_flag: bool = False
+    is_renewal: bool = False
 
     # --- RELATIONSHIPS ---
     relationship_manager: str | None = None

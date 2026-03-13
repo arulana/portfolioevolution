@@ -131,6 +131,49 @@ class SimulationStore:
             )
         """)
         self._conn.execute("""
+            CREATE TABLE IF NOT EXISTS crm_pipeline (
+                run_id VARCHAR, sim_day INTEGER, OPP_ID VARCHAR,
+                BORROWER_NAME VARCHAR, STAGE VARCHAR, EXPECTED_AMOUNT DOUBLE,
+                CLOSE_PROB DOUBLE, SEGMENT VARCHAR, RM_NAME VARCHAR,
+                RM_CODE VARCHAR, EXPECTED_CLOSE_DATE VARCHAR,
+                LAST_ACTIVITY_DATE VARCHAR, STATE VARCHAR, SOURCE VARCHAR
+            )
+        """)
+        self._conn.execute("""
+            CREATE TABLE IF NOT EXISTS los_underwriting (
+                run_id VARCHAR, sim_day INTEGER, APP_ID VARCHAR,
+                BORROWER_NAME VARCHAR, UW_STAGE VARCHAR,
+                REQUESTED_AMOUNT DOUBLE, APPROVED_AMOUNT DOUBLE,
+                RISK_RATING VARCHAR, RATING_NUMERIC INTEGER,
+                ANALYST_CODE VARCHAR, APPROVAL_DATE VARCHAR,
+                EXPECTED_CLOSE_DATE VARCHAR, RATE_TYPE VARCHAR,
+                EXPECTED_RATE DOUBLE, SEGMENT VARCHAR, STATE VARCHAR,
+                IS_RENEWAL BOOLEAN, CONDITION_COUNT INTEGER
+            )
+        """)
+        self._conn.execute("""
+            CREATE TABLE IF NOT EXISTS core_funded (
+                run_id VARCHAR, sim_day INTEGER, ACCT_NO VARCHAR,
+                BORROWER VARCHAR, CURRENT_BAL DOUBLE, COMMITTED_AMT DOUBLE,
+                INT_RATE DOUBLE, RATE_TYPE VARCHAR, ORIG_DATE VARCHAR,
+                MATURITY_DATE VARCHAR, AMORT_TYPE VARCHAR, PMT_FREQ VARCHAR,
+                RISK_RATING VARCHAR, RISK_RATING_NUM INTEGER,
+                SEGMENT VARCHAR, PRODUCT_TYPE VARCHAR, STATE VARCHAR,
+                ACCRUAL_STATUS VARCHAR, COLLATERAL_TYPE VARCHAR,
+                PROPERTY_TYPE VARCHAR, OWNER_OCC BOOLEAN,
+                SNC_FLAG BOOLEAN, TDR_FLAG BOOLEAN, AS_OF_DATE VARCHAR
+            )
+        """)
+        self._conn.execute("""
+            CREATE TABLE IF NOT EXISTS core_deposits (
+                run_id VARCHAR, sim_day INTEGER, ACCOUNT_ID VARCHAR,
+                CUSTOMER_ID VARCHAR, ACCOUNT_TYPE VARCHAR,
+                CURRENT_BAL DOUBLE, INT_RATE DOUBLE, RATE_TYPE VARCHAR,
+                DEPOSIT_BETA DOUBLE, OPEN_DATE VARCHAR,
+                LIQUIDITY_CLASS VARCHAR, SEGMENT VARCHAR, AS_OF_DATE VARCHAR
+            )
+        """)
+        self._conn.execute("""
             CREATE TABLE IF NOT EXISTS events (
                 run_id VARCHAR,
                 event_id VARCHAR,
@@ -229,6 +272,40 @@ class SimulationStore:
         self._conn.register("_agg_batch", agg_subset)
         self._conn.execute("INSERT INTO daily_aggregates SELECT * FROM _agg_batch")
         self._conn.unregister("_agg_batch")
+
+    def write_system_views(
+        self,
+        run_id: str,
+        sim_day: int,
+        crm_df: pl.DataFrame | None = None,
+        los_df: pl.DataFrame | None = None,
+        core_df: pl.DataFrame | None = None,
+        deposits_df: pl.DataFrame | None = None,
+    ) -> None:
+        """Write system-specific view DataFrames to their respective tables."""
+        self._ensure_connection()
+
+        for table, df in [
+            ("crm_pipeline", crm_df),
+            ("los_underwriting", los_df),
+            ("core_funded", core_df),
+            ("core_deposits", deposits_df),
+        ]:
+            if df is None or df.is_empty():
+                continue
+            batch = df.drop("SIM_DAY") if "SIM_DAY" in df.columns else df
+            batch = batch.with_columns(
+                pl.lit(run_id).alias("run_id"),
+                pl.lit(sim_day).alias("sim_day"),
+            )
+            batch_name = f"_{table}_batch"
+            self._conn.execute(
+                f"DELETE FROM {table} WHERE run_id = ? AND sim_day = ?",
+                [run_id, sim_day],
+            )
+            self._conn.register(batch_name, batch)
+            self._conn.execute(f"INSERT INTO {table} SELECT * FROM {batch_name}")
+            self._conn.unregister(batch_name)
 
     def write_events(self, run_id: str, events: list[dict]) -> None:
         """Write transition events."""

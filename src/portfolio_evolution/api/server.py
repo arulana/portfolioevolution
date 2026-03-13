@@ -141,6 +141,49 @@ def get_positions(
     return {"positions": rows}
 
 
+@app.get("/runs/{run_id}/system/{system}")
+def get_system_positions(
+    run_id: str,
+    system: str,
+    sim_day: int | None = None,
+):
+    """Get positions from a specific source system table.
+
+    system must be one of: crm, los, core, deposits
+    """
+    table_map = {
+        "crm": "crm_pipeline",
+        "los": "los_underwriting",
+        "core": "core_funded",
+        "deposits": "core_deposits",
+    }
+    table = table_map.get(system.lower())
+    if table is None:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid system '{system}'. Choose from: crm, los, core, deposits",
+        )
+
+    _ensure_db_exists()
+    with _get_store() as store:
+        store.init_tables()
+        runs_df = store.query("SELECT 1 FROM runs WHERE run_id = ?", [run_id])
+        if runs_df.is_empty():
+            raise HTTPException(status_code=404, detail=f"Run '{run_id}' not found.")
+
+        sql = f"SELECT * FROM {table} WHERE run_id = ?"
+        params: list = [run_id]
+        if sim_day is not None:
+            sql += " AND sim_day = ?"
+            params.append(sim_day)
+        sql += " ORDER BY sim_day"
+
+        df = store.query(sql, params)
+    if df.is_empty():
+        return {"system": system, "positions": []}
+    return {"system": system, "positions": df.to_dicts()}
+
+
 @app.get("/runs/{run_id}/aggregates")
 def get_aggregates(run_id: str):
     """Get daily aggregate metrics for a run."""

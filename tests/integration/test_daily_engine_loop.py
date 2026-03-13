@@ -67,6 +67,7 @@ class TestDailyEngineLoop:
             + len(state.pipeline)
             + len(state.matured_positions)
             + len(state.dropped_deals)
+            - len(state.renewal_submissions)
         )
         assert final_total == initial_total
 

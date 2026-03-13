@@ -102,7 +102,7 @@ _PIPELINE_DEFAULTS: dict[str, Any] = {
     "instrument_id": "PIPE-001",
     "counterparty_id": "CPTY-002",
     "counterparty_name": "Beta Industries",
-    "position_type": "pipeline",
+    "position_type": "pipeline_los",
     "product_type": "revolver",
     "segment": "c_and_i",
     "committed_amount": 10_000_000.0,

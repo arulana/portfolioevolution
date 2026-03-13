@@ -163,7 +163,28 @@ def load_portfolio(
             f"Validation failed for {len(errors)} row(s) in {data_path}:\n{summary}"
         )
 
-    return positions
+    # Post-load: route position_type for pipeline positions based on stage
+    _CRM_STAGES = {"lead", "term_sheet", "term sheet"}
+    _LOS_STAGES = {"underwriting", "approved", "documentation", "closing"}
+    routed: list[InstrumentPosition] = []
+    for pos in positions:
+        if pos.position_type == "pipeline" and pos.pipeline_stage:
+            stage_lower = pos.pipeline_stage.lower().strip().replace(" ", "_")
+            if stage_lower in _CRM_STAGES:
+                pos = pos.model_copy(update={
+                    "position_type": "pipeline_crm",
+                    "source_system": "crm",
+                })
+            elif stage_lower in _LOS_STAGES:
+                pos = pos.model_copy(update={
+                    "position_type": "pipeline_los",
+                    "source_system": "los",
+                })
+        elif pos.position_type == "funded":
+            pos = pos.model_copy(update={"source_system": "core"})
+        routed.append(pos)
+
+    return routed
 
 
 def load_from_config(

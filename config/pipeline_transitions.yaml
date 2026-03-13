@@ -18,12 +18,20 @@
 
 transitions:
   lead:
-    underwriting:
+    term_sheet:
       base_daily_prob: 0.04
-      description: "Lead moves to active underwriting"
+      description: "Lead moves to term sheet negotiation"
     dropped:
       base_daily_prob: 0.015
       description: "Lead dropped (no interest, disqualified)"
+
+  term_sheet:
+    underwriting:
+      base_daily_prob: 0.06
+      description: "Term sheet accepted, submitted to LOS for underwriting"
+    dropped:
+      base_daily_prob: 0.01
+      description: "Term sheet rejected or withdrawn"
 
   underwriting:
     approved:
@@ -64,6 +72,9 @@ stage_age_factors:
   lead:
     model: decay
     half_life_days: 30           # After 30 days, prob drops to 50% of base
+  term_sheet:
+    model: decay
+    half_life_days: 20           # Term sheets go stale faster than leads
   underwriting:
     model: decay
     half_life_days: 25
@@ -109,6 +120,7 @@ expiry:
   enabled: true
   max_days_in_stage:
     lead: 90
+    term_sheet: 45
     underwriting: 60
     approved: 45
     documentation: 30

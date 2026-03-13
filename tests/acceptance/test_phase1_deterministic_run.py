@@ -50,7 +50,7 @@ class TestPhase1DeterministicRun:
         assert len(result.state.matured_positions) > 0
 
     def test_total_position_conservation(self):
-        """Total positions must be conserved: funded + pipeline + matured + dropped = initial."""
+        """Total positions must be conserved: funded + pipeline + matured + dropped - renewals = initial."""
         funded, pipeline = _load_data()
         initial_total = len(funded) + len(pipeline)
         config = _deterministic_config(horizon=30)
@@ -60,6 +60,7 @@ class TestPhase1DeterministicRun:
         final_total = (
             len(state.funded) + len(state.pipeline)
             + len(state.matured_positions) + len(state.dropped_deals)
+            - len(state.renewal_submissions)
         )
         assert final_total == initial_total
 

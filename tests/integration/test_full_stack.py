@@ -73,7 +73,7 @@ class TestPipelineInflow:
         deals = generate_daily_inflow(config, rng, date(2026, 3, 15))
         assert len(deals) > 0
         for d in deals:
-            assert d.position_type == "pipeline"
+            assert d.position_type == "pipeline_crm"
             assert d.pipeline_stage == "lead"
             assert d.committed_amount >= 100_000
 
