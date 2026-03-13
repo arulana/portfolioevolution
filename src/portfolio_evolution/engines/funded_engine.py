@@ -16,11 +16,12 @@ if TYPE_CHECKING:
 class FundedEvolutionResult:
     """Result of one day's evolution for a funded position."""
 
-    position: InstrumentPosition  # Updated position (or original if matured)
+    position: InstrumentPosition
     matured: bool
-    amortisation_amount: float  # How much principal was paid down today
-    events: list  # TransitionEvents generated
-    deposit_capture_request: dict | None  # Hook for Wave 2 — always None for now
+    prepaid: bool
+    amortisation_amount: float
+    events: list
+    deposit_capture_request: dict | None
 
 
 def compute_daily_amortisation(
@@ -81,30 +82,69 @@ def check_maturity(
     return sim_date > cutoff
 
 
+def _get_prepayment_probability(
+    position: InstrumentPosition,
+    config: dict,
+) -> float:
+    """Look up daily prepayment probability from config with segment overrides."""
+    prepay_cfg = config.get("prepayment", {})
+    if not prepay_cfg.get("enabled", False):
+        return 0.0
+
+    min_age = prepay_cfg.get("minimum_age_days", 90)
+    if position.origination_date:
+        age = (position.as_of_date - position.origination_date).days
+        if age < min_age:
+            return 0.0
+
+    base = prepay_cfg.get("base_daily_probability", 0.0005)
+
+    seg_overrides = prepay_cfg.get("segment_overrides", {})
+    if position.segment:
+        seg_key = position.segment.lower().replace(" ", "_")
+        if seg_key in seg_overrides:
+            base = float(seg_overrides[seg_key])
+
+    return base
+
+
 def evolve_funded_day(
     position: InstrumentPosition,
     config: dict,
     sim_date: date,
+    rng: "SeededRNG | None" = None,
 ) -> FundedEvolutionResult:
     """Evolve a funded position for one day.
 
     Steps:
-    1. Check maturity → if matured, return with matured=True
-    2. Compute daily amortisation
-    3. Create new position with reduced funded_amount
-    4. Return result
-
-    The new position must be a fresh InstrumentPosition (construct from dict),
-    not a mutation of the original. Update as_of_date to sim_date.
+    1. Check maturity
+    2. Check prepayment (stochastic)
+    3. Compute daily amortisation
+    4. Return updated position
     """
     if check_maturity(position, config, sim_date):
         return FundedEvolutionResult(
             position=position,
             matured=True,
+            prepaid=False,
             amortisation_amount=0.0,
             events=[],
             deposit_capture_request=None,
         )
+
+    if rng is not None:
+        prepay_prob = _get_prepayment_probability(position, config)
+        if prepay_prob > 0:
+            draw = float(rng.uniform())
+            if draw < prepay_prob:
+                return FundedEvolutionResult(
+                    position=position,
+                    matured=False,
+                    prepaid=True,
+                    amortisation_amount=0.0,
+                    events=[],
+                    deposit_capture_request=None,
+                )
 
     amort = compute_daily_amortisation(position, config, sim_date)
     new_funded = max(0.0, position.funded_amount - amort)
@@ -118,6 +158,7 @@ def evolve_funded_day(
     return FundedEvolutionResult(
         position=updated_position,
         matured=False,
+        prepaid=False,
         amortisation_amount=amort,
         events=[],
         deposit_capture_request=None,

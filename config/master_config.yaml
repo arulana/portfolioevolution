@@ -1,17 +1,16 @@
 # ============================================================================
 # Master Configuration — Portfolio Evolution Engine
 # ============================================================================
-# This file controls all simulation parameters. Override individual values
-# via CLI flags or use a preset (config/presets/) as a starting point.
+# Calibrated for a US superregional bank ($50-200B assets, ~$63B commercial).
 # ============================================================================
 
 # --- BASIC ---
 
-simulation_horizon_days: 90      # How many days to simulate forward
-num_paths: 100                   # Number of Monte Carlo paths (1 = deterministic)
-random_seed: 42                  # Seed for reproducibility
-time_step: daily                 # Only "daily" supported in Phase 1
-mode: stochastic                 # stochastic | deterministic_forecast
+simulation_horizon_days: 365
+num_paths: 1
+random_seed: 42
+time_step: daily
+mode: deterministic_forecast
 
 # --- DATA ---
 
@@ -20,33 +19,23 @@ pipeline_file: "data/sample/pipeline.csv"
 schema_mapping: "schemas/schema_mapping.yaml"
 source_schema: "schemas/source_schema.yaml"
 
-# Multi-portfolio support (overrides funded_file/pipeline_file if present)
-# portfolios:
-#   - name: "C&I"
-#     funded_file: "data/ci_funded.csv"
-#     pipeline_file: "data/ci_pipeline.csv"
-#     schema_mapping: "schemas/ci_mapping.yaml"
-#   - name: "CRE"
-#     funded_file: "data/cre_funded.csv"
-#     pipeline_file: "data/cre_pipeline.csv"
-
 # --- CALENDAR ---
 
 calendar:
-  business_days_only: true       # Skip weekends
-  country: US                    # Holiday calendar
-  start_date: null               # Defaults to as_of_date from data + 1 business day
+  business_days_only: true
+  country: US
+  start_date: null
 
-# --- DEPOSITS (Phase 1.1) ---
+# --- DEPOSITS ---
 
 deposits:
-  enabled: false               # Enable in Phase 1.1
+  enabled: true
   deposits_file: "data/sample/deposits.csv"
   schema_mapping: "schemas/deposit_schema_mapping.yaml"
-  relationships_file: null     # Optional — auto-inferred if null
-  capture_at_funding: true     # Generate deposits when pipeline loans fund
-  pricing_enabled: true        # Update deposit rates daily
-  liquidity_metrics: true      # Compute LDR, stability, LCR proxy
+  relationships_file: null
+  capture_at_funding: true
+  pricing_enabled: true
+  liquidity_metrics: true
 
 # --- SCHEDULER ---
 
@@ -62,52 +51,53 @@ scheduler:
 
 pipeline:
   enabled: true
-  allow_partial_funding: true    # Revolvers fund partially on booking
-  new_pipeline_inflow: false     # Generate new pipeline deals during sim (Phase 2+)
+  allow_partial_funding: true
+  new_pipeline_inflow: true
   inflow:
-    deals_per_week: 8
+    deals_per_week: 50
     segment_weights:
-      cre: 0.40
-      c_and_i: 0.35
-      construction: 0.15
-      consumer: 0.10
-    avg_deal_size: 2500000
-    deal_size_std: 1500000
+      cre: 0.28
+      c_and_i: 0.48
+      multifamily: 0.12
+      construction: 0.07
+      specialty: 0.05
+    avg_deal_size: 4000000
+    deal_size_std: 3000000
     seasonality: true
-    rating_distribution: [0.05, 0.10, 0.20, 0.30, 0.20, 0.10, 0.03, 0.01, 0.01]
+    rating_distribution: [0.03, 0.08, 0.18, 0.32, 0.22, 0.12, 0.03, 0.01, 0.01]
 
 # --- FUNDED PORTFOLIO ---
 
 funded:
   amortisation_enabled: true
-  renewal_enabled: false         # Phase 2
-  prepayment_enabled: false      # Phase 2
-  utilisation_sim_enabled: false # Phase 2
+  renewal_enabled: true
+  prepayment_enabled: true
+  utilisation_sim_enabled: false
 
 # --- RATINGS ---
 
 ratings:
-  enabled: false                 # Phase 2
-  approach: matrix_hybrid        # matrix | score | matrix_hybrid
-  migration_cadence: monthly     # monthly | daily
+  enabled: true
+  approach: matrix_hybrid
+  migration_cadence: monthly
 
 # --- VALUATION ---
 
 valuation:
-  enabled: false                 # Phase 3
-  fair_value_mode: simple        # simple | full
+  enabled: false
+  fair_value_mode: simple
 
 # --- STRATEGY ---
 
 strategy:
-  enabled: false                 # Phase 2
-  signals_file: null             # Path to strategy signals YAML
-  archetype: null                # Lender archetype to load
+  enabled: false
+  signals_file: null
+  archetype: null
 
 # --- SCENARIOS ---
 
 scenarios:
-  enabled: false                 # Phase 2
+  enabled: false
   definitions:
     - "config/scenarios/baseline.yaml"
 
@@ -115,16 +105,16 @@ scenarios:
 
 output:
   directory: "outputs/"
-  store_position_level_history: true   # Full position state each day
-  store_event_log: true                # Explainability log
-  aggregate_frequency: daily           # daily | weekly | monthly
+  store_position_level_history: true
+  store_event_log: true
+  aggregate_frequency: daily
   formats:
-    - csv                              # csv | parquet | json
-  target_schema: null                  # Path to target schema YAML (optional)
+    - csv
+  target_schema: null
 
 # --- ADVANCED ---
 
 performance:
-  vectorize: true                # Use vectorized ops where possible
-  checkpoint_interval: 0        # Save checkpoint every N days (0 = disabled)
-  max_memory_gb: 8              # Warn if projected memory exceeds this
+  vectorize: true
+  checkpoint_interval: 0
+  max_memory_gb: 16

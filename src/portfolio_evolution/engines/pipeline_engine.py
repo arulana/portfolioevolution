@@ -15,6 +15,8 @@ _SEGMENT_ALIASES: dict[str, list[str]] = {
     "cre": ["cre", "commercial_real_estate", "commercial real estate", "commercialrealestate"],
     "c_and_i": ["c_and_i", "c&i", "c and i", "candi"],
     "construction": ["construction"],
+    "multifamily": ["multifamily", "multi_family", "multi-family", "mf"],
+    "specialty": ["specialty", "specialized", "special"],
 }
 
 

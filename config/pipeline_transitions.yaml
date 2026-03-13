@@ -1,86 +1,85 @@
 # ============================================================================
 # Pipeline Transition Probabilities
 # ============================================================================
-# Defines daily base probabilities for pipeline stage transitions.
-# These are calibrated for a community bank with typical CRE/C&I deal flow.
+# Calibrated for a US superregional bank ($50-200B assets).
+# Target: ~18% lead-to-fund conversion rate over 60-75 day average cycle.
 #
 # For each stage, define transitions to possible next stages.
 # Probabilities are per-day and should sum to < 1.0 (remainder = stay in stage).
 #
 # Modifiers are applied multiplicatively:
 #   adjusted_prob = base_daily_prob
-#                   × stage_age_factor(days_in_stage)
-#                   × segment_factor
-#                   × rating_factor
-#                   × strategy_multiplier (Phase 2)
-#                   × scenario_multiplier (Phase 2)
+#                   x stage_age_factor(days_in_stage)
+#                   x segment_factor
+#                   x rating_factor
+#                   x strategy_multiplier
+#                   x scenario_multiplier
 # ============================================================================
 
 transitions:
   lead:
     term_sheet:
-      base_daily_prob: 0.04
-      description: "Lead moves to term sheet negotiation"
+      base_daily_prob: 0.025
+      description: "Lead qualifies and moves to term sheet negotiation"
     dropped:
-      base_daily_prob: 0.015
-      description: "Lead dropped (no interest, disqualified)"
+      base_daily_prob: 0.025
+      description: "Lead dropped — disqualified, no interest, or competitive loss"
 
   term_sheet:
     underwriting:
-      base_daily_prob: 0.06
+      base_daily_prob: 0.04
       description: "Term sheet accepted, submitted to LOS for underwriting"
     dropped:
-      base_daily_prob: 0.01
-      description: "Term sheet rejected or withdrawn"
+      base_daily_prob: 0.012
+      description: "Term sheet rejected, pricing mismatch, or borrower walks"
 
   underwriting:
     approved:
-      base_daily_prob: 0.06
-      description: "Credit approval granted"
+      base_daily_prob: 0.04
+      description: "Credit approval granted by credit committee"
     dropped:
-      base_daily_prob: 0.02
-      description: "Declined or withdrawn during underwriting"
+      base_daily_prob: 0.018
+      description: "Declined, material adverse finding, or withdrawn"
 
   approved:
     documentation:
-      base_daily_prob: 0.08
-      description: "Approved deal moves to doc prep"
+      base_daily_prob: 0.06
+      description: "Approved deal moves to doc prep with counsel"
     dropped:
       base_daily_prob: 0.008
-      description: "Approved deal falls out (rare)"
+      description: "Approved deal falls out — rare but happens with rate moves"
 
   documentation:
     closing:
-      base_daily_prob: 0.10
+      base_daily_prob: 0.08
       description: "Docs complete, ready to close"
     dropped:
       base_daily_prob: 0.005
-      description: "Doc issues kill the deal (very rare)"
+      description: "Doc issues kill the deal (title, environmental, covenant)"
 
   closing:
     funded:
-      base_daily_prob: 0.15
+      base_daily_prob: 0.12
       description: "Deal closes and funds"
     dropped:
       base_daily_prob: 0.003
-      description: "Last-minute fallout"
+      description: "Last-minute fallout — very rare at this stage"
 
-# Stage age factor: as deals sit longer in a stage, transition probability changes.
-# decay = probability decreases with age (deals that haven't moved are stuck)
-# acceleration = probability increases with age (pressure to close)
+# Stage age factor: as deals sit longer, probability changes.
+# Early stages decay (stale leads), later stages accelerate (pressure to close).
 stage_age_factors:
   lead:
     model: decay
-    half_life_days: 30           # After 30 days, prob drops to 50% of base
+    half_life_days: 25
   term_sheet:
     model: decay
-    half_life_days: 20           # Term sheets go stale faster than leads
+    half_life_days: 18
   underwriting:
     model: decay
-    half_life_days: 25
+    half_life_days: 22
   approved:
     model: acceleration
-    ramp_days: 10                # After 10 days, prob increases 50%
+    ramp_days: 10
     max_multiplier: 2.0
   documentation:
     model: acceleration
@@ -91,19 +90,25 @@ stage_age_factors:
     ramp_days: 5
     max_multiplier: 2.0
 
-# Segment factors: multipliers by business segment
+# Segment factors: C&I moves faster, CRE/Construction slower
 segment_factors:
   cre:
-    advance_multiplier: 0.90     # CRE deals move slightly slower
-    fallout_multiplier: 1.10     # Slightly higher fallout
+    advance_multiplier: 0.85
+    fallout_multiplier: 1.15
   c_and_i:
-    advance_multiplier: 1.10     # C&I moves faster
-    fallout_multiplier: 0.90
+    advance_multiplier: 1.15
+    fallout_multiplier: 0.85
+  multifamily:
+    advance_multiplier: 0.90
+    fallout_multiplier: 1.05
   construction:
-    advance_multiplier: 0.80     # Construction is slowest
-    fallout_multiplier: 1.20
+    advance_multiplier: 0.75
+    fallout_multiplier: 1.25
+  specialty:
+    advance_multiplier: 0.80
+    fallout_multiplier: 1.10
 
-# Rating factors: better-rated deals close faster
+# Rating factors: better-rated deals close faster, weaker ones fall out more
 rating_factors:
   "1": { advance_multiplier: 1.30, fallout_multiplier: 0.50 }
   "2": { advance_multiplier: 1.20, fallout_multiplier: 0.60 }
@@ -115,7 +120,7 @@ rating_factors:
   "8": { advance_multiplier: 0.30, fallout_multiplier: 2.50 }
   "9": { advance_multiplier: 0.10, fallout_multiplier: 4.00 }
 
-# Expiry: deals that sit too long in any active stage auto-expire
+# Expiry: deals that sit too long auto-expire
 expiry:
   enabled: true
   max_days_in_stage:

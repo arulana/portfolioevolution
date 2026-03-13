@@ -48,6 +48,7 @@ def test_total_position_conservation_any_seed(seed: int):
     final = (
         len(state.funded) + len(state.pipeline)
         + len(state.matured_positions) + len(state.dropped_deals)
+        + len(state.prepaid_positions)
         - len(state.renewal_submissions)
     )
     assert final == initial, f"Conservation violated: {final} != {initial} (seed={seed})"

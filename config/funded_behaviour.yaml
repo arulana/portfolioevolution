@@ -1,8 +1,9 @@
 # ============================================================================
 # Funded Portfolio Behaviour Rules
 # ============================================================================
-# Controls how funded positions evolve daily.
-# Calibrated for a community bank CRE/C&I portfolio.
+# Calibrated for a US superregional bank ($50-200B assets).
+# Renewal: 75-85% of maturing performing loans renew.
+# Prepayment: 10-25% annualized CPR depending on segment.
 # ============================================================================
 
 amortisation:
@@ -23,44 +24,47 @@ amortisation:
     description: "Custom repayment schedule per instrument"
 
 maturity:
-  action: renew                 # runoff | renew
+  action: renew
   grace_period_days: 0
   description: "At maturity, eligible loans re-enter underwriting for renewal"
 
 renewal:
   enabled: true
-  base_renewal_probability: 0.65
+  base_renewal_probability: 0.80
   segment_overrides:
-    cre: 0.70
-    c_and_i: 0.60
-    construction: 0.40
+    cre: 0.82
+    c_and_i: 0.78
+    multifamily: 0.85
+    construction: 0.50
+    specialty: 0.65
   rating_overrides:
-    "1": 0.85
-    "2": 0.80
-    "3": 0.75
-    "4": 0.70
-    "5": 0.60
-    "6": 0.40
-    "7": 0.20
-    "8": 0.05
+    "1": 0.92
+    "2": 0.90
+    "3": 0.87
+    "4": 0.82
+    "5": 0.70
+    "6": 0.50
+    "7": 0.25
+    "8": 0.08
     "9": 0.00
-  renewal_term_months: null     # null = same tenor as original
-  renewal_rate_adjustment_bps: 0
+  renewal_term_months: null
+  renewal_rate_adjustment_bps: 15
 
-# Phase 2: prepayment rules
 prepayment:
-  enabled: false
-  base_daily_probability: 0.0003    # ~7.5% annualised
-  rate_sensitivity: -0.5            # Higher rates → less prepayment
+  enabled: true
+  base_daily_probability: 0.0005
+  rate_sensitivity: -0.5
   segment_overrides:
-    cre: 0.0002
-    c_and_i: 0.0004
-  minimum_age_days: 90              # No prepayment in first 90 days
+    cre: 0.00040
+    c_and_i: 0.00080
+    multifamily: 0.00073
+    construction: 0.0012
+    specialty: 0.0005
+  minimum_age_days: 90
 
-# Phase 2: utilisation dynamics
 utilisation:
   enabled: false
-  model: mean_reversion             # mean_reversion | event_driven
+  model: mean_reversion
   mean_reversion:
     target_by_product:
       cre_term: 0.95
@@ -69,8 +73,8 @@ utilisation:
       c_and_i_loc: 0.45
       c_and_i_secured: 0.90
       c_and_i_owner_occupied: 0.95
-    reversion_speed: 0.02           # Daily mean-reversion speed
-    volatility: 0.01                # Daily volatility
+    reversion_speed: 0.02
+    volatility: 0.01
   bounds:
     min: 0.0
     max: 1.0

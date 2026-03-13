@@ -66,6 +66,7 @@ class SimulationState:
     balance_sheet_snapshots: list[Any] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
     matured_positions: list[InstrumentPosition] = field(default_factory=list)
+    prepaid_positions: list[InstrumentPosition] = field(default_factory=list)
     dropped_deals: list[InstrumentPosition] = field(default_factory=list)
     funded_conversions: list[InstrumentPosition] = field(default_factory=list)
     renewal_submissions: list[InstrumentPosition] = field(default_factory=list)
@@ -353,12 +354,14 @@ def _step_day(
 
     # --- Funded engine ---
     matured_today: list[InstrumentPosition] = []
+    prepaid_today: list[InstrumentPosition] = []
     maturity_amount = 0.0
+    prepayment_amount = 0.0
     surviving_funded: list[InstrumentPosition] = []
 
     all_funded = state.funded + new_funded_today
     for pos in all_funded:
-        result = evolve_funded_day(pos, funded_config, day.date)
+        result = evolve_funded_day(pos, funded_config, day.date, rng=rng)
         if result.matured:
             matured_today.append(pos)
             state.matured_positions.append(pos)
@@ -368,6 +371,10 @@ def _step_day(
             if renewal.renewed and renewal.renewal_position is not None:
                 state.pipeline.append(renewal.renewal_position)
                 state.renewal_submissions.append(renewal.renewal_position)
+        elif result.prepaid:
+            prepaid_today.append(pos)
+            state.prepaid_positions.append(pos)
+            prepayment_amount += pos.funded_amount
         else:
             surviving_funded.append(result.position)
 

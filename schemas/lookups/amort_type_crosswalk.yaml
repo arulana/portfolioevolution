@@ -15,3 +15,6 @@ forward:
   "I.O.": "interest_only"
   "Single Payment at Maturity": "bullet"
   "Balloon": "bullet"
+  "Revolving": "revolving"
+  "revolving": "revolving"
+  "Revolver": "revolving"
