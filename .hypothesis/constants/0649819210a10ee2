@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\functions\lit.py
+# hypothesis_version: 6.151.9
+
+['UTC', 'datetime64[', 'dtype', 'earliest', 'latest', 'literal', 'seconds', 'time_unit', 'time_zone', 'timedelta64[', 'us', 'utcoffset']

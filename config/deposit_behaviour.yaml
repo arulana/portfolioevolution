@@ -1,0 +1,80 @@
+# ============================================================================
+# Deposit Behaviour Configuration
+# ============================================================================
+# Controls how deposit balances evolve daily.
+# Deposits are behavioural balances, not contractual instruments.
+# ============================================================================
+
+decay:
+  enabled: true
+  default_half_life_days:
+    operating: 720           # ~2 years — very sticky
+    corporate_transaction: 540
+    escrow: 360
+    term_deposit: null       # No decay — fixed duration, matures on schedule
+    savings: 540
+    retail_checking: 1080    # ~3 years — stickiest
+    sweep: 90                # Very short-lived
+    brokered: 180            # 6 months
+
+rate_sensitivity:
+  enabled: true
+  default_betas:
+    retail_checking: 0.25
+    savings: 0.30
+    operating: 0.35
+    corporate_transaction: 0.40
+    escrow: 0.10
+    term_deposit: 0.60
+    sweep: 0.70
+    brokered: 0.95
+
+  withdrawal_base:
+    operating: 0.001
+    corporate_transaction: 0.001
+    savings: 0.002
+    retail_checking: 0.001
+    escrow: 0.0005
+    term_deposit: 0.0
+      # Term deposits don't withdraw early (simplification)
+    sweep: 0.008
+    brokered: 0.005
+
+utilisation_linkage:
+  enabled: true
+  operating_balance_ratio: 0.15
+  description: >
+    Operating deposits linked to credit line utilisation.
+    operating_balance = loan_utilisation × operating_balance_ratio
+
+capture:
+  enabled: true
+  base_probability:
+    middle_market: 0.70
+    sponsor_finance: 0.35
+    large_corporate: 0.55
+    cre: 0.40
+    c_and_i: 0.60
+    consumer: 0.80
+    construction: 0.30
+  factors:
+    relationship_multiplier: 1.15
+    treasury_product_presence: 1.20
+    pricing_competitiveness: 1.10
+
+liquidity_classification:
+  stable:
+    - stable_operational
+    - non_operational
+  volatile:
+    - rate_sensitive
+    - volatile
+    - brokered
+
+# Stressed outflow rates for LCR proxy computation
+stressed_outflow_rates:
+  stable_operational: 0.05
+  non_operational: 0.10
+  rate_sensitive: 0.25
+  volatile: 0.40
+  brokered: 0.75

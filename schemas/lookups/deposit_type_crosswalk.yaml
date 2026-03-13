@@ -1,0 +1,96 @@
+# Deposit Type Crosswalk
+# Maps bank deposit account types to canonical deposit types
+
+version: "1.0"
+
+forward:
+  "Checking": "operating"
+  "checking": "operating"
+  "CHECKING": "operating"
+  "DDA": "operating"
+  "Demand Deposit": "operating"
+  "Business Checking": "operating"
+  "Commercial Checking": "operating"
+  "Operating": "operating"
+
+  "Corporate Transaction": "corporate_transaction"
+  "Treasury": "corporate_transaction"
+  "Cash Management": "corporate_transaction"
+
+  "Escrow": "escrow"
+  "escrow": "escrow"
+  "ESCROW": "escrow"
+  "Trust": "escrow"
+
+  "CD": "term_deposit"
+  "Certificate of Deposit": "term_deposit"
+  "Time Deposit": "term_deposit"
+  "Term Deposit": "term_deposit"
+  "term_deposit": "term_deposit"
+  "Fixed Deposit": "term_deposit"
+
+  "Savings": "savings"
+  "savings": "savings"
+  "SAVINGS": "savings"
+  "Money Market Savings": "savings"
+
+  "Retail Checking": "retail_checking"
+  "Personal Checking": "retail_checking"
+  "Consumer Checking": "retail_checking"
+
+  "Sweep": "sweep"
+  "sweep": "sweep"
+  "SWEEP": "sweep"
+  "Sweep Account": "sweep"
+
+  "Brokered": "brokered"
+  "brokered": "brokered"
+  "BROKERED": "brokered"
+  "Wholesale": "brokered"
+  "Brokered CD": "brokered"
+
+  "Money Market": "savings"
+  "MMA": "savings"
+  "MMDA": "savings"
+
+canonical_types:
+  operating:
+    label: "Operating / DDA"
+    typical_beta: 0.35
+    typical_half_life_days: 720
+    is_stable: true
+  corporate_transaction:
+    label: "Corporate Transaction"
+    typical_beta: 0.40
+    typical_half_life_days: 540
+    is_stable: true
+  escrow:
+    label: "Escrow / Trust"
+    typical_beta: 0.10
+    typical_half_life_days: 360
+    is_stable: true
+  term_deposit:
+    label: "Term Deposit / CD"
+    typical_beta: 0.60
+    typical_half_life_days: null
+    is_stable: false
+  savings:
+    label: "Savings / MMA"
+    typical_beta: 0.30
+    typical_half_life_days: 540
+    is_stable: true
+  retail_checking:
+    label: "Retail Checking"
+    typical_beta: 0.25
+    typical_half_life_days: 1080
+    is_stable: true
+  sweep:
+    label: "Sweep Account"
+    typical_beta: 0.70
+    typical_half_life_days: 90
+    is_stable: false
+  brokered:
+    label: "Brokered / Wholesale"
+    typical_beta: 0.95
+    typical_half_life_days: 180
+    is_stable: false

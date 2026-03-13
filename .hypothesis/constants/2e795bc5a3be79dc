@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\cloud\_utils.py
+# hypothesis_version: 6.151.9
+
+['.amazonaws.com/', '.s3.', '/', '://', '?', 'T', 'abfs', 'abfss', 'adl', 'az', 'azure', 'file_cache_ttl', 'gcp', 'gcs', 'gs', 'http', 'https', 'max_retries', 'retry_max_backoff_ms', 'retry_timeout_ms', 's3', 's3a']

@@ -1,0 +1,1941 @@
+{
+  "total_rows": 1725,
+  "valid_rows": 1605,
+  "error_rows": 120,
+  "field_coverage": {
+    "instrument_id": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "counterparty_name": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "facility_id": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "segment": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "subsegment": {
+      "non_null_count": 1724,
+      "null_count": 1,
+      "coverage_pct": 99.94
+    },
+    "product_type": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "industry_code": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "industry": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "geography": {
+      "non_null_count": 1709,
+      "null_count": 16,
+      "coverage_pct": 99.07
+    },
+    "funded_amount": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "committed_amount": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "undrawn_amount": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "original_amount": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "coupon_rate": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "coupon_type": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "rate_floor": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "spread_bps": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "earned_deferred_fees": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "earn_interest_balance": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "rbc_amount": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "fhlb_reporting_code": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "origination_date": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "maturity_date": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "renewal_date": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "payment_frequency": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "payment_type": {
+      "non_null_count": 1685,
+      "null_count": 40,
+      "coverage_pct": 97.68
+    },
+    "amortisation_type": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "collateral_type": {
+      "non_null_count": 1724,
+      "null_count": 1,
+      "coverage_pct": 99.94
+    },
+    "collateral_code": {
+      "non_null_count": 1724,
+      "null_count": 1,
+      "coverage_pct": 99.94
+    },
+    "property_type": {
+      "non_null_count": 1724,
+      "null_count": 1,
+      "coverage_pct": 99.94
+    },
+    "owner_occupied_flag": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "purpose_code": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "purpose_group": {
+      "non_null_count": 1717,
+      "null_count": 8,
+      "coverage_pct": 99.54
+    },
+    "internal_rating_numeric": {
+      "non_null_count": 1719,
+      "null_count": 6,
+      "coverage_pct": 99.65
+    },
+    "internal_rating": {
+      "non_null_count": 1719,
+      "null_count": 6,
+      "coverage_pct": 99.65
+    },
+    "risk_grade_bucket": {
+      "non_null_count": 1719,
+      "null_count": 6,
+      "coverage_pct": 99.65
+    },
+    "tdr_flag": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "snc_flag": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "accrual_status": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "relationship_manager_id": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "relationship_manager": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "team": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "relationship_name": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "as_of_date": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    },
+    "renewed_flag": {
+      "non_null_count": 1725,
+      "null_count": 0,
+      "coverage_pct": 100.0
+    }
+  },
+  "distribution_stats": {
+    "original_amount": {
+      "min": 0.0,
+      "max": 41000000.0,
+      "mean": 1742434.4119,
+      "median": 100000.0
+    },
+    "rate_floor": {
+      "min": 0.0,
+      "max": 0.205,
+      "mean": 0.0072,
+      "median": 0.0
+    },
+    "undrawn_amount": {
+      "min": 0.0,
+      "max": 13558400.0,
+      "mean": 144085.2982,
+      "median": 0.0
+    },
+    "coupon_rate": {
+      "min": 0.0,
+      "max": 0.1999,
+      "mean": 0.062,
+      "median": 0.0525
+    },
+    "spread_bps": {
+      "min": -125.0,
+      "max": 725.0,
+      "mean": 22.7159,
+      "median": 0.0
+    },
+    "earned_deferred_fees": {
+      "min": 0.0,
+      "max": 179461.28,
+      "mean": 4439.8116,
+      "median": 0.0
+    },
+    "funded_amount": {
+      "min": -20500000.0,
+      "max": 41000000.0,
+      "mean": 1472732.2395,
+      "median": 105106.58
+    },
+    "internal_rating_numeric": {
+      "min": 1.0,
+      "max": 55.0,
+      "mean": 4.7714,
+      "median": 4.0
+    },
+    "rbc_amount": {
+      "min": 358960378.0,
+      "max": 358960378.0,
+      "mean": 358960378.0,
+      "median": 358960378.0
+    },
+    "committed_amount": {
+      "min": -20500000.0,
+      "max": 41000000.0,
+      "mean": 1616817.5377,
+      "median": 131656.51
+    },
+    "earn_interest_balance": {
+      "min": -41483.94,
+      "max": 142615.55,
+      "mean": 629.9451,
+      "median": 0.0
+    }
+  },
+  "categorical_counts": {
+    "property_type": {
+      "0": 1272,
+      "nursing_home": 76,
+      "multifamily": 74,
+      "mixed_use": 56,
+      "retail": 50,
+      "office": 31,
+      "1_4_family": 26,
+      "6": 19,
+      "land": 17,
+      "15": 17,
+      "construction_residential": 16,
+      "warehouse": 14,
+      "commercial_condominiums": 13,
+      "industrial": 8,
+      "10": 8,
+      "construction_commercial": 6,
+      "12": 5,
+      "gas_station_auto_service": 4,
+      "residential_condo_for_sale": 3,
+      "5": 3,
+      "19": 2,
+      "2": 1,
+      "24": 1,
+      "11": 1,
+      "28": 1
+    },
+    "industry": {
+      "Healthcare": 823,
+      "Real Estate and Rental and Leasing": 368,
+      "Finance & Insurance": 307,
+      "Retail": 70,
+      "Individual": 54,
+      "Wholesale": 30,
+      "Services": 28,
+      "Manufacturing": 9,
+      "Transportation": 8,
+      "Food Services": 7,
+      "Recreation": 6,
+      "Information": 5,
+      "Education": 4,
+      "Real Estate": 4,
+      "Contractors": 2
+    },
+    "collateral_code": {
+      "8": 954,
+      "16": 425,
+      "19": 160,
+      "13": 51,
+      "12": 43,
+      "10": 34,
+      "1": 24,
+      "17": 17,
+      "2": 5,
+      "18": 5,
+      "20": 4,
+      "6": 1,
+      "5": 1
+    },
+    "payment_type": {
+      "P&I": 1257,
+      "Interest Only": 387,
+      "Hybrid": 11,
+      "Principal": 11,
+      "sinking funds": 7,
+      "Sinking Fund": 3,
+      "Inerest": 2,
+      "P + I": 2,
+      "P & I": 2,
+      "PRINCIPAL": 1,
+      "Prinicpal": 1,
+      "Principal only": 1
+    },
+    "risk_grade_bucket": {
+      "pass": 1694,
+      "watch": 19,
+      "substandard": 2,
+      "doubtful": 2,
+      "special_mention": 1,
+      "loss": 1
+    },
+    "industry_code": {
+      "621111": 400,
+      "522220": 280,
+      "531110": 243,
+      "623110": 164,
+      "621399": 89,
+      "621210": 84,
+      "446110": 60,
+      "531120": 59,
+      "621340": 58,
+      "999999": 54,
+      "531390": 46,
+      "532112": 9,
+      "531190": 6,
+      "531312": 6,
+      "621511": 6,
+      "425120": 6,
+      "423940": 6,
+      "621492": 6,
+      "423120": 5,
+      "722511": 5,
+      "424460": 5,
+      "451110": 5,
+      "561730": 4,
+      "531130": 4,
+      "611110": 4,
+      "721110": 4,
+      "624221": 4,
+      "621910": 4,
+      "424610": 4,
+      "311919": 3,
+      "531311": 3,
+      "511210": 3,
+      "522390": 3,
+      "522298": 3,
+      "313230": 3,
+      "713940": 3,
+      "488510": 3,
+      "522110": 3,
+      "441310": 2,
+      "238310": 2,
+      "623312": 2,
+      "423930": 2,
+      "454111": 2,
+      "623220": 2,
+      "541191": 2,
+      "541110": 2,
+      "485310": 2,
+      "561920": 2,
+      "541810": 2,
+      "541211": 2,
+      "447110": 1,
+      "533110": 1,
+      "541310": 1,
+      "621610": 1,
+      "532111": 1,
+      "326199": 1,
+      "621310": 1,
+      "523920": 1,
+      "541690": 1,
+      "713110": 1,
+      "481219": 1,
+      "336350": 1,
+      "561330": 1,
+      "722410": 1,
+      "541512": 1,
+      "621330": 1,
+      "712110": 1,
+      "561440": 1,
+      "722513": 1,
+      "551114": 1,
+      "424690": 1,
+      "511120": 1,
+      "524114": 1,
+      "524210": 1,
+      "423430": 1,
+      "561450": 1,
+      "518210": 1,
+      "522120": 1,
+      "481111": 1,
+      "541940": 1,
+      "316998": 1,
+      "523110": 1,
+      "621420": 1,
+      "487110": 1,
+      "712120": 1,
+      "812930": 1,
+      "561210": 1,
+      "561311": 1,
+      "813110": 1,
+      "532490": 1,
+      "561110": 1,
+      "522292": 1,
+      "532411": 1,
+      "562112": 1
+    },
+    "amortisation_type": {
+      "linear": 1257,
+      "interest_only": 383,
+      " ": 40,
+      "Hybrid": 11,
+      "Principal": 11,
+      "sinking funds": 7,
+      "interest": 4,
+      "Sinking Fund": 3,
+      "Inerest": 2,
+      "P + I": 2,
+      "P & I": 2,
+      "PRINCIPAL": 1,
+      "Prinicpal": 1,
+      "Principal only": 1
+    },
+    "geography": {
+      "NY": 790,
+      "FL": 165,
+      "NJ": 142,
+      "CA": 118,
+      "CT": 79,
+      "TX": 52,
+      "PA": 32,
+      "OH": 25,
+      "MD": 21,
+      "GA": 20,
+      "MI": 20,
+      "MA": 19,
+      "IL": 17,
+      "NC": 15,
+      "WI": 14,
+      "IN": 13,
+      "WA": 12,
+      "KY": 11,
+      "CO": 11,
+      "OR": 10,
+      "TN": 10,
+      "KS": 10,
+      "AZ": 9,
+      "MO": 9,
+      "LA": 9,
+      "VA": 9,
+      "NM": 8,
+      "AL": 8,
+      "DC": 7,
+      "OK": 6,
+      "AK": 4,
+      "UT": 4,
+      "NH": 3,
+      "MN": 3,
+      "SC": 3,
+      "HI": 3,
+      "IA": 2,
+      "ID": 2,
+      "MT": 2,
+      "WY": 2,
+      "RI": 2,
+      "NV": 2,
+      "SD": 1,
+      "ME": 1,
+      "NE": 1,
+      "WV": 1,
+      "AMS": 1,
+      "VT": 1
+    },
+    "payment_frequency": {
+      "monthly": 1391,
+      "single_payment": 322,
+      "quarterly": 8,
+      "Annually": 4
+    },
+    "coupon_type": {
+      "fixed": 1347,
+      "floating": 304,
+      "LETTER OF CREDIT": 18,
+      "Letter of Credit": 12,
+      "Credit Card": 12,
+      "FLOATING": 10,
+      " ": 10,
+      "prime": 4,
+      "1 Month LIBOR": 1,
+      "1 month LIBOR": 1,
+      "libor": 1,
+      "1MTH LIBOR": 1,
+      "CREDIT CARD": 1,
+      "FIxed": 1,
+      "Wex credit card": 1,
+      "Fxed": 1
+    },
+    "segment": {
+      "c_and_i": 1345,
+      "cre": 378,
+      "other": 2
+    },
+    "subsegment": {
+      "no real estate": 1272,
+      "nursing home": 77,
+      "multifamily": 74,
+      "mixed use": 56,
+      "retail": 50,
+      "office": 31,
+      "1-4 family": 26,
+      "commercial other": 19,
+      "land": 17,
+      "hospitality": 17,
+      "construction residential": 16,
+      "warehouse": 14,
+      "commercial condominium(s)": 13,
+      "industrial": 8,
+      "dormitory / shelter": 8,
+      "construction commercial": 6,
+      "garage": 5,
+      "gas station / auto service": 4,
+      "residential condo for sale": 3,
+      "commercial cooperative(s)": 3,
+      "not for profit / cultural and religious": 2,
+      "restaurant": 1,
+      "entertainment facility": 1,
+      "residential coop": 1
+    },
+    "purpose_code": {
+      "400": 1250,
+      "180": 234,
+      "170": 95,
+      "160": 62,
+      "110": 26,
+      "920": 25,
+      "140": 22,
+      "810": 4,
+      "250": 3,
+      "150": 2,
+      "330": 1,
+      "630": 1
+    },
+    "internal_rating": {
+      "BBB": 1066,
+      "BB": 535,
+      "AA": 54,
+      "AAA": 26,
+      "55": 19,
+      "A": 13,
+      "CCC": 2,
+      "CC": 2,
+      "B": 1,
+      "D": 1
+    },
+    "collateral_type": {
+      "UCC Filing": 954,
+      "Real Estate 1st Mortgage": 425,
+      "Leasehold": 160,
+      "Unsecured": 51,
+      "Life Insurance": 43,
+      "Assignment of Contracts": 34,
+      "Cash": 24,
+      "Real Estate 2nd Mortgage": 17,
+      "Time Deposits": 5,
+      "Ownership Equity": 5,
+      "Other Collateral": 4,
+      "Direct Lien on Equipment": 1,
+      "Letters of Credit": 1
+    },
+    "product_type": {
+      "Secured Commercial BHG - JV Loan": 491,
+      "Secured Commercial Loan": 478,
+      "cre_term": 223,
+      "Secured Commercial BHG - Core": 126,
+      "c_and_i_owner_occupied": 101,
+      "cre_multifamily": 75,
+      "Secured Commercial BHG - NR": 71,
+      "Letter of Credit - Commercial": 33,
+      "Related R.E. Unsecured": 26,
+      "cre_1_4_family": 25,
+      "cre_construction": 24,
+      "Unsecured Commercial Loan": 15,
+      "WEX Lines of Credit": 14,
+      "Secured Syndication Commercial Loan": 10,
+      "Business Revolving Line of Credit (small)": 6,
+      "Letter of Credit - Real Estate": 4,
+      "Indemnificaiton Risk - L/C": 2,
+      "Related R.E. Secured": 1
+    },
+    "purpose_group": {
+      "C&I Loans to US domicile": 1250,
+      "Non Owner Occupied": 234,
+      "Owner Occupied": 95,
+      "Secured by Multifamily residential": 62,
+      "Other Construction & Land Dev. Loans": 26,
+      "All other loans (excl. consumer)": 25,
+      "1-4 Fam 1st lien": 22,
+      "1-4 Fam 2nd lien": 2,
+      "Other Consumer Loans": 1
+    }
+  },
+  "warnings": [],
+  "errors": [
+    {
+      "row": 44,
+      "field": "committed_amount",
+      "value": "-750000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 44,
+      "field": "funded_amount",
+      "value": "-750000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 45,
+      "field": "committed_amount",
+      "value": "-853723.84",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 45,
+      "field": "funded_amount",
+      "value": "-853723.84",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 46,
+      "field": "committed_amount",
+      "value": "-27571.6",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 46,
+      "field": "funded_amount",
+      "value": "-608034.68",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 71,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 73,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 107,
+      "field": "amortisation_type",
+      "value": "interest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 138,
+      "field": "committed_amount",
+      "value": "-20500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 138,
+      "field": "funded_amount",
+      "value": "-20500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 156,
+      "field": "committed_amount",
+      "value": "-3750000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 156,
+      "field": "funded_amount",
+      "value": "-3750000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 231,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 231,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 234,
+      "field": "committed_amount",
+      "value": "-2000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 234,
+      "field": "funded_amount",
+      "value": "-2000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 247,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 247,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 254,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 254,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 256,
+      "field": "committed_amount",
+      "value": "-5000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 256,
+      "field": "funded_amount",
+      "value": "-5000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 260,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 260,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 282,
+      "field": "committed_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 282,
+      "field": "funded_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 284,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 284,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 312,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 312,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 347,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 359,
+      "field": "committed_amount",
+      "value": "-8828482.24",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 359,
+      "field": "funded_amount",
+      "value": "-8828482.24",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 384,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 384,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 385,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 385,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 400,
+      "field": "coupon_type",
+      "value": "1 Month LIBOR",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 430,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 430,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 447,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 447,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 482,
+      "field": "committed_amount",
+      "value": "-10000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 482,
+      "field": "funded_amount",
+      "value": "-10000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 507,
+      "field": "committed_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 507,
+      "field": "funded_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 509,
+      "field": "committed_amount",
+      "value": "-1000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 509,
+      "field": "funded_amount",
+      "value": "-1000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 511,
+      "field": "committed_amount",
+      "value": "-1500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 511,
+      "field": "funded_amount",
+      "value": "-1500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 513,
+      "field": "committed_amount",
+      "value": "-1500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 513,
+      "field": "funded_amount",
+      "value": "-1500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 515,
+      "field": "committed_amount",
+      "value": "-1250000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 515,
+      "field": "funded_amount",
+      "value": "-1250000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 517,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 517,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 522,
+      "field": "coupon_type",
+      "value": "1 month LIBOR",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 575,
+      "field": "amortisation_type",
+      "value": "Inerest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 578,
+      "field": "amortisation_type",
+      "value": "Sinking Fund",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 580,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 580,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 581,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 581,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 587,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 587,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 619,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 619,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 622,
+      "field": "committed_amount",
+      "value": "-6097972.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 622,
+      "field": "funded_amount",
+      "value": "-6097972.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 624,
+      "field": "committed_amount",
+      "value": "-1300677.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 624,
+      "field": "funded_amount",
+      "value": "-1300677.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 625,
+      "field": "committed_amount",
+      "value": "-2398646.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 625,
+      "field": "funded_amount",
+      "value": "-2398646.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 626,
+      "field": "committed_amount",
+      "value": "-5000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 626,
+      "field": "funded_amount",
+      "value": "-5000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 628,
+      "field": "committed_amount",
+      "value": "-3519018.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 628,
+      "field": "funded_amount",
+      "value": "-3519018.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 629,
+      "field": "committed_amount",
+      "value": "-3519019.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 629,
+      "field": "funded_amount",
+      "value": "-3519019.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 630,
+      "field": "committed_amount",
+      "value": "-2833333.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 630,
+      "field": "funded_amount",
+      "value": "-2833333.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 631,
+      "field": "committed_amount",
+      "value": "-2833334.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 631,
+      "field": "funded_amount",
+      "value": "-2833334.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 635,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 635,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 647,
+      "field": "amortisation_type",
+      "value": "P + I",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 648,
+      "field": "amortisation_type",
+      "value": "interest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 885,
+      "field": "amortisation_type",
+      "value": "Inerest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 931,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 931,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 966,
+      "field": "committed_amount",
+      "value": "-10000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 966,
+      "field": "funded_amount",
+      "value": "-10000000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 966,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 967,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 968,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1005,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1005,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1008,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1008,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1023,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1023,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1024,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1024,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1041,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1041,
+      "field": "payment_frequency",
+      "value": "Annually",
+      "error": "Input should be 'monthly', 'quarterly', 'semi_annual', 'annual', 'single_payment' or 'other'"
+    },
+    {
+      "row": 1053,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1053,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1064,
+      "field": "committed_amount",
+      "value": "-858333.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 1064,
+      "field": "funded_amount",
+      "value": "-858333.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 1073,
+      "field": "coupon_type",
+      "value": "libor",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1079,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1079,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1080,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1080,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1081,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1081,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1148,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1149,
+      "field": "coupon_type",
+      "value": "1MTH LIBOR",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1149,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1152,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1152,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1155,
+      "field": "coupon_type",
+      "value": "CREDIT CARD",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1155,
+      "field": "amortisation_type",
+      "value": "PRINCIPAL",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1161,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1161,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1165,
+      "field": "payment_frequency",
+      "value": "Annually",
+      "error": "Input should be 'monthly', 'quarterly', 'semi_annual', 'annual', 'single_payment' or 'other'"
+    },
+    {
+      "row": 1168,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1168,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1169,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1169,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1170,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1170,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1171,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1196,
+      "field": "amortisation_type",
+      "value": "interest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1212,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1212,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1223,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1223,
+      "field": "amortisation_type",
+      "value": "Prinicpal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1244,
+      "field": "amortisation_type",
+      "value": "interest",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1287,
+      "field": "amortisation_type",
+      "value": "P + I",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1295,
+      "field": "amortisation_type",
+      "value": "P & I",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1317,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1317,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1329,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1329,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1346,
+      "field": "amortisation_type",
+      "value": "Sinking Fund",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1347,
+      "field": "amortisation_type",
+      "value": "Sinking Fund",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1377,
+      "field": "payment_frequency",
+      "value": "Annually",
+      "error": "Input should be 'monthly', 'quarterly', 'semi_annual', 'annual', 'single_payment' or 'other'"
+    },
+    {
+      "row": 1378,
+      "field": "payment_frequency",
+      "value": "Annually",
+      "error": "Input should be 'monthly', 'quarterly', 'semi_annual', 'annual', 'single_payment' or 'other'"
+    },
+    {
+      "row": 1394,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1394,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1400,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1400,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1407,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1407,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1413,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1413,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1414,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1414,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1415,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1415,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1416,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1416,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1417,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1417,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1419,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1419,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1420,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1420,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1421,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1421,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1446,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1446,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1459,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1459,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1464,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1465,
+      "field": "amortisation_type",
+      "value": "sinking funds",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1468,
+      "field": "committed_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 1468,
+      "field": "funded_amount",
+      "value": "-500000.0",
+      "error": "Input should be greater than or equal to 0"
+    },
+    {
+      "row": 1473,
+      "field": "amortisation_type",
+      "value": "P & I",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1495,
+      "field": "coupon_type",
+      "value": " ",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1495,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1515,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1515,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1522,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1522,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1523,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1523,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1538,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1538,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1585,
+      "field": "coupon_type",
+      "value": "FLOATING",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1585,
+      "field": "amortisation_type",
+      "value": "Hybrid",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1590,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1590,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1651,
+      "field": "coupon_type",
+      "value": "FIxed",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1664,
+      "field": "coupon_type",
+      "value": "Wex credit card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1664,
+      "field": "amortisation_type",
+      "value": "Principal only",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1665,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1665,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1666,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1666,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1667,
+      "field": "coupon_type",
+      "value": "Letter of Credit",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1667,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1671,
+      "field": "coupon_type",
+      "value": "Credit Card",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1671,
+      "field": "amortisation_type",
+      "value": "Principal",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1682,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1682,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    },
+    {
+      "row": 1719,
+      "field": "coupon_type",
+      "value": "Fxed",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1723,
+      "field": "coupon_type",
+      "value": "LETTER OF CREDIT",
+      "error": "Input should be 'fixed', 'floating', 'prime', 'fee_based' or 'other'"
+    },
+    {
+      "row": 1723,
+      "field": "amortisation_type",
+      "value": " ",
+      "error": "Input should be 'bullet', 'linear', 'sculpted', 'revolving', 'interest_only' or 'other'"
+    }
+  ]
+}

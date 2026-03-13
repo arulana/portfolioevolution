@@ -1,0 +1,86 @@
+# Pipeline Stage Crosswalk
+# Maps various stage name formats to canonical pipeline stages
+
+version: "1.0"
+description: "Canonical pipeline stage definitions and mappings"
+
+canonical_stages:
+  - lead
+  - underwriting
+  - approved
+  - documentation
+  - closing
+  - funded
+  - dropped
+  - expired
+
+forward:
+  # Standard names
+  "Lead": "lead"
+  "lead": "lead"
+  "LEAD": "lead"
+  "Prospect": "lead"
+  "prospect": "lead"
+  "Initial Review": "lead"
+
+  "Underwriting": "underwriting"
+  "underwriting": "underwriting"
+  "UNDERWRITING": "underwriting"
+  "Credit Review": "underwriting"
+  "In Review": "underwriting"
+
+  "Approved": "approved"
+  "approved": "approved"
+  "APPROVED": "approved"
+  "Credit Approved": "approved"
+  "Commitment": "approved"
+
+  "Documentation": "documentation"
+  "documentation": "documentation"
+  "DOCUMENTATION": "documentation"
+  "Doc Prep": "documentation"
+  "Legal Review": "documentation"
+
+  "Closing": "closing"
+  "closing": "closing"
+  "CLOSING": "closing"
+  "Pre-Close": "closing"
+  "Ready to Close": "closing"
+
+  "Term Sheet": "approved"
+  "term sheet": "approved"
+  "TermSheet": "approved"
+
+  "Funded": "funded"
+  "funded": "funded"
+  "FUNDED": "funded"
+  "Booked": "funded"
+  "Closed": "funded"
+  "Active": "funded"
+
+  "Dropped": "dropped"
+  "dropped": "dropped"
+  "DROPPED": "dropped"
+  "Lost": "dropped"
+  "Declined": "dropped"
+  "Withdrawn": "dropped"
+
+  "Expired": "expired"
+  "expired": "expired"
+  "EXPIRED": "expired"
+  "Timed Out": "expired"
+
+# Stage ordering (for progression logic)
+stage_order:
+  lead: 0
+  underwriting: 1
+  approved: 2
+  documentation: 3
+  closing: 4
+  funded: 5
+
+# Terminal stages (no further transitions)
+terminal_stages:
+  - funded
+  - dropped
+  - expired

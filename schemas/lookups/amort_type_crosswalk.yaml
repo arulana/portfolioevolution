@@ -1,0 +1,17 @@
+# Amortisation Type Crosswalk
+# Maps Payment Type values to canonical amortisation types
+
+version: "1.0"
+
+forward:
+  "P&I": "linear"
+  "P+I": "linear"
+  "p&i": "linear"
+  "p+i": "linear"
+  "Principal & Interest": "linear"
+  "Interest": "interest_only"
+  "INTEREST": "interest_only"
+  "Interest Only": "interest_only"
+  "I.O.": "interest_only"
+  "Single Payment at Maturity": "bullet"
+  "Balloon": "bullet"

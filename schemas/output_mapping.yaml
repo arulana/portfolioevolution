@@ -1,0 +1,29 @@
+version: "1.0"
+description: "Canonical → target output mapping"
+
+# Uses target_schema.yaml to define the output shape.
+# This file adds transform definitions for output formatting.
+
+transforms:
+  decimal_to_percent:
+    description: "Multiply by 100 for percentage display"
+    operation: "multiply"
+    factor: 100
+
+  bool_to_yn:
+    description: "Convert boolean to Y/N"
+    operation: "map"
+    mapping:
+      true: "Y"
+      false: "N"
+
+  date_to_mmddyyyy:
+    description: "Format date as MM/DD/YYYY"
+    operation: "date_format"
+    format: "%m/%d/%Y"
+
+output_options:
+  include_header: true
+  null_representation: ""
+  float_precision: 2
+  date_format: "%Y-%m-%d"

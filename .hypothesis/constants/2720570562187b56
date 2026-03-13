@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\utils\config_loader.py
+# hypothesis_version: 6.151.9
+
+['*.yaml', 'forward', 'presets', 'r', 'utf-8']

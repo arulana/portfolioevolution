@@ -1,0 +1,39 @@
+# Rate Type Crosswalk
+# Maps bank rate code labels to canonical coupon types
+
+version: "1.0"
+
+forward:
+  "Fixed": "fixed"
+  "FIXED": "fixed"
+  "fixed": "fixed"
+  "FXD": "fixed"
+
+  "LIBOR": "floating"
+  "Libor": "floating"
+  "LIbor": "floating"
+  "LIB": "floating"
+
+  "Prime": "floating"
+  "PRIME": "floating"
+  "PRI": "floating"
+
+  "SOFR": "floating"
+  "sofr": "floating"
+
+  "Fee": "fee_based"
+  "FEE": "fee_based"
+
+# For distinguishing prime vs LIBOR/SOFR when needed
+index_detail:
+  "LIBOR": "libor"
+  "Libor": "libor"
+  "LIbor": "libor"
+  "LIB": "libor"
+  "Prime": "prime"
+  "PRIME": "prime"
+  "PRI": "prime"
+  "SOFR": "sofr"
+  "Fixed": "none"
+  "FIXED": "none"
+  "FXD": "none"

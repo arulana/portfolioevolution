@@ -1,0 +1,79 @@
+# Segment Taxonomy
+# Maps bank-specific segment labels to canonical segments
+
+version: "1.0"
+description: "Canonical business segment definitions"
+
+forward:
+  "CRE": "cre"
+  "cre": "cre"
+  "Commercial Real Estate": "cre"
+  "Real Estate": "cre"
+
+  "C&I": "c_and_i"
+  "c&i": "c_and_i"
+  "C and I": "c_and_i"
+  "Commercial & Industrial": "c_and_i"
+  "Commercial and Industrial": "c_and_i"
+
+  "Consumer": "consumer"
+  "consumer": "consumer"
+  "Retail Banking": "consumer"
+
+  "Construction": "construction"
+  "construction": "construction"
+
+  "Other": "other"
+  "other": "other"
+
+canonical_segments:
+  cre:
+    label: "Commercial Real Estate"
+    description: "Loans secured by income-producing commercial real estate"
+    subsegments:
+      - multifamily
+      - office
+      - retail
+      - mixed_use
+      - industrial
+      - warehouse
+      - land
+      - construction_residential
+      - construction_commercial
+      - nursing_home
+      - hotel
+      - gas_station_auto_service
+      - residential_condo_for_sale
+      - commercial_condominiums
+      - 1_4_family
+
+  c_and_i:
+    label: "Commercial & Industrial"
+    description: "Commercial and industrial loans, including owner-occupied CRE"
+    subsegments:
+      - owner_occupied_cre
+      - working_capital
+      - equipment
+      - acquisition
+      - trade_finance
+
+  consumer:
+    label: "Consumer"
+    description: "Consumer lending products"
+    subsegments:
+      - residential_mortgage
+      - home_equity
+      - auto
+      - personal
+
+  construction:
+    label: "Construction"
+    description: "Construction and land development loans"
+    subsegments:
+      - residential
+      - commercial
+      - land
+
+  other:
+    label: "Other"
+    description: "Other loan categories"

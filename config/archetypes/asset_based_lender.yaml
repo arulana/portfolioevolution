@@ -1,0 +1,37 @@
+# Asset-Based Lender Archetype
+archetype_id: asset_based_lender
+name: "Asset-Based Lender"
+description: >
+  Collateral-focused lender. Revolving credit facilities secured by
+  receivables, inventory, equipment. High utilisation volatility.
+
+pipeline_behaviour:
+  conversion_speed: 1.10
+  fallout_rate: 0.90
+  average_deal_size_range: [1000000, 30000000]
+
+pricing:
+  aggressiveness: 1.05
+  fixed_rate_preference: 0.15
+  typical_spread_range_bps: [250, 500]
+
+credit:
+  rating_tolerance: 6
+  average_rating: 5.0
+  watchlist_threshold: 7
+
+utilisation:
+  revolver_target: 0.55
+  term_target: 0.90
+
+renewal:
+  base_tendency: 0.70
+  relationship_premium: 0.10
+
+tenor:
+  preference_months: 12
+  max_months: 36
+
+stress_behaviour:
+  tightening_speed: moderate
+  cre_reduction_under_stress: 0.85

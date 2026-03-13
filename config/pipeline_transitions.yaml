@@ -1,0 +1,115 @@
+# ============================================================================
+# Pipeline Transition Probabilities
+# ============================================================================
+# Defines daily base probabilities for pipeline stage transitions.
+# These are calibrated for a community bank with typical CRE/C&I deal flow.
+#
+# For each stage, define transitions to possible next stages.
+# Probabilities are per-day and should sum to < 1.0 (remainder = stay in stage).
+#
+# Modifiers are applied multiplicatively:
+#   adjusted_prob = base_daily_prob
+#                   × stage_age_factor(days_in_stage)
+#                   × segment_factor
+#                   × rating_factor
+#                   × strategy_multiplier (Phase 2)
+#                   × scenario_multiplier (Phase 2)
+# ============================================================================
+
+transitions:
+  lead:
+    underwriting:
+      base_daily_prob: 0.04
+      description: "Lead moves to active underwriting"
+    dropped:
+      base_daily_prob: 0.015
+      description: "Lead dropped (no interest, disqualified)"
+
+  underwriting:
+    approved:
+      base_daily_prob: 0.06
+      description: "Credit approval granted"
+    dropped:
+      base_daily_prob: 0.02
+      description: "Declined or withdrawn during underwriting"
+
+  approved:
+    documentation:
+      base_daily_prob: 0.08
+      description: "Approved deal moves to doc prep"
+    dropped:
+      base_daily_prob: 0.008
+      description: "Approved deal falls out (rare)"
+
+  documentation:
+    closing:
+      base_daily_prob: 0.10
+      description: "Docs complete, ready to close"
+    dropped:
+      base_daily_prob: 0.005
+      description: "Doc issues kill the deal (very rare)"
+
+  closing:
+    funded:
+      base_daily_prob: 0.15
+      description: "Deal closes and funds"
+    dropped:
+      base_daily_prob: 0.003
+      description: "Last-minute fallout"
+
+# Stage age factor: as deals sit longer in a stage, transition probability changes.
+# decay = probability decreases with age (deals that haven't moved are stuck)
+# acceleration = probability increases with age (pressure to close)
+stage_age_factors:
+  lead:
+    model: decay
+    half_life_days: 30           # After 30 days, prob drops to 50% of base
+  underwriting:
+    model: decay
+    half_life_days: 25
+  approved:
+    model: acceleration
+    ramp_days: 10                # After 10 days, prob increases 50%
+    max_multiplier: 2.0
+  documentation:
+    model: acceleration
+    ramp_days: 7
+    max_multiplier: 1.5
+  closing:
+    model: acceleration
+    ramp_days: 5
+    max_multiplier: 2.0
+
+# Segment factors: multipliers by business segment
+segment_factors:
+  cre:
+    advance_multiplier: 0.90     # CRE deals move slightly slower
+    fallout_multiplier: 1.10     # Slightly higher fallout
+  c_and_i:
+    advance_multiplier: 1.10     # C&I moves faster
+    fallout_multiplier: 0.90
+  construction:
+    advance_multiplier: 0.80     # Construction is slowest
+    fallout_multiplier: 1.20
+
+# Rating factors: better-rated deals close faster
+rating_factors:
+  "1": { advance_multiplier: 1.30, fallout_multiplier: 0.50 }
+  "2": { advance_multiplier: 1.20, fallout_multiplier: 0.60 }
+  "3": { advance_multiplier: 1.15, fallout_multiplier: 0.70 }
+  "4": { advance_multiplier: 1.05, fallout_multiplier: 0.85 }
+  "5": { advance_multiplier: 1.00, fallout_multiplier: 1.00 }
+  "6": { advance_multiplier: 0.85, fallout_multiplier: 1.30 }
+  "7": { advance_multiplier: 0.60, fallout_multiplier: 1.80 }
+  "8": { advance_multiplier: 0.30, fallout_multiplier: 2.50 }
+  "9": { advance_multiplier: 0.10, fallout_multiplier: 4.00 }
+
+# Expiry: deals that sit too long in any active stage auto-expire
+expiry:
+  enabled: true
+  max_days_in_stage:
+    lead: 90
+    underwriting: 60
+    approved: 45
+    documentation: 30
+    closing: 15

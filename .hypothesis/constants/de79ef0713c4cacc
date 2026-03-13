@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\database\_arrow_registry.py
+# hypothesis_version: 6.151.9
+
+['1.6.0', 'adbc', 'arrow_odbc_proxy', 'databricks', 'duckdb', 'exact_batch_size', 'fetch_all', 'fetch_arrow', 'fetch_arrow_all', 'fetch_arrow_batches', 'fetch_arrow_table', 'fetch_batches', 'fetch_record_batch', 'fetch_record_batches', 'fetchall_arrow', 'fetchallarrow', 'fetcharrowbatches', 'fetchmany_arrow', 'minimum_version', 'repeat_batch_calls', 'snowflake', 'turbodbc']

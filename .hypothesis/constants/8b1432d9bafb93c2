@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\deposit_capture.py
+# hypothesis_version: 6.151.9
+
+[0.0, 0.1, 0.15, 0.5, 1.0, 'base_probability', 'baseline', 'capture', 'capture_at_funding', 'enabled', 'factors', 'fixed', 'floating', 'middle_market', 'operating', 'rate_sensitive', 'stable_operational', 'term_deposit', 'utilisation_linkage']

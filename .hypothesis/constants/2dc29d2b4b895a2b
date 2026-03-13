@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\scenarios\overlay.py
+# hypothesis_version: 6.151.9
+
+[0.0, 1.0, 'D', 'base_probability', 'capture', 'decay', 'default_betas', 'default_multiplier', 'deposit_beta_shift', 'deposit_modifiers', 'description', 'downgrade_multiplier', 'dropped', 'expired', 'macro_factors', 'name', 'pricing_modifiers', 'rate_sensitivity', 'scenario_id', 'transition_modifiers', 'unknown', 'upgrade_multiplier', 'utilisation_linkage']

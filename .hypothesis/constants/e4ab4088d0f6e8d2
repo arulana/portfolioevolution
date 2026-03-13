@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\datatypes\convert.py
+# hypothesis_version: 6.151.9
+
+['\'" ', ',', 'M', 'S', 'U', '[', '^(\\w+)(?:\\[(.+)\\])?$', 'b', 'binary', 'bool', 'categorical', 'date', 'datetime', 'decimal', 'duration', 'f', 'f16', 'f32', 'f64', 'i', 'i128', 'i16', 'i32', 'i64', 'i8', 'list', 'm', 'object', 'str', 'struct', 'time', 'time_unit', 'u', 'u128', 'u16', 'u32', 'u64', 'u8', 'us', 'μs']

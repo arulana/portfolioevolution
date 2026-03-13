@@ -1,0 +1,82 @@
+version: "1.0"
+description: "Bank deposit account extract schema"
+
+deposits:
+  file_format: csv
+  encoding: utf-8
+  delimiter: ","
+  date_format: "%Y-%m-%d"
+  columns:
+    - name: ACCOUNT_ID
+      type: string
+      required: true
+      description: Deposit account identifier
+
+    - name: CUSTOMER_ID
+      type: string
+      required: true
+      description: Customer / counterparty identifier
+
+    - name: ACCOUNT_TYPE
+      type: string
+      required: true
+      description: "Deposit type (Checking, Savings, CD, Money Market, etc.)"
+
+    - name: CURRENT_BAL
+      type: float
+      required: true
+
+    - name: AVG_BAL_30D
+      type: float
+      required: false
+
+    - name: INT_RATE
+      type: float
+      required: true
+      description: Current deposit interest rate
+
+    - name: RATE_TYPE
+      type: string
+      required: false
+
+    - name: BENCHMARK
+      type: string
+      required: false
+
+    - name: DEPOSIT_BETA
+      type: float
+      required: false
+      description: Rate sensitivity coefficient
+
+    - name: OPEN_DATE
+      type: date
+      required: false
+
+    - name: LIQUIDITY_CLASS
+      type: string
+      required: false
+
+    - name: SEGMENT
+      type: string
+      required: false
+
+    - name: INDUSTRY
+      type: string
+      required: false
+
+    - name: STATE
+      type: string
+      required: false
+
+    - name: BRANCH_CODE
+      type: string
+      required: false
+
+    - name: PRODUCT_BUNDLE
+      type: string
+      required: false
+
+    - name: LINKED_LOAN_IDS
+      type: string
+      required: false
+      description: "Comma-separated loan IDs linked to this deposit"

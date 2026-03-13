@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\models\schema_config.py
+# hypothesis_version: 6.151.9
+
+['%Y-%m-%d', ',', '1.0', 'csv', 'utf-8']

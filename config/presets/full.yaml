@@ -1,0 +1,33 @@
+# Full Preset — comprehensive analysis
+# 365-day stochastic, 500 paths, all modules, full output
+simulation_horizon_days: 365
+num_paths: 500
+mode: stochastic
+ratings:
+  enabled: true
+  approach: matrix_hybrid
+valuation:
+  enabled: true
+  fair_value_mode: full
+strategy:
+  enabled: true
+scenarios:
+  enabled: true
+  definitions:
+    - "config/scenarios/baseline.yaml"
+    - "config/scenarios/mild_recession.yaml"
+    - "config/scenarios/severe_stress.yaml"
+funded:
+  amortisation_enabled: true
+  renewal_enabled: true
+  prepayment_enabled: true
+  utilisation_sim_enabled: true
+output:
+  store_position_level_history: true
+  store_event_log: true
+  aggregate_frequency: daily
+  formats:
+    - csv
+    - parquet
+performance:
+  checkpoint_interval: 30

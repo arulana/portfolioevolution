@@ -1,0 +1,68 @@
+# Product Type Crosswalk
+# Maps ClassCodeDescriptions to canonical product types
+
+version: "1.0"
+
+forward:
+  "Commercial Real Estate": "cre_term"
+  "Multi-family CRE": "cre_multifamily"
+  "CRE secured by 1-4 Family": "cre_1_4_family"
+  "Construction CRE": "cre_construction"
+  "C&I CRE": "c_and_i_owner_occupied"
+  "C&I Unsecured": "c_and_i_unsecured"
+  "C&I Secured": "c_and_i_secured"
+  "C&I LOC": "c_and_i_loc"
+  "Consumer Real Estate": "consumer_re"
+  "Consumer Other": "consumer_other"
+  "SBA": "sba"
+  "Letters of Credit": "letter_of_credit"
+
+canonical_products:
+  cre_term:
+    label: "CRE Term Loan"
+    is_revolving: false
+    typical_tenor_months: 60
+  cre_multifamily:
+    label: "CRE Multifamily"
+    is_revolving: false
+    typical_tenor_months: 84
+  cre_1_4_family:
+    label: "CRE 1-4 Family"
+    is_revolving: false
+    typical_tenor_months: 60
+  cre_construction:
+    label: "CRE Construction"
+    is_revolving: false
+    typical_tenor_months: 24
+  c_and_i_owner_occupied:
+    label: "C&I Owner-Occupied CRE"
+    is_revolving: false
+    typical_tenor_months: 120
+  c_and_i_unsecured:
+    label: "C&I Unsecured"
+    is_revolving: false
+    typical_tenor_months: 36
+  c_and_i_secured:
+    label: "C&I Secured"
+    is_revolving: false
+    typical_tenor_months: 60
+  c_and_i_loc:
+    label: "C&I Line of Credit"
+    is_revolving: true
+    typical_tenor_months: 12
+  consumer_re:
+    label: "Consumer Real Estate"
+    is_revolving: false
+    typical_tenor_months: 360
+  consumer_other:
+    label: "Consumer Other"
+    is_revolving: false
+    typical_tenor_months: 60
+  sba:
+    label: "SBA Loan"
+    is_revolving: false
+    typical_tenor_months: 120
+  letter_of_credit:
+    label: "Letter of Credit"
+    is_revolving: false
+    typical_tenor_months: 12

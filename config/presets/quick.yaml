@@ -1,0 +1,17 @@
+# Quick Preset — fast validation run
+# 30-day deterministic, minimal modules, no position history
+simulation_horizon_days: 30
+num_paths: 1
+mode: deterministic_forecast
+ratings:
+  enabled: false
+valuation:
+  enabled: false
+strategy:
+  enabled: false
+scenarios:
+  enabled: false
+output:
+  store_position_level_history: false
+  store_event_log: true
+  aggregate_frequency: daily

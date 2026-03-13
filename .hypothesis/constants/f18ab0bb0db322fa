@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\rating_engine.py
+# hypothesis_version: 6.151.9
+
+[0.0, 1.0, 12.0, 365.0, 'A', 'AA', 'AAA', 'B', 'BB', 'BBB', 'CC', 'CCC', 'D', 'absorbing_states', 'baseline', 'cadence', 'daily', 'default', 'downgrade', 'downgrade_multiplier', 'matrix', 'monthly', 'ratings', 'segment_adjustments', 'stable', 'upgrade']

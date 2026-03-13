@@ -1,0 +1,34 @@
+# Baseline Scenario — current conditions continue
+scenario_id: baseline
+name: "Baseline"
+description: "Current economic conditions persist. No stress, no stimulus."
+
+macro_factors:
+  benchmark_rate_shift_bps: 0
+  credit_spread_shift_bps: 0
+  growth_factor: 1.0
+  inflation_factor: 1.0
+  unemployment_factor: 1.0
+  sector_stress: {}
+  geography_stress: {}
+
+transition_modifiers:
+  booking_rate_multiplier: 1.0
+  fallout_rate_multiplier: 1.0
+  prepayment_multiplier: 1.0
+  renewal_multiplier: 1.0
+  utilisation_multiplier: 1.0
+  downgrade_multiplier: 1.0
+  default_multiplier: 1.0
+  upgrade_multiplier: 1.0
+
+pricing_modifiers:
+  new_business_spread_shift_bps: 0
+  refinance_spread_shift_bps: 0
+
+# Phase 1.1: Deposit modifiers
+deposit_modifiers:
+  deposit_runoff_multiplier: 1.0
+  deposit_beta_shift: 0.0
+  operating_balance_multiplier: 1.0
+  deposit_capture_multiplier: 1.0

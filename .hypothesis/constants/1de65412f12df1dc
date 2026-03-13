@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\expr\datetime.py
+# hypothesis_version: 6.151.9
+
+[1000000000.0, 1000, '1.12.0', 'd', 'dt', 'iso', 'ms', 'n', 'raise', 's', 'self', 'us']

@@ -1,0 +1,66 @@
+version: '1.0'
+source_type: auto_inferred
+description: Auto-inferred mapping — review and adjust before use
+funded_portfolio:
+  mappings:
+  - source_column: Borrower Name
+    target_column: counterparty_name
+    transform: null
+  - source_column: AcctNO
+    target_column: instrument_id
+    transform: null
+  - source_column: Naics Code
+    target_column: industry_code
+    transform: null
+  - source_column: Original Note Date
+    target_column: origination_date
+    transform: to_date
+  - source_column: Maturity Date
+    target_column: maturity_date
+    transform: to_date
+  - source_column: CollCodeDescription
+    target_column: collateral_type
+    transform: null
+  - source_column: Loan Rate Code
+    target_column: coupon_rate
+    transform: null
+  - source_column: Risk Rating
+    target_column: internal_rating
+    transform: null
+  - source_column: ClassCodeDescriptions
+    target_column: product_type
+    transform: null
+  - source_column: Payment Frequency
+    target_column: payment_frequency
+    transform: null
+  - source_column: Payment Type
+    target_column: payment_type
+    transform: null
+  - source_column: ReportGroup
+    target_column: industry
+    transform: null
+  - source_column: Property Type Code
+    target_column: property_type
+    transform: null
+  - source_column: RespName
+    target_column: relationship_manager
+    transform: null
+  - source_column: ClassGroup
+    target_column: segment
+    transform: null
+  - source_column: MonthEnd
+    target_column: as_of_date
+    transform: to_date
+  - source_column: CurrBal
+    target_column: funded_amount
+    transform: null
+  - source_column: CMT
+    target_column: committed_amount
+    transform: null
+  - source_column: FHAStateCode
+    target_column: geography
+    transform: null
+  defaults:
+    position_type: funded
+    currency: USD
+  passthrough: []

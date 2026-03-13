@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "horizon": 30,
+  "final_funded_count": 511,
+  "final_pipeline_count": 65,
+  "funded_conversions": 149,
+  "matured_positions": 138,
+  "dropped_deals": 36,
+  "closing_funded_balance": 1064468204.46,
+  "total_new_fundings": 149,
+  "total_maturities": 138
+}

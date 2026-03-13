@@ -1,0 +1,398 @@
+version: "1.0"
+description: >
+  Canonical internal schema for the Portfolio Evolution engine.
+  This is the fixed contract between ingestion and simulation.
+  All source data is mapped into this shape before any engine logic runs.
+
+instrument_position:
+  fields:
+    # --- IDENTIFIERS ---
+    - name: instrument_id
+      type: string
+      required: true
+      description: Unique loan/facility identifier
+
+    - name: counterparty_id
+      type: string
+      required: true
+      description: Borrower or counterparty identifier
+
+    - name: counterparty_name
+      type: string
+      required: false
+      description: Borrower or counterparty display name
+
+    - name: facility_id
+      type: string
+      required: false
+      description: Parent facility ID for multi-tranche structures
+
+    - name: position_type
+      type: enum
+      values: [pipeline, funded]
+      required: true
+      description: Whether this is a pipeline opportunity or funded position
+
+    # --- CLASSIFICATION ---
+    - name: product_type
+      type: string
+      required: false
+      description: "Loan product classification (e.g., term_loan, revolver, loc, construction)"
+
+    - name: segment
+      type: string
+      required: false
+      description: "Business segment (e.g., CRE, C&I, consumer)"
+
+    - name: subsegment
+      type: string
+      required: false
+      description: "Sub-segment (e.g., multifamily, office, retail, mixed_use)"
+
+    - name: industry
+      type: string
+      required: false
+      description: Canonical industry classification
+
+    - name: industry_code
+      type: string
+      required: false
+      description: NAICS or SIC code
+
+    - name: geography
+      type: string
+      required: false
+      description: State or region
+
+    - name: currency
+      type: string
+      required: false
+      default: USD
+      description: Currency code
+
+    - name: origination_channel
+      type: string
+      required: false
+      description: How the deal was sourced
+
+    # --- ECONOMICS ---
+    - name: committed_amount
+      type: float
+      required: true
+      description: Total commitment / max credit line
+
+    - name: funded_amount
+      type: float
+      required: true
+      description: Current outstanding balance
+
+    - name: utilisation_rate
+      type: float
+      required: false
+      description: "funded_amount / committed_amount (0.0 to 1.0)"
+      constraints:
+        min: 0.0
+        max: 1.0
+
+    - name: undrawn_amount
+      type: float
+      required: false
+      description: "committed_amount - funded_amount"
+
+    - name: coupon_type
+      type: enum
+      values: [fixed, floating, prime, fee_based, other]
+      required: false
+      description: Interest rate type
+
+    - name: coupon_rate
+      type: float
+      required: false
+      description: Current all-in interest rate (decimal, e.g., 0.045 for 4.5%)
+
+    - name: spread_bps
+      type: float
+      required: false
+      description: Spread over benchmark in basis points
+
+    - name: benchmark_rate
+      type: float
+      required: false
+      description: Reference/index rate (decimal)
+
+    - name: rate_floor
+      type: float
+      required: false
+      description: Interest rate floor (decimal)
+
+    - name: fee_rate
+      type: float
+      required: false
+      description: Fee rate on commitment or undrawn
+
+    - name: purchase_price
+      type: float
+      required: false
+      description: Purchase price if secondary market acquisition
+
+    - name: market_value
+      type: float
+      required: false
+      description: Current market or fair value estimate
+
+    - name: carrying_value
+      type: float
+      required: false
+      description: Accounting carrying value
+
+    - name: original_amount
+      type: float
+      required: false
+      description: Original proceeds or note amount
+
+    # --- STRUCTURE / TERMS ---
+    - name: origination_date
+      type: date
+      required: false
+      description: Original note date / booking date
+
+    - name: expected_close_date
+      type: date
+      required: false
+      description: Expected close date (pipeline positions)
+
+    - name: maturity_date
+      type: date
+      required: false
+      description: Contractual maturity date
+
+    - name: renewal_date
+      type: date
+      required: false
+      description: Most recent renewal date
+
+    - name: amortisation_type
+      type: enum
+      values: [bullet, linear, sculpted, revolving, interest_only, other]
+      required: false
+      description: Amortisation / repayment structure
+
+    - name: payment_frequency
+      type: enum
+      values: [monthly, quarterly, semi_annual, annual, single_payment, other]
+      required: false
+      description: Scheduled payment frequency
+
+    - name: payment_type
+      type: string
+      required: false
+      description: "Payment type (P&I, Interest Only, etc.)"
+
+    - name: seniority
+      type: string
+      required: false
+      description: "Lien position or seniority (e.g., 1st_mortgage, 2nd_lien)"
+
+    - name: secured_flag
+      type: bool
+      required: false
+      description: Whether the loan is secured by collateral
+
+    - name: collateral_type
+      type: string
+      required: false
+      description: Type of collateral securing the loan
+
+    - name: collateral_code
+      type: string
+      required: false
+      description: Collateral classification code
+
+    - name: property_type
+      type: string
+      required: false
+      description: "CRE property type (multifamily, office, retail, etc.)"
+
+    - name: owner_occupied_flag
+      type: bool
+      required: false
+      description: Whether the collateral property is owner-occupied
+
+    - name: tenor_months
+      type: int
+      required: false
+      description: Original tenor in months
+
+    - name: purpose_code
+      type: string
+      required: false
+      description: Loan purpose classification code
+
+    - name: purpose_group
+      type: string
+      required: false
+      description: Loan purpose group description
+
+    # --- RISK ---
+    - name: internal_rating
+      type: string
+      required: false
+      description: "Internal risk rating (bank's scale)"
+
+    - name: internal_rating_numeric
+      type: int
+      required: false
+      description: Numeric risk rating (e.g., 1-9)
+
+    - name: external_rating
+      type: string
+      required: false
+      description: External agency rating
+
+    - name: pd
+      type: float
+      required: false
+      description: Probability of default
+
+    - name: lgd
+      type: float
+      required: false
+      description: Loss given default
+
+    - name: watchlist_flag
+      type: bool
+      required: false
+      default: false
+      description: Whether the position is on watchlist
+
+    - name: risk_grade_bucket
+      type: string
+      required: false
+      description: "Risk grade grouping (e.g., pass, watch, substandard)"
+
+    - name: default_flag
+      type: bool
+      required: false
+      default: false
+      description: Whether the position is in default
+
+    - name: tdr_flag
+      type: bool
+      required: false
+      default: false
+      description: Troubled debt restructuring flag
+
+    - name: accrual_status
+      type: bool
+      required: false
+      default: true
+      description: Whether the loan is accruing interest
+
+    - name: snc_flag
+      type: bool
+      required: false
+      default: false
+      description: Shared National Credit flag
+
+    # --- LIFECYCLE ---
+    - name: pipeline_stage
+      type: string
+      required: false
+      description: "Current pipeline stage (lead, underwriting, approved, etc.)"
+
+    - name: approval_status
+      type: string
+      required: false
+      description: Underwriting approval status
+
+    - name: close_probability
+      type: float
+      required: false
+      description: Estimated probability of closing (pipeline)
+
+    - name: days_in_stage
+      type: int
+      required: false
+      default: 0
+      description: Days in current pipeline stage
+
+    - name: renewal_probability
+      type: float
+      required: false
+      description: Estimated probability of renewal at maturity
+
+    - name: prepayment_probability
+      type: float
+      required: false
+      description: Estimated probability of early prepayment
+
+    - name: renewed_flag
+      type: bool
+      required: false
+      default: false
+      description: Whether this loan has been renewed from a prior facility
+
+    # --- RELATIONSHIPS ---
+    - name: relationship_manager
+      type: string
+      required: false
+      description: Assigned relationship manager name
+
+    - name: relationship_manager_id
+      type: string
+      required: false
+      description: RM identifier code
+
+    - name: team
+      type: string
+      required: false
+      description: Originating business team
+
+    - name: relationship_name
+      type: string
+      required: false
+      description: Client relationship or group name
+
+    # --- REGULATORY ---
+    - name: fhlb_reporting_code
+      type: string
+      required: false
+      description: Federal Home Loan Bank reporting code
+
+    - name: rbc_amount
+      type: float
+      required: false
+      description: Risk-based capital amount
+
+    # --- INCOME ---
+    - name: earned_deferred_fees
+      type: float
+      required: false
+      description: Current earned deferred fee income
+
+    - name: earn_interest_balance
+      type: float
+      required: false
+      description: Balance on which interest is being earned
+
+    # --- METADATA ---
+    - name: data_quality_score
+      type: float
+      required: false
+      description: Computed data quality score
+
+    - name: source_system
+      type: string
+      required: false
+      description: Originating system identifier
+
+    - name: as_of_date
+      type: date
+      required: true
+      description: Snapshot date for this record
+
+    - name: custom_fields
+      type: dict
+      required: false
+      default: {}
+      description: Passthrough for client-specific fields not in canonical model

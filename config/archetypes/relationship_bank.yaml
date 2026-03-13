@@ -1,0 +1,53 @@
+# Relationship Bank Archetype
+archetype_id: relationship_bank
+name: "Relationship-Focused Community Bank"
+description: >
+  Community bank where RM relationships drive origination and retention.
+  High renewal rates, moderate growth, cross-sell focus.
+
+pipeline_behaviour:
+  conversion_speed: 1.05
+  fallout_rate: 0.85            # Lower fallout (relationship stickiness)
+  average_deal_size_range: [250000, 10000000]
+
+pricing:
+  aggressiveness: 1.00
+  fixed_rate_preference: 0.50
+  typical_spread_range_bps: [200, 375]
+
+credit:
+  rating_tolerance: 5
+  average_rating: 4.2
+  watchlist_threshold: 6
+
+utilisation:
+  revolver_target: 0.50
+  term_target: 0.95
+
+renewal:
+  base_tendency: 0.75
+  relationship_premium: 0.15
+
+tenor:
+  preference_months: 60
+  max_months: 84
+
+sector_appetite:
+  multifamily: 1.00
+  retail: 1.00
+  office: 1.00
+  mixed_use: 1.00
+  c_and_i: 1.10
+
+stress_behaviour:
+  tightening_speed: slow
+  cre_reduction_under_stress: 0.90
+
+# Phase 1.1: Deposit priors
+deposit_priors:
+  deposit_capture_base: 0.75
+  operating_balance_ratio: 0.20
+  deposit_beta_tolerance: 0.40
+  deposit_growth_appetite: 1.15
+  deposit_pricing_aggressiveness: 0.90
+  brokered_reliance: 0.10

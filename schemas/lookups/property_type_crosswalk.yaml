@@ -1,0 +1,36 @@
+# Property Type Crosswalk
+# Maps numeric Property Type Code to canonical property types
+
+version: "1.0"
+
+forward:
+  "1": "1_4_family"
+  "7": "construction_residential"
+  "8": "construction_commercial"
+  "13": "gas_station_auto_service"
+  "16": "industrial"
+  "17": "land"
+  "18": "multifamily"
+  "20": "nursing_home"
+  "21": "office"
+  "22": "mixed_use"
+  "25": "retail"
+  "26": "warehouse"
+  "27": "residential_condo_for_sale"
+  "4": "commercial_condominiums"
+
+labels:
+  "1_4_family": "1-4 Family"
+  "construction_residential": "Construction Residential"
+  "construction_commercial": "Construction Commercial"
+  "gas_station_auto_service": "Gas Station / Auto Service"
+  "industrial": "Industrial"
+  "land": "Land"
+  "multifamily": "Multifamily"
+  "nursing_home": "Nursing Home"
+  "office": "Office"
+  "mixed_use": "Mixed Use"
+  "retail": "Retail"
+  "warehouse": "Warehouse"
+  "residential_condo_for_sale": "Residential Condo For Sale"
+  "commercial_condominiums": "Commercial Condominium(s)"

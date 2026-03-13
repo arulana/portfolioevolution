@@ -1,0 +1,43 @@
+# Sponsor-Focused Direct Lender Archetype
+archetype_id: sponsor_direct_lender
+name: "Sponsor-Focused Direct Lender"
+description: >
+  Private credit / direct lending fund focused on sponsor-backed transactions.
+  Larger deal sizes, leveraged borrowers, higher yields, shorter hold periods.
+
+pipeline_behaviour:
+  conversion_speed: 1.30
+  fallout_rate: 0.75
+  average_deal_size_range: [5000000, 100000000]
+
+pricing:
+  aggressiveness: 1.20
+  fixed_rate_preference: 0.30
+  typical_spread_range_bps: [400, 650]
+
+credit:
+  rating_tolerance: 7
+  average_rating: 5.5
+  watchlist_threshold: 7
+
+utilisation:
+  revolver_target: 0.35
+  term_target: 0.98
+
+renewal:
+  base_tendency: 0.45
+  relationship_premium: 0.05
+
+tenor:
+  preference_months: 60
+  max_months: 84
+
+sector_appetite:
+  healthcare: 1.20
+  technology: 1.15
+  business_services: 1.15
+  manufacturing: 1.00
+
+stress_behaviour:
+  tightening_speed: fast
+  cre_reduction_under_stress: 0.50

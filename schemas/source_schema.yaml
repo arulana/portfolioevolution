@@ -1,0 +1,521 @@
+version: "1.0"
+description: >
+  Source schema for community bank loan portfolio extract.
+  Calibrated from example_loan_data.csv — a NY-based community bank
+  with ~1,725 funded positions, heavy CRE concentration.
+  Month-end snapshot date: 2020-02-29.
+
+funded_portfolio:
+  file_format: csv
+  encoding: utf-8
+  delimiter: ","
+  date_format: "%m/%d/%Y"
+  columns:
+    # --- IDENTIFIERS ---
+    - name: AcctNO
+      type: string
+      required: true
+      description: Account number (loan identifier)
+
+    - name: Borrower Name
+      type: string
+      required: true
+      description: Borrower entity name
+
+    - name: Account Number
+      type: string
+      required: false
+      description: Formatted account number (zero-padded)
+
+    # --- CLASSIFICATION ---
+    - name: Naics Code
+      type: string
+      required: false
+      description: NAICS industry code
+
+    - name: NAICSTitle
+      type: string
+      required: false
+      description: NAICS industry title
+
+    - name: 2digit
+      type: string
+      required: false
+
+    - name: 3digit
+      type: string
+      required: false
+
+    - name: 2Digitdesc
+      type: string
+      required: false
+
+    - name: 3Digitdesc
+      type: string
+      required: false
+
+    - name: 4Digitdesc
+      type: string
+      required: false
+      description: Detailed NAICS description
+
+    - name: ReportGroup
+      type: string
+      required: false
+      description: High-level industry report group
+
+    - name: ClassGroup
+      type: string
+      required: false
+      description: "Business segment (CRE, C&I)"
+
+    - name: Class Code
+      type: string
+      required: false
+
+    - name: ClassCodeDescriptions
+      type: string
+      required: false
+      description: "Product class (Commercial Real Estate, Multi-family CRE, C&I CRE, etc.)"
+
+    - name: Purpose Code
+      type: string
+      required: false
+
+    - name: Purpose Group
+      type: string
+      required: false
+      description: Loan purpose grouping
+
+    - name: Property Type Code
+      type: string
+      required: false
+
+    - name: PropTypeDesc
+      type: string
+      required: false
+      description: "Property type (Multifamily, Office, Retail, Mixed Use, etc.)"
+
+    - name: ConcentrationGroup
+      type: string
+      required: false
+      description: Concentration risk grouping
+
+    - name: MgmtGroup
+      type: string
+      required: false
+
+    - name: MasterRG
+      type: string
+      required: false
+
+    # --- ECONOMICS ---
+    - name: CurrBal
+      type: currency
+      required: true
+      description: Current outstanding balance
+
+    - name: CMT
+      type: currency
+      required: true
+      description: Total commitment amount
+
+    - name: CalcAvail
+      type: currency
+      required: false
+      description: Calculated available / undrawn amount
+
+    - name: Max Credit Avail
+      type: currency
+      required: false
+      description: Maximum credit available
+
+    - name: Max Credit Code
+      type: string
+      required: false
+
+    - name: Max Credit Line
+      type: currency
+      required: false
+      description: Maximum credit line
+
+    - name: Credit Net Available
+      type: currency
+      required: false
+
+    - name: Rate Over Split
+      type: float
+      required: false
+      description: All-in interest rate
+
+    - name: Loan Rate Code
+      type: string
+      required: false
+      description: "Rate index (LIBOR, Fixed, Prime, etc.)"
+
+    - name: Index
+      type: string
+      required: false
+      description: "Rate index code (LIB, FXD, PRI)"
+
+    - name: Interest Rate Floor
+      type: float
+      required: false
+
+    - name: Rate Adj Basis
+      type: float
+      required: false
+      description: Rate adjustment / spread basis
+
+    - name: Proceeds Original Amt
+      type: currency
+      required: false
+
+    - name: Current Earned Def fees
+      type: currency
+      required: false
+
+    - name: Earn Interest Bal
+      type: currency
+      required: false
+
+    - name: RBC
+      type: float
+      required: false
+      description: Risk-based capital
+
+    - name: Fhlb Reporting Code
+      type: string
+      required: false
+
+    # --- STRUCTURE ---
+    - name: Original Note Date
+      type: date
+      required: false
+      description: Original note / booking date
+
+    - name: Maturity Date
+      type: date
+      required: false
+
+    - name: Renewal Date
+      type: date
+      required: false
+
+    - name: Payment Frequency
+      type: string
+      required: false
+      description: "Monthly, Quarterly, Single Payment at Maturity, etc."
+
+    - name: Payment Type
+      type: string
+      required: false
+      description: "P&I, P+I, Interest, INTEREST, I.O., etc."
+
+    - name: PMTType
+      type: string
+      required: false
+      description: "Normalized payment type code"
+
+    - name: PmtFreq
+      type: string
+      required: false
+      description: "Payment frequency code (MTHLY, 1@MAT, etc.)"
+
+    - name: CollCodeDescription
+      type: string
+      required: false
+      description: Collateral description
+
+    - name: Collateral Code
+      type: string
+      required: false
+
+    - name: Owner Occupied Code
+      type: string
+      required: false
+      description: "Owner-occupied flag (0/9)"
+
+    - name: OOFlag
+      type: string
+      required: false
+
+    # --- RISK ---
+    - name: Risk Rating
+      type: int
+      required: false
+      description: "Internal risk rating (1-9 numeric scale, lower = better)"
+
+    - name: PrintRR
+      type: string
+      required: false
+
+    - name: RRGroup
+      type: string
+      required: false
+      description: "Risk rating group (e.g., '1 - 5')"
+
+    - name: RR 1-5
+      type: float
+      required: false
+
+    - name: RR 5W
+      type: float
+      required: false
+
+    - name: RR 6
+      type: float
+      required: false
+
+    - name: RR 7
+      type: float
+      required: false
+
+    - name: RR 8
+      type: float
+      required: false
+
+    - name: RR 9
+      type: float
+      required: false
+
+    - name: TDR
+      type: bool
+      required: false
+      description: Troubled Debt Restructuring flag
+
+    - name: SNC
+      type: bool
+      required: false
+      description: Shared National Credit flag
+
+    - name: Accrual
+      type: bool
+      required: false
+      description: Accrual status (FALSE = non-accrual)
+
+    - name: Renewed
+      type: string
+      required: false
+
+    # --- RELATIONSHIPS ---
+    - name: Resp Code
+      type: string
+      required: false
+      description: Relationship manager code
+
+    - name: RespName
+      type: string
+      required: false
+
+    - name: RespInitials
+      type: string
+      required: false
+
+    - name: Team
+      type: string
+      required: false
+      description: "Business team (CRE, C&I)"
+
+    - name: Rel Name
+      type: string
+      required: false
+      description: Relationship / guarantor name
+
+    # --- DERIVED / BREAKOUT COLUMNS ---
+    - name: IOFlag
+      type: string
+      required: false
+      description: Interest-only flag
+
+    - name: IOPickFlag
+      type: string
+      required: false
+
+    - name: IOCurrBal
+      type: float
+      required: false
+
+    - name: IOCmt
+      type: float
+      required: false
+
+    - name: Fixed
+      type: float
+      required: false
+      description: Fixed-rate current balance
+
+    - name: FixedCmt
+      type: currency
+      required: false
+
+    - name: NOO
+      type: float
+      required: false
+      description: Non-owner-occupied balance
+
+    - name: OO
+      type: float
+      required: false
+      description: Owner-occupied balance
+
+    - name: NOOCurrbal
+      type: float
+      required: false
+
+    - name: OOCurrbal
+      type: float
+      required: false
+
+    - name: OOMkt
+      type: float
+      required: false
+
+    - name: OOMktCurrBal
+      type: currency
+      required: false
+
+    - name: OOMktCMT
+      type: currency
+      required: false
+
+    - name: OOMktAvail
+      type: currency
+      required: false
+
+    - name: Transition
+      type: string
+      required: false
+
+    - name: 14Cmt
+      type: currency
+      required: false
+
+    - name: 14Avail
+      type: currency
+      required: false
+
+    - name: 14OO
+      type: currency
+      required: false
+
+    - name: 14OS
+      type: currency
+      required: false
+
+    - name: CG
+      type: string
+      required: false
+
+    - name: MonthEnd
+      type: date
+      required: false
+      description: Month-end snapshot date
+
+    - name: SortOrder
+      type: string
+      required: false
+
+    - name: Sort
+      type: string
+      required: false
+
+    - name: RG
+      type: string
+      required: false
+
+    - name: ClassGroupSortOrder
+      type: string
+      required: false
+
+    - name: FHAStateCode
+      type: string
+      required: false
+
+    - name: STAbbr
+      type: string
+      required: false
+      description: State abbreviation
+
+    - name: BHGFlag
+      type: string
+      required: false
+
+pipeline:
+  file_format: csv
+  encoding: utf-8
+  delimiter: ","
+  date_format: "%m/%d/%Y"
+  description: >
+    Pipeline data is synthetic — generated to match the characteristics
+    of the funded portfolio. Real pipeline data would come from CRM/LOS.
+  columns:
+    - name: OPP_ID
+      type: string
+      required: true
+      description: Opportunity / deal identifier
+
+    - name: BORROWER_NAME
+      type: string
+      required: false
+
+    - name: STAGE
+      type: string
+      required: true
+      description: "Pipeline stage (Lead, Underwriting, Approved, etc.)"
+
+    - name: EXPECTED_AMOUNT
+      type: float
+      required: true
+
+    - name: CLOSE_PROB
+      type: float
+      required: false
+
+    - name: SEGMENT
+      type: string
+      required: false
+
+    - name: PROPERTY_TYPE
+      type: string
+      required: false
+
+    - name: NAICS_CODE
+      type: string
+      required: false
+
+    - name: RATE_TYPE
+      type: string
+      required: false
+
+    - name: EXPECTED_RATE
+      type: float
+      required: false
+
+    - name: EXPECTED_CLOSE_DATE
+      type: date
+      required: false
+
+    - name: RISK_RATING
+      type: int
+      required: false
+
+    - name: RM_CODE
+      type: string
+      required: false
+
+    - name: RM_NAME
+      type: string
+      required: false
+
+    - name: STATE
+      type: string
+      required: false
+
+    - name: OWNER_OCCUPIED
+      type: bool
+      required: false
+
+    - name: PRODUCT_CLASS
+      type: string
+      required: false

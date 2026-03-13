@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\models\deposit.py
+# hypothesis_version: 6.151.9
+
+[0.0, 0.35, 0.5, 1.0, 'USD', 'brokered', 'escrow', 'extra', 'fixed', 'floating', 'forbid', 'non_operational', 'operating', 'rate_sensitive', 'retail_checking', 'savings', 'stable_operational', 'sweep', 'term_deposit', 'volatile']

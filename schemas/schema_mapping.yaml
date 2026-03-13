@@ -1,0 +1,321 @@
+version: "1.0"
+source_type: "community_bank_loan_tape"
+description: >
+  Mapping from community bank loan portfolio extract to canonical schema.
+  Calibrated from example_loan_data.csv.
+
+funded_portfolio:
+  mappings:
+    # --- IDENTIFIERS ---
+    - source_column: "AcctNO"
+      target_column: "instrument_id"
+      transform: "strip"
+
+    - source_column: "Borrower Name"
+      target_column: "counterparty_name"
+      transform: null
+
+    - source_column: "Account Number"
+      target_column: "facility_id"
+      transform: "strip"
+
+    # --- CLASSIFICATION ---
+    - source_column: "ClassGroup"
+      target_column: "segment"
+      transform: "segment_map"
+      transform_params:
+        mapping_file: "lookups/segment_taxonomy.yaml"
+
+    - source_column: "PropTypeDesc"
+      target_column: "subsegment"
+      transform: "lowercase"
+
+    - source_column: "ClassCodeDescriptions"
+      target_column: "product_type"
+      transform: "product_type_map"
+      transform_params:
+        mapping_file: "lookups/product_type_crosswalk.yaml"
+
+    - source_column: "Naics Code"
+      target_column: "industry_code"
+      transform: null
+
+    - source_column: "ReportGroup"
+      target_column: "industry"
+      transform: null
+
+    - source_column: "STAbbr"
+      target_column: "geography"
+      transform: "uppercase"
+
+    # --- ECONOMICS ---
+    - source_column: "CurrBal"
+      target_column: "funded_amount"
+      transform: "currency_to_float"
+
+    - source_column: "CMT"
+      target_column: "committed_amount"
+      transform: "currency_to_float"
+
+    - source_column: "CalcAvail"
+      target_column: "undrawn_amount"
+      transform: "currency_to_float"
+
+    - source_column: "Max Credit Line"
+      target_column: "original_amount"
+      transform: "currency_to_float"
+
+    - source_column: "Rate Over Split"
+      target_column: "coupon_rate"
+      transform: "percent_to_decimal"
+
+    - source_column: "Loan Rate Code"
+      target_column: "coupon_type"
+      transform: "rate_type_map"
+      transform_params:
+        mapping_file: "lookups/rate_type_crosswalk.yaml"
+
+    - source_column: "Interest Rate Floor"
+      target_column: "rate_floor"
+      transform: "percent_to_decimal"
+
+    - source_column: "Rate Adj Basis"
+      target_column: "spread_bps"
+      transform: "rate_basis_to_bps"
+
+    - source_column: "Current Earned Def fees"
+      target_column: "earned_deferred_fees"
+      transform: "currency_to_float"
+
+    - source_column: "Earn Interest Bal"
+      target_column: "earn_interest_balance"
+      transform: "currency_to_float"
+
+    - source_column: "RBC"
+      target_column: "rbc_amount"
+      transform: "to_float"
+
+    - source_column: "Fhlb Reporting Code"
+      target_column: "fhlb_reporting_code"
+      transform: null
+
+    # --- STRUCTURE ---
+    - source_column: "Original Note Date"
+      target_column: "origination_date"
+      transform: "to_date"
+
+    - source_column: "Maturity Date"
+      target_column: "maturity_date"
+      transform: "to_date"
+
+    - source_column: "Renewal Date"
+      target_column: "renewal_date"
+      transform: "to_date"
+
+    - source_column: "Payment Frequency"
+      target_column: "payment_frequency"
+      transform: "payment_freq_map"
+      transform_params:
+        mapping_file: "lookups/payment_freq_crosswalk.yaml"
+
+    - source_column: "Payment Type"
+      target_column: "payment_type"
+      transform: "payment_type_normalize"
+
+    - source_column: "Payment Type"
+      target_column: "amortisation_type"
+      transform: "amort_type_map"
+      transform_params:
+        mapping_file: "lookups/amort_type_crosswalk.yaml"
+
+    - source_column: "CollCodeDescription"
+      target_column: "collateral_type"
+      transform: null
+
+    - source_column: "Collateral Code"
+      target_column: "collateral_code"
+      transform: null
+
+    - source_column: "Property Type Code"
+      target_column: "property_type"
+      transform: "property_type_map"
+      transform_params:
+        mapping_file: "lookups/property_type_crosswalk.yaml"
+
+    - source_column: "Owner Occupied Code"
+      target_column: "owner_occupied_flag"
+      transform: "owner_occ_to_bool"
+
+    - source_column: "Purpose Code"
+      target_column: "purpose_code"
+      transform: null
+
+    - source_column: "Purpose Group"
+      target_column: "purpose_group"
+      transform: null
+
+    # --- RISK ---
+    - source_column: "Risk Rating"
+      target_column: "internal_rating_numeric"
+      transform: "to_int"
+
+    - source_column: "Risk Rating"
+      target_column: "internal_rating"
+      transform: "rating_map"
+      transform_params:
+        mapping_file: "lookups/rating_crosswalk.yaml"
+
+    - source_column: "RRGroup"
+      target_column: "risk_grade_bucket"
+      transform: "risk_bucket_map"
+      transform_params:
+        mapping_file: "lookups/risk_bucket_crosswalk.yaml"
+
+    - source_column: "TDR"
+      target_column: "tdr_flag"
+      transform: "to_bool"
+
+    - source_column: "SNC"
+      target_column: "snc_flag"
+      transform: "to_bool"
+
+    - source_column: "Accrual"
+      target_column: "accrual_status"
+      transform: "invert_bool"
+
+    # --- RELATIONSHIPS ---
+    - source_column: "Resp Code"
+      target_column: "relationship_manager_id"
+      transform: null
+
+    - source_column: "RespName"
+      target_column: "relationship_manager"
+      transform: null
+
+    - source_column: "Team"
+      target_column: "team"
+      transform: null
+
+    - source_column: "Rel Name"
+      target_column: "relationship_name"
+      transform: null
+
+    # --- METADATA ---
+    - source_column: "MonthEnd"
+      target_column: "as_of_date"
+      transform: "to_date"
+
+    - source_column: "Renewed"
+      target_column: "renewed_flag"
+      transform: "to_bool"
+
+  defaults:
+    position_type: "funded"
+    currency: "USD"
+    default_flag: false
+    watchlist_flag: false
+    days_in_stage: 0
+
+  passthrough:
+    - source_column: "ConcentrationGroup"
+    - source_column: "MgmtGroup"
+    - source_column: "IOFlag"
+    - source_column: "IOPickFlag"
+    - source_column: "BHGFlag"
+    - source_column: "SortOrder"
+
+pipeline:
+  mappings:
+    - source_column: "OPP_ID"
+      target_column: "instrument_id"
+      transform: null
+
+    - source_column: "BORROWER_NAME"
+      target_column: "counterparty_name"
+      transform: null
+
+    - source_column: "STAGE"
+      target_column: "pipeline_stage"
+      transform: "stage_map"
+      transform_params:
+        mapping_file: "lookups/stage_crosswalk.yaml"
+
+    - source_column: "EXPECTED_AMOUNT"
+      target_column: "committed_amount"
+      transform: "to_float"
+
+    - source_column: "CLOSE_PROB"
+      target_column: "close_probability"
+      transform: "to_float"
+
+    - source_column: "SEGMENT"
+      target_column: "segment"
+      transform: "segment_map"
+      transform_params:
+        mapping_file: "lookups/segment_taxonomy.yaml"
+
+    - source_column: "PROPERTY_TYPE"
+      target_column: "property_type"
+      transform: null
+
+    - source_column: "NAICS_CODE"
+      target_column: "industry_code"
+      transform: null
+
+    - source_column: "RATE_TYPE"
+      target_column: "coupon_type"
+      transform: "rate_type_map"
+      transform_params:
+        mapping_file: "lookups/rate_type_crosswalk.yaml"
+
+    - source_column: "EXPECTED_RATE"
+      target_column: "coupon_rate"
+      transform: "percent_to_decimal"
+
+    - source_column: "EXPECTED_CLOSE_DATE"
+      target_column: "expected_close_date"
+      transform: "to_date"
+
+    - source_column: "RISK_RATING"
+      target_column: "internal_rating_numeric"
+      transform: "to_int"
+
+    - source_column: "RISK_RATING"
+      target_column: "internal_rating"
+      transform: "rating_map"
+      transform_params:
+        mapping_file: "lookups/rating_crosswalk.yaml"
+
+    - source_column: "RM_CODE"
+      target_column: "relationship_manager_id"
+      transform: null
+
+    - source_column: "RM_NAME"
+      target_column: "relationship_manager"
+      transform: null
+
+    - source_column: "STATE"
+      target_column: "geography"
+      transform: "uppercase"
+
+    - source_column: "OWNER_OCCUPIED"
+      target_column: "owner_occupied_flag"
+      transform: "to_bool"
+
+    - source_column: "PRODUCT_CLASS"
+      target_column: "product_type"
+      transform: "product_type_map"
+      transform_params:
+        mapping_file: "lookups/product_type_crosswalk.yaml"
+
+    - source_column: "AS_OF_DATE"
+      target_column: "as_of_date"
+      transform: "to_date"
+
+  defaults:
+    position_type: "pipeline"
+    currency: "USD"
+    funded_amount: 0.0
+    default_flag: false
+    days_in_stage: 0
+    as_of_date: "2026-01-01"

@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\aggregation\rollforward.py
+# hypothesis_version: 6.151.9
+
+[0.0, 'avg_utilisation', 'days', 'dropped_deals', 'funded_count', 'maturities', 'maturity_amount', 'net_change', 'new_funding_amount', 'new_fundings', 'period_end', 'period_start', 'pipeline_by_stage', 'pipeline_count', 'sim_date', 'sim_day', 'total_committed', 'total_dropped_deals', 'total_funded_balance', 'total_maturities', 'total_new_fundings', 'total_pipeline_value', 'total_undrawn', 'unknown', 'unrated']

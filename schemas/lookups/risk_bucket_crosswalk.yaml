@@ -1,0 +1,12 @@
+# Risk Bucket Crosswalk
+# Maps RRGroup to canonical risk grade buckets
+
+version: "1.0"
+
+forward:
+  "1 - 5": "pass"
+  "5W": "watch"
+  "6": "special_mention"
+  "7": "substandard"
+  "8": "doubtful"
+  "9": "loss"

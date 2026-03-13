@@ -1,0 +1,66 @@
+# CRE-Heavy Bank Archetype
+# Calibrated from example data: NY-based community bank, ~70% CRE concentration
+archetype_id: cre_heavy_bank
+name: "CRE-Heavy Community Bank"
+description: >
+  Community bank with heavy CRE concentration (60-75% of portfolio).
+  Strong multifamily and mixed-use focus. Relationship-driven origination.
+  Moderate growth appetite, conservative underwriting.
+
+pipeline_behaviour:
+  conversion_speed: 0.90        # Slightly slower than average
+  fallout_rate: 1.10            # Slightly higher fallout (pickier)
+  average_deal_size_range: [500000, 15000000]
+  typical_stages_duration_days:
+    lead: 15
+    underwriting: 20
+    approved: 10
+    documentation: 12
+    closing: 7
+
+pricing:
+  aggressiveness: 0.95          # Slightly tighter than market
+  fixed_rate_preference: 0.65   # Strong fixed-rate bias
+  typical_spread_range_bps: [175, 350]
+
+credit:
+  rating_tolerance: 5           # Won't go below RR 5 typically
+  average_rating: 4.5           # BBB/BB average
+  watchlist_threshold: 6        # Put on watch at RR 6
+
+utilisation:
+  revolver_target: 0.45
+  term_target: 0.95
+  construction_target: 0.55
+
+renewal:
+  base_tendency: 0.70           # Strong renewal culture
+  relationship_premium: 0.10    # Extra renewal prob for existing relationships
+
+tenor:
+  preference_months: 60         # 5-year typical
+  max_months: 120               # 10-year max
+  construction_months: 24
+
+sector_appetite:
+  multifamily: 1.20
+  retail: 0.90
+  office: 0.85
+  mixed_use: 1.10
+  construction: 0.80
+  industrial: 1.00
+  nursing_home: 0.70
+
+stress_behaviour:
+  tightening_speed: moderate
+  cre_reduction_under_stress: 0.80
+  construction_halt_threshold: severe_stress
+
+# Phase 1.1: Deposit priors
+deposit_priors:
+  deposit_capture_base: 0.45
+  operating_balance_ratio: 0.10
+  deposit_beta_tolerance: 0.45
+  deposit_growth_appetite: 0.95
+  deposit_pricing_aggressiveness: 0.90
+  brokered_reliance: 0.15

@@ -1,0 +1,119 @@
+version: "1.0"
+description: >
+  Canonical internal schema for deposit accounts.
+  Deposits are behavioural balances, not contractual instruments.
+  The model emphasises beta, stickiness, decay, and withdrawal probability.
+
+deposit_position:
+  fields:
+    - name: deposit_id
+      type: string
+      required: true
+    - name: counterparty_id
+      type: string
+      required: true
+    - name: relationship_id
+      type: string
+      required: false
+
+    - name: deposit_type
+      type: enum
+      values: [operating, corporate_transaction, escrow, term_deposit, savings, retail_checking, sweep, brokered]
+      required: true
+
+    - name: segment
+      type: string
+      required: true
+    - name: industry
+      type: string
+      required: false
+    - name: geography
+      type: string
+      required: false
+    - name: currency
+      type: string
+      required: false
+      default: USD
+
+    # balances
+    - name: current_balance
+      type: float
+      required: true
+      constraints: { min: 0 }
+    - name: average_balance_30d
+      type: float
+      required: false
+    - name: committed_operating_balance
+      type: float
+      required: false
+
+    # pricing
+    - name: interest_rate
+      type: float
+      required: true
+    - name: rate_type
+      type: enum
+      values: [fixed, floating]
+      required: true
+    - name: benchmark
+      type: string
+      required: false
+    - name: spread
+      type: float
+      required: false
+    - name: fee_offset
+      type: float
+      required: false
+
+    # behavioural
+    - name: beta
+      type: float
+      required: false
+      default: 0.35
+      constraints: { min: 0.0, max: 1.0 }
+    - name: stickiness_score
+      type: float
+      required: false
+      default: 0.5
+      constraints: { min: 0.0, max: 1.0 }
+    - name: decay_half_life_days
+      type: int
+      required: false
+    - name: withdrawal_probability
+      type: float
+      required: false
+
+    # lifecycle
+    - name: origination_date
+      type: date
+      required: true
+    - name: expected_duration_days
+      type: int
+      required: false
+    - name: linked_loan_ids
+      type: list
+      required: false
+      default: []
+
+    # liquidity
+    - name: liquidity_category
+      type: enum
+      values: [stable_operational, non_operational, rate_sensitive, volatile, brokered]
+      required: true
+
+    # risk
+    - name: deposit_runoff_score
+      type: float
+      required: false
+
+    # metadata
+    - name: source
+      type: string
+      required: false
+    - name: as_of_date
+      type: date
+      required: true
+    - name: custom_fields
+      type: dict
+      required: false
+      default: {}

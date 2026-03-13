@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\parquet\functions.py
+# hypothesis_version: 6.151.9
+
+['0.20.4', '1.30.0', 'auto', 'ignore', 'insert', 'max_retries', 'pyarrow.parquet', 'raise', 'row_count_name', 'row_count_offset', 'row_index_name', 'row_index_offset', 'scan_parquet']

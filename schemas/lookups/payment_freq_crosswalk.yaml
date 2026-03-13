@@ -1,0 +1,15 @@
+# Payment Frequency Crosswalk
+
+version: "1.0"
+
+forward:
+  "Monthly": "monthly"
+  "MTHLY": "monthly"
+  "Quarterly": "quarterly"
+  "QTRLY": "quarterly"
+  "Semi-Annual": "semi_annual"
+  "Annual": "annual"
+  "Single Payment at Maturity": "single_payment"
+  "1@MAT": "single_payment"
+  "Bi-Weekly": "bi_weekly"
+  "Weekly": "weekly"

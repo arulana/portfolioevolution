@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\cloud\credential_provider\_providers.py
+# hypothesis_version: 6.151.9
+
+['--account-name', '--output', '/', '/C', '1', '://', '@', 'AccessKeyId', 'CredentialProvider', 'Credentials', 'Expiration', 'SecretAccessKey', 'SessionToken', 'UTC', '_expiry_time', 'account', 'account_key', 'aws_access_key_id', 'aws_session_token', 'az', 'azure-cli', 'azure.identity', 'bearer_token', 'boto3', 'cmd', 'endpoint_url', 'get_token', 'google.auth', 'json', 'keys', 'list', 'storage', 'sts', 'value', 'version', 'win32']

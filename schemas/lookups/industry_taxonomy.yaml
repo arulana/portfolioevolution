@@ -1,0 +1,119 @@
+# Industry Taxonomy
+# Maps NAICS report groups and codes to canonical industry categories
+
+version: "1.0"
+description: "Canonical industry classification based on NAICS"
+
+# Map from ReportGroup field in source data
+report_group_mapping:
+  "Real Estate and Rental and Leasing": "real_estate"
+  "Real Estate": "real_estate"
+  "Retail": "retail_trade"
+  "Retail Trade": "retail_trade"
+  "Manufacturing": "manufacturing"
+  "Wholesale": "wholesale_trade"
+  "Wholesale Trade": "wholesale_trade"
+  "Healthcare": "healthcare"
+  "Health Care and Social Assistance": "healthcare"
+  "Construction": "construction"
+  "Transportation and Warehousing": "transportation"
+  "Accommodation and Food Services": "hospitality"
+  "Professional, Scientific, and Technical Services": "professional_services"
+  "Finance and Insurance": "finance_insurance"
+  "Educational Services": "education"
+  "Information": "information_technology"
+  "Arts, Entertainment, and Recreation": "entertainment"
+  "Other Services (except Public Administration)": "other_services"
+  "Public Administration": "government"
+  "Agriculture, Forestry, Fishing and Hunting": "agriculture"
+  "Mining, Quarrying, and Oil and Gas Extraction": "mining_energy"
+  "Utilities": "utilities"
+
+# NAICS 2-digit sector mapping
+naics_2digit:
+  "11": "agriculture"
+  "21": "mining_energy"
+  "22": "utilities"
+  "23": "construction"
+  "31": "manufacturing"
+  "32": "manufacturing"
+  "33": "manufacturing"
+  "42": "wholesale_trade"
+  "44": "retail_trade"
+  "45": "retail_trade"
+  "48": "transportation"
+  "49": "transportation"
+  "51": "information_technology"
+  "52": "finance_insurance"
+  "53": "real_estate"
+  "54": "professional_services"
+  "55": "management"
+  "56": "administrative_services"
+  "61": "education"
+  "62": "healthcare"
+  "71": "entertainment"
+  "72": "hospitality"
+  "81": "other_services"
+  "92": "government"
+
+canonical_industries:
+  real_estate:
+    label: "Real Estate"
+    stress_sensitive: true
+  retail_trade:
+    label: "Retail Trade"
+    stress_sensitive: true
+  manufacturing:
+    label: "Manufacturing"
+    stress_sensitive: false
+  wholesale_trade:
+    label: "Wholesale Trade"
+    stress_sensitive: false
+  healthcare:
+    label: "Healthcare"
+    stress_sensitive: false
+  construction:
+    label: "Construction"
+    stress_sensitive: true
+  transportation:
+    label: "Transportation"
+    stress_sensitive: false
+  hospitality:
+    label: "Hospitality"
+    stress_sensitive: true
+  professional_services:
+    label: "Professional Services"
+    stress_sensitive: false
+  finance_insurance:
+    label: "Finance & Insurance"
+    stress_sensitive: true
+  education:
+    label: "Education"
+    stress_sensitive: false
+  information_technology:
+    label: "Information Technology"
+    stress_sensitive: false
+  entertainment:
+    label: "Entertainment"
+    stress_sensitive: true
+  other_services:
+    label: "Other Services"
+    stress_sensitive: false
+  agriculture:
+    label: "Agriculture"
+    stress_sensitive: false
+  mining_energy:
+    label: "Mining & Energy"
+    stress_sensitive: true
+  utilities:
+    label: "Utilities"
+    stress_sensitive: false
+  management:
+    label: "Management of Companies"
+    stress_sensitive: false
+  administrative_services:
+    label: "Administrative Services"
+    stress_sensitive: false
+  government:
+    label: "Government"
+    stress_sensitive: false

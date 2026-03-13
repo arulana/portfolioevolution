@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\pipeline_generator.py
+# hypothesis_version: 6.151.9
+
+[0.0, 0.01, 0.015, 0.02, 0.03, 0.05, 0.06, 0.1, 0.12, 0.15, 0.2, 0.3, 0.35, 0.4, 0.6, 0.7, 1.0, 1.1, 5.0, 100000.0, 1500000, 2500000, 'A', 'AA', 'AAA', 'B', 'BB', 'BBB', 'CC', 'CCC', 'D', 'avg_deal_size', 'c_and_i', 'construction', 'consumer', 'cre', 'deal_size_std', 'deals_per_week', 'fixed', 'floating', 'inflow', 'lead', 'new_pipeline_inflow', 'pipeline', 'rating_distribution', 'seasonality', 'segment_weights']

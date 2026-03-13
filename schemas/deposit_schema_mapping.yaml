@@ -1,0 +1,74 @@
+version: "1.0"
+source_type: "bank_deposit_extract"
+description: "Maps bank deposit extract to canonical deposit schema"
+
+deposits:
+  mappings:
+    - source_column: "ACCOUNT_ID"
+      target_column: "deposit_id"
+      transform: null
+
+    - source_column: "CUSTOMER_ID"
+      target_column: "counterparty_id"
+      transform: null
+
+    - source_column: "ACCOUNT_TYPE"
+      target_column: "deposit_type"
+      transform: "deposit_type_map"
+      transform_params:
+        mapping_file: "lookups/deposit_type_crosswalk.yaml"
+
+    - source_column: "CURRENT_BAL"
+      target_column: "current_balance"
+      transform: "to_float"
+
+    - source_column: "AVG_BAL_30D"
+      target_column: "average_balance_30d"
+      transform: "to_float"
+
+    - source_column: "INT_RATE"
+      target_column: "interest_rate"
+      transform: "percent_to_decimal"
+
+    - source_column: "RATE_TYPE"
+      target_column: "rate_type"
+      transform: "lowercase"
+
+    - source_column: "BENCHMARK"
+      target_column: "benchmark"
+      transform: null
+
+    - source_column: "DEPOSIT_BETA"
+      target_column: "beta"
+      transform: "to_float"
+
+    - source_column: "OPEN_DATE"
+      target_column: "origination_date"
+      transform: "to_date"
+
+    - source_column: "LIQUIDITY_CLASS"
+      target_column: "liquidity_category"
+      transform: "deposit_liquidity_map"
+      transform_params:
+        mapping_file: "lookups/liquidity_category_crosswalk.yaml"
+
+    - source_column: "SEGMENT"
+      target_column: "segment"
+      transform: "segment_map"
+      transform_params:
+        mapping_file: "lookups/segment_taxonomy.yaml"
+
+    - source_column: "STATE"
+      target_column: "geography"
+      transform: "uppercase"
+
+  defaults:
+    currency: "USD"
+    beta: 0.35
+    stickiness_score: 0.50
+    liquidity_category: "non_operational"
+    source: "deposit_extract"
+
+  passthrough:
+    - source_column: "BRANCH_CODE"
+    - source_column: "PRODUCT_BUNDLE"

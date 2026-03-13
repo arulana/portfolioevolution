@@ -1,0 +1,52 @@
+# Rating Crosswalk: Bank numeric scale → canonical letter grades
+# Calibrated from example data: community bank uses 1-9 numeric scale
+# 1 = strongest, 9 = loss / charge-off
+
+version: "1.0"
+description: "Maps bank internal numeric risk ratings to canonical letter grades"
+
+# Forward mapping: source → canonical
+forward:
+  "1": "AAA"
+  "2": "AA"
+  "3": "A"
+  "4": "BBB"
+  "5": "BB"
+  "6": "B"
+  "7": "CCC"
+  "8": "CC"
+  "9": "D"
+
+# Reverse mapping: canonical → source
+reverse:
+  "AAA": "1"
+  "AA": "2"
+  "A": "3"
+  "BBB": "4"
+  "BB": "5"
+  "B": "6"
+  "CCC": "7"
+  "CC": "8"
+  "D": "9"
+
+# Risk grade buckets
+buckets:
+  pass:
+    ratings: ["1", "2", "3", "4", "5"]
+    canonical: ["AAA", "AA", "A", "BBB", "BB"]
+  watch:
+    ratings: ["6"]
+    canonical: ["B"]
+  substandard:
+    ratings: ["7"]
+    canonical: ["CCC"]
+  doubtful:
+    ratings: ["8"]
+    canonical: ["CC"]
+  loss:
+    ratings: ["9"]
+    canonical: ["D"]
+
+# Investment grade boundary
+investment_grade_threshold: "4"  # 1-4 = IG, 5+ = HY
+investment_grade_canonical: "BBB"

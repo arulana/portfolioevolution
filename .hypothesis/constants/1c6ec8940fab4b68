@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\funded_engine.py
+# hypothesis_version: 6.151.9
+
+[0.0, 'as_of_date', 'bullet', 'funded_amount', 'grace_period_days', 'interest_only', 'linear', 'maturity', 'revolving', 'sculpted']

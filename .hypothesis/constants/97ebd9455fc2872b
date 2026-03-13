@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\scan_options\_options.py
+# hypothesis_version: 6.151.9
+
+['ignore', 'insert', 'raise']

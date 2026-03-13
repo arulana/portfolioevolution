@@ -1,0 +1,49 @@
+# Liquidity Category Crosswalk
+# Maps deposit classifications to canonical liquidity categories
+
+version: "1.0"
+
+forward:
+  "Stable": "stable_operational"
+  "stable": "stable_operational"
+  "Operational": "stable_operational"
+  "operational": "stable_operational"
+  "Core": "stable_operational"
+  "core": "stable_operational"
+
+  "Non-Operational": "non_operational"
+  "non_operational": "non_operational"
+  "Non-Core": "non_operational"
+
+  "Rate Sensitive": "rate_sensitive"
+  "rate_sensitive": "rate_sensitive"
+  "Sensitive": "rate_sensitive"
+
+  "Volatile": "volatile"
+  "volatile": "volatile"
+  "Hot Money": "volatile"
+
+  "Brokered": "brokered"
+  "brokered": "brokered"
+  "Wholesale": "brokered"
+
+# Classification rules for auto-assignment when not provided
+auto_classification:
+  operating: "stable_operational"
+  corporate_transaction: "stable_operational"
+  escrow: "stable_operational"
+  retail_checking: "stable_operational"
+  savings: "non_operational"
+  term_deposit: "rate_sensitive"
+  sweep: "volatile"
+  brokered: "brokered"
+
+# Stability grouping
+stability_groups:
+  stable:
+    - stable_operational
+    - non_operational
+  volatile:
+    - rate_sensitive
+    - volatile
+    - brokered

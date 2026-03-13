@@ -1,0 +1,251 @@
+OPP_ID,BORROWER_NAME,STAGE,EXPECTED_AMOUNT,CLOSE_PROB,SEGMENT,PROPERTY_TYPE,NAICS_CODE,RATE_TYPE,EXPECTED_RATE,EXPECTED_CLOSE_DATE,RISK_RATING,RM_CODE,RM_NAME,STATE,OWNER_OCCUPIED,PRODUCT_CLASS,AS_OF_DATE
+OPP-00001,Eastside Partners LP,Closing,7481382.67,0.59,Multifamily,Office,531120,SOFR,5.72,2026-11-08,2,265,Jeremy Romine,NY,0,Multi-family CRE,2026-01-01
+OPP-00002,Midtown Healthcare Group,Approved,550433.6,0.5,Multifamily,1-4 Family,623110,Prime,5.68,2026-02-18,2,266,Jay Shah,CT,0,Multi-family CRE,2026-01-01
+OPP-00003,Oak Limited Partnership,Approved,4418496.07,0.71,C&I,Retail,531311,Fixed,6.29,2026-08-22,1,216,Jeremy Romine,NJ,0,Multi-family CRE,2026-01-01
+OPP-00004,Lake Inc,Approved,156721.98,0.55,CRE,Multifamily,447110,SOFR,7.04,2026-05-21,6,233,Jeremy Romine,NY,1,Multi-family CRE,2026-01-01
+OPP-00005,Metro Equity LLC,Term Sheet,483833.43,0.78,CRE,Industrial,531120,Prime,4.57,2026-07-21,4,204,Mark Scharfman,NY,0,Multi-family CRE,2026-01-01
+OPP-00006,Elm Management LLC,Closing,25218000.19,0.53,Other,Warehouse,423120,LIBOR,6.73,2026-09-20,2,265,Jay Shah,PA,0,C&I CRE,2026-01-01
+OPP-00007,Westside Investments LLC,Underwriting,174125.11,0.68,C&I,Industrial,531110,Prime,7.57,2026-11-09,4,281,Vivek Baid,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00008,ABC Holdings LLC,Term Sheet,1606301.22,0.44,CRE,Warehouse,447110,Fixed,4.93,2026-07-21,5,229,Mark Scharfman,CT,1,C&I CRE,2026-01-01
+OPP-00009,Cedar Management LLC,Underwriting,732070.83,0.77,CRE,Retail,441310,Fixed,6.81,2026-08-04,6,219,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00010,Downtown Associates LLC,Lead,347131.21,0.28,CRE,Office,311919,Fixed,7.03,2026-06-30,6,216,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00011,Brook Healthcare Group,Underwriting,137705.71,0.82,Multifamily,Mixed Use,447110,SOFR,6.12,2026-04-09,5,262,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00012,Cedar Realty LLC,Approved,524982.32,0.37,Multifamily,1-4 Family,531120,LIBOR,6.42,2026-06-12,6,210,Jeremy Romine,CT,0,Multi-family CRE,2026-01-01
+OPP-00013,Eastside Inc,Documentation,4888901.63,0.62,Other,Industrial,423120,SOFR,6.71,2026-04-06,5,277,Mark Scharfman,NY,1,Multi-family CRE,2026-01-01
+OPP-00014,Elm Investments LLC,Underwriting,1291315.25,0.77,CRE,Industrial,423120,Fixed,5.12,2026-09-26,1,279,Dennis Graham,FL,0,Commercial Real Estate,2026-01-01
+OPP-00015,Crown Capital LLC,Documentation,2104347.74,0.87,C&I,1-4 Family,531110,SOFR,7.94,2026-07-29,2,242,Mark Scharfman,NY,0,Commercial Real Estate,2026-01-01
+OPP-00016,Crown Capital LLC,Underwriting,326316.18,0.79,CRE,Warehouse,447110,Prime,6.07,2026-03-08,3,228,Jeremy Romine,NY,1,Commercial Real Estate,2026-01-01
+OPP-00017,Park Associates LLC,Underwriting,3497605.39,0.33,C&I,Warehouse,441310,Prime,5.94,2026-09-11,6,229,Brett Bandazian,NY,0,Multi-family CRE,2026-01-01
+OPP-00018,Harbor Corp,Closing,1608499.21,0.42,CRE,Warehouse,441310,Prime,7.18,2026-04-15,1,240,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00019,Riverside Realty LLC,Underwriting,1673428.18,0.56,C&I,Multifamily,441310,LIBOR,6.49,2026-08-19,2,289,Dennis Graham,FL,0,C&I CRE,2026-01-01
+OPP-00020,Metro Healthcare Group,Lead,869830.44,0.33,Other,Mixed Use,447110,LIBOR,7.88,2026-03-20,1,233,Luke Kaufman,NY,0,Multi-family CRE,2026-01-01
+OPP-00021,Cedar Healthcare Group,Term Sheet,426129.37,0.39,C&I,Retail,531110,LIBOR,6.34,2026-02-07,2,230,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00022,Metro Realty LLC,Approved,700287.64,0.73,CRE,1-4 Family,531110,SOFR,6.91,2026-03-12,2,263,Vivek Baid,FL,1,Commercial Real Estate,2026-01-01
+OPP-00023,Summit Capital LLC,Underwriting,903850.15,0.69,C&I,Mixed Use,423120,SOFR,5.73,2026-02-15,5,241,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00024,Uptown Development Corp,Lead,8131473.13,0.73,CRE,Warehouse,311919,Prime,6.54,2026-03-14,2,269,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00025,Uptown Management LLC,Lead,2169067.8,0.58,CRE,Multifamily,441310,SOFR,6.9,2026-07-23,6,219,Vivek Baid,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00026,Midtown Holdings LLC,Approved,2554245.22,0.77,CRE,Mixed Use,531190,LIBOR,5.07,2026-04-13,1,208,Jay Shah,NJ,0,C&I CRE,2026-01-01
+OPP-00027,Eastside Equity LLC,Lead,690546.53,0.4,Other,Multifamily,423120,Fixed,5.98,2026-04-07,3,210,Jeremy Romine,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00028,Summit Ventures LLC,Term Sheet,2728754.27,0.37,C&I,Industrial,447110,Fixed,4.24,2026-09-30,2,202,Dennis Graham,PA,0,Commercial Real Estate,2026-01-01
+OPP-00029,Elm Properties LLC,Term Sheet,487567.24,0.77,CRE,Warehouse,531120,Fixed,5.25,2026-09-18,3,233,Mark Scharfman,NY,1,C&I CRE,2026-01-01
+OPP-00030,Highland Healthcare Group,Lead,4326332.24,0.9,C&I,Industrial,423120,SOFR,6.61,2026-12-05,6,210,Brett Bandazian,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00031,Eastside Partners LP,Lead,526132.83,0.69,C&I,Warehouse,531390,Fixed,4.73,2026-06-07,4,256,Brett Bandazian,PA,0,Commercial Real Estate,2026-01-01
+OPP-00032,Valley Partners LP,Closing,5137531.48,0.58,CRE,Mixed Use,531120,Prime,6.47,2026-12-10,3,214,Brett Bandazian,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00033,ABC Partners LP,Approved,305359.02,0.92,Other,1-4 Family,447110,LIBOR,4.84,2026-02-12,3,288,Brett Bandazian,NY,0,Commercial Real Estate,2026-01-01
+OPP-00034,Northgate Development Corp,Term Sheet,641490.99,0.62,CRE,Mixed Use,531311,Fixed,4.75,2026-11-30,6,227,Konstantin Grinberg,NY,1,C&I CRE,2026-01-01
+OPP-00035,Metro Corp,Term Sheet,5489325.04,0.5,C&I,Multifamily,447110,Prime,5.6,2026-06-23,4,238,Vivek Baid,NY,1,Multi-family CRE,2026-01-01
+OPP-00036,Uptown Realty LLC,Approved,511594.44,0.4,CRE,Office,531120,SOFR,4.89,2026-05-22,1,239,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00037,Lake Corp,Documentation,411802.51,0.34,Multifamily,Office,447110,Fixed,7.06,2026-01-31,4,214,Brett Bandazian,CT,1,C&I CRE,2026-01-01
+OPP-00038,Eastside Ventures LLC,Term Sheet,255800.69,0.29,Multifamily,1-4 Family,623110,Fixed,7.54,2026-08-24,4,251,Jeremy Romine,NJ,0,C&I CRE,2026-01-01
+OPP-00039,Pine Partners LP,Approved,1621498.46,0.5,CRE,Mixed Use,623110,LIBOR,7.74,2026-09-15,6,272,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00040,Oak Ventures LLC,Closing,3594567.98,0.9,CRE,Industrial,531190,Prime,6.12,2026-03-15,6,223,Brett Bandazian,NY,0,Commercial Real Estate,2026-01-01
+OPP-00041,Oak Corp,Closing,176545.64,0.45,C&I,Office,531190,SOFR,7.22,2026-10-16,6,259,Mark Scharfman,NY,0,C&I CRE,2026-01-01
+OPP-00042,Brook Properties LLC,Underwriting,294648.06,0.51,CRE,Warehouse,311919,Fixed,5.03,2026-09-07,6,243,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00043,Highland Inc,Underwriting,920830.54,0.46,Multifamily,Mixed Use,441310,LIBOR,5.55,2026-10-11,6,236,Jay Shah,PA,0,C&I CRE,2026-01-01
+OPP-00044,Elm Management LLC,Underwriting,874941.15,0.59,CRE,Office,311919,SOFR,6.75,2026-09-23,2,257,Konstantin Grinberg,NY,0,Commercial Real Estate,2026-01-01
+OPP-00045,Lake Associates LLC,Approved,356812.54,0.64,C&I,Mixed Use,531190,SOFR,5.5,2026-07-10,1,283,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00046,Pine Realty LLC,Underwriting,10137414.27,0.27,C&I,Mixed Use,623110,Prime,4.69,2026-03-25,5,221,Mark Scharfman,NY,0,Commercial Real Estate,2026-01-01
+OPP-00047,Westside Healthcare Group,Approved,270954.38,0.52,C&I,Retail,441310,Fixed,5.45,2026-02-13,3,286,Konstantin Grinberg,MA,0,Multi-family CRE,2026-01-01
+OPP-00048,Highland Healthcare Group,Lead,346817.08,0.44,CRE,Office,531190,Fixed,7.16,2026-12-12,2,225,Vivek Baid,NY,0,Multi-family CRE,2026-01-01
+OPP-00049,Elm Limited Partnership,Term Sheet,11471351.24,0.88,CRE,Office,531120,Fixed,5.17,2026-05-29,5,208,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00050,Eastside Capital LLC,Lead,8939221.81,0.72,CRE,Mixed Use,531120,Fixed,7.0,2026-11-01,2,201,Jay Shah,MA,0,C&I CRE,2026-01-01
+OPP-00051,Harbor Healthcare Group,Underwriting,4659721.39,0.74,CRE,Industrial,531311,Prime,6.35,2026-11-04,1,203,Brett Bandazian,NJ,0,C&I CRE,2026-01-01
+OPP-00052,Midtown Investments LLC,Documentation,3073279.84,0.92,C&I,Mixed Use,423120,LIBOR,6.81,2026-04-11,6,276,Luke Kaufman,NY,1,Multi-family CRE,2026-01-01
+OPP-00053,ABC Inc,Term Sheet,3339799.3,0.5,Other,Mixed Use,423120,Fixed,5.41,2026-02-03,3,252,Jay Shah,NJ,0,Multi-family CRE,2026-01-01
+OPP-00054,Northgate Inc,Documentation,964380.02,0.33,CRE,Multifamily,531110,SOFR,4.48,2026-11-11,5,279,Dennis Graham,NY,1,Commercial Real Estate,2026-01-01
+OPP-00055,Oak Limited Partnership,Documentation,118349.73,0.3,C&I,Mixed Use,311919,Fixed,4.32,2026-05-16,1,284,Jay Shah,PA,0,Multi-family CRE,2026-01-01
+OPP-00056,Oak Realty LLC,Closing,100000.0,0.69,CRE,Industrial,441310,Fixed,4.99,2026-03-06,2,275,Konstantin Grinberg,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00057,Elm Development Corp,Term Sheet,5605255.29,0.82,C&I,Multifamily,423120,LIBOR,7.03,2026-10-02,5,258,Dennis Graham,CT,1,C&I CRE,2026-01-01
+OPP-00058,Oak Partners LP,Documentation,419427.74,0.55,CRE,Mixed Use,441310,Fixed,6.11,2026-08-11,3,208,Jeremy Romine,NY,1,C&I CRE,2026-01-01
+OPP-00059,ABC Partners LP,Lead,2916481.46,0.47,CRE,Office,531190,LIBOR,7.51,2026-07-06,4,205,Vivek Baid,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00060,Midtown Associates LLC,Documentation,812052.57,0.34,CRE,Industrial,531390,Prime,4.82,2026-05-27,1,280,Vivek Baid,NY,1,Commercial Real Estate,2026-01-01
+OPP-00061,Westside Properties LLC,Underwriting,6738522.77,0.65,C&I,Office,531110,Prime,5.14,2026-05-28,6,271,Brett Bandazian,NY,1,Multi-family CRE,2026-01-01
+OPP-00062,Elm Inc,Underwriting,3129193.29,0.61,CRE,Warehouse,447110,SOFR,7.5,2026-12-25,5,226,Konstantin Grinberg,NY,0,C&I CRE,2026-01-01
+OPP-00063,Elm Management LLC,Closing,2002007.23,0.63,CRE,Warehouse,447110,Fixed,4.91,2026-12-22,3,204,Luke Kaufman,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00064,Eastside Investments LLC,Underwriting,14754976.06,0.21,C&I,Industrial,531190,Fixed,5.34,2026-11-25,4,245,Jeremy Romine,NY,0,Commercial Real Estate,2026-01-01
+OPP-00065,Riverside Partners LP,Lead,421271.44,0.92,C&I,Warehouse,531311,LIBOR,5.66,2026-03-27,1,251,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00066,Oak Limited Partnership,Underwriting,6032688.1,0.34,CRE,Multifamily,531120,SOFR,6.07,2026-02-22,5,213,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00067,Summit Corp,Underwriting,904296.39,0.31,CRE,Industrial,531120,LIBOR,7.69,2026-05-21,2,270,Jay Shah,CT,0,C&I CRE,2026-01-01
+OPP-00068,Eastside Ventures LLC,Underwriting,1503403.3,0.89,CRE,Multifamily,447110,SOFR,7.25,2026-04-14,2,266,Mark Scharfman,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00069,Elm Development Corp,Lead,2051737.92,0.43,C&I,Office,531190,SOFR,4.77,2026-07-05,3,231,Luke Kaufman,NY,0,Multi-family CRE,2026-01-01
+OPP-00070,Eastside Inc,Documentation,1071536.23,0.42,CRE,Industrial,441310,SOFR,5.71,2026-11-01,6,247,Konstantin Grinberg,CT,0,Multi-family CRE,2026-01-01
+OPP-00071,Riverside Realty LLC,Term Sheet,2496921.44,0.63,CRE,Mixed Use,531120,SOFR,5.66,2026-06-15,5,251,Vivek Baid,NY,1,Commercial Real Estate,2026-01-01
+OPP-00072,Pine Realty LLC,Lead,5934898.97,0.62,Other,Multifamily,311919,Prime,6.04,2026-10-16,5,234,Brett Bandazian,NJ,1,C&I CRE,2026-01-01
+OPP-00073,Valley Associates LLC,Lead,446981.69,0.72,Multifamily,Warehouse,531120,Fixed,7.55,2026-08-20,1,215,Jay Shah,NJ,0,Multi-family CRE,2026-01-01
+OPP-00074,Metro Corp,Approved,213589.76,0.38,Multifamily,Mixed Use,447110,Fixed,5.1,2026-08-15,2,266,Jay Shah,NY,1,Multi-family CRE,2026-01-01
+OPP-00075,ABC Holdings LLC,Underwriting,3008994.36,0.61,Multifamily,1-4 Family,531311,Fixed,4.35,2026-08-27,5,231,Jay Shah,NY,1,Commercial Real Estate,2026-01-01
+OPP-00076,Riverside Holdings LLC,Lead,677399.07,0.52,C&I,1-4 Family,531190,Prime,6.94,2026-11-21,3,268,Vivek Baid,CT,0,Multi-family CRE,2026-01-01
+OPP-00077,Midtown Ventures LLC,Underwriting,3944859.28,0.26,CRE,Industrial,531110,Fixed,7.43,2026-09-20,5,269,Jeremy Romine,NJ,0,Multi-family CRE,2026-01-01
+OPP-00078,Eastside Capital LLC,Documentation,570622.38,0.59,Other,Warehouse,447110,Fixed,6.95,2026-11-25,1,261,Jay Shah,NY,1,Multi-family CRE,2026-01-01
+OPP-00079,Downtown Management LLC,Underwriting,1684038.36,0.94,C&I,Industrial,531390,LIBOR,6.08,2026-12-31,3,271,Luke Kaufman,PA,0,Multi-family CRE,2026-01-01
+OPP-00080,Riverside Development Corp,Lead,1001054.74,0.4,Other,Warehouse,423120,Fixed,5.06,2026-09-16,3,244,Brett Bandazian,NY,1,C&I CRE,2026-01-01
+OPP-00081,Midtown Healthcare Group,Underwriting,2458314.87,0.85,CRE,Warehouse,447110,Prime,4.3,2026-04-18,5,282,Jeremy Romine,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00082,Metro Development Corp,Lead,160119.44,0.28,CRE,Warehouse,441310,Fixed,7.16,2026-09-02,5,282,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00083,Harbor Investments LLC,Underwriting,4122420.45,0.64,CRE,Industrial,531190,SOFR,4.53,2026-02-11,6,239,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00084,Midtown Capital LLC,Underwriting,176651.18,0.74,C&I,Mixed Use,447110,LIBOR,5.77,2026-06-24,2,236,Dennis Graham,NY,0,C&I CRE,2026-01-01
+OPP-00085,Metro Healthcare Group,Underwriting,8522203.48,0.82,Other,Office,531390,Prime,7.22,2026-11-05,1,261,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00086,Riverside Healthcare Group,Approved,1847186.24,0.45,CRE,Warehouse,447110,Prime,7.11,2026-08-12,2,288,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00087,Highland Corp,Term Sheet,3659307.24,0.51,CRE,Warehouse,531390,LIBOR,6.86,2026-10-14,1,214,Jeremy Romine,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00088,Park Ventures LLC,Lead,6977818.67,0.68,CRE,Industrial,531110,Fixed,4.32,2026-05-05,4,219,Dennis Graham,CT,0,Multi-family CRE,2026-01-01
+OPP-00089,Eastside Inc,Underwriting,1115854.6,0.42,CRE,Mixed Use,311919,Fixed,5.98,2026-12-12,5,202,Jeremy Romine,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00090,Pine Partners LP,Underwriting,2911224.21,0.71,C&I,Multifamily,531190,Fixed,5.95,2026-10-04,4,214,Jeremy Romine,NJ,0,Multi-family CRE,2026-01-01
+OPP-00091,Lake Partners LP,Documentation,6001797.54,0.5,C&I,Retail,423120,Fixed,6.33,2026-06-13,3,230,Vivek Baid,CT,0,C&I CRE,2026-01-01
+OPP-00092,Oak Realty LLC,Approved,431399.93,0.36,C&I,Mixed Use,531390,SOFR,4.58,2026-06-12,6,279,Jeremy Romine,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00093,Westside Healthcare Group,Documentation,776320.51,0.73,Multifamily,Mixed Use,441310,SOFR,5.77,2026-03-27,4,211,Mark Scharfman,CT,1,C&I CRE,2026-01-01
+OPP-00094,Harbor Corp,Underwriting,5809594.4,0.58,CRE,Warehouse,441310,LIBOR,7.47,2026-11-16,6,211,Jeremy Romine,CT,1,Multi-family CRE,2026-01-01
+OPP-00095,Riverside Inc,Approved,3017730.62,0.35,C&I,Retail,531120,Fixed,5.23,2026-07-25,6,288,Konstantin Grinberg,NY,0,Multi-family CRE,2026-01-01
+OPP-00096,Downtown Capital LLC,Underwriting,859633.42,0.35,C&I,Office,531120,LIBOR,6.08,2026-08-19,1,231,Mark Scharfman,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00097,Summit Corp,Lead,287009.44,0.83,Multifamily,Industrial,531390,SOFR,6.31,2026-07-27,6,204,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00098,Midtown Management LLC,Lead,651037.1,0.54,C&I,Warehouse,311919,Fixed,7.43,2026-11-01,3,225,Brett Bandazian,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00099,Eastside Realty LLC,Closing,293217.53,0.47,C&I,Office,423120,LIBOR,7.97,2026-06-14,2,275,Mark Scharfman,MA,0,Commercial Real Estate,2026-01-01
+OPP-00100,Riverside Realty LLC,Underwriting,1722634.11,0.84,CRE,Office,623110,LIBOR,6.68,2026-10-13,5,233,Brett Bandazian,NY,0,Commercial Real Estate,2026-01-01
+OPP-00101,Uptown Holdings LLC,Underwriting,4458631.93,0.25,CRE,Retail,531311,Fixed,6.36,2026-02-03,5,260,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00102,Oak Limited Partnership,Underwriting,1293486.53,0.37,CRE,Mixed Use,531110,Fixed,5.45,2026-02-08,6,268,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00103,Downtown Management LLC,Documentation,1291323.55,0.67,CRE,Office,311919,Fixed,6.86,2026-12-30,4,286,Konstantin Grinberg,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00104,Metro Healthcare Group,Approved,7530429.01,0.32,CRE,Warehouse,311919,LIBOR,6.81,2026-12-05,5,249,Konstantin Grinberg,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00105,Midtown Properties LLC,Lead,499153.85,0.92,CRE,Mixed Use,531311,Prime,5.94,2026-12-11,5,224,Konstantin Grinberg,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00106,Eastside Equity LLC,Closing,9783441.79,0.79,C&I,Office,623110,Fixed,5.88,2026-09-11,2,283,Dennis Graham,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00107,Harbor Corp,Approved,4453180.0,0.4,Multifamily,Mixed Use,423120,Prime,6.54,2026-10-17,1,254,Brett Bandazian,PA,0,C&I CRE,2026-01-01
+OPP-00108,Uptown Realty LLC,Approved,35000000.0,0.78,C&I,Multifamily,531120,Fixed,4.5,2026-05-20,2,218,Vivek Baid,PA,1,Multi-family CRE,2026-01-01
+OPP-00109,Lake Properties LLC,Underwriting,3371468.84,0.66,C&I,Warehouse,531311,Prime,7.35,2026-11-28,5,267,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00110,ABC Holdings LLC,Lead,350961.03,0.23,C&I,Warehouse,623110,Fixed,6.04,2026-07-20,3,280,Jeremy Romine,NY,1,C&I CRE,2026-01-01
+OPP-00111,ABC Inc,Approved,360159.26,0.64,Other,Industrial,531390,Fixed,7.91,2026-10-28,1,218,Jeremy Romine,NY,0,Commercial Real Estate,2026-01-01
+OPP-00112,Pine Realty LLC,Approved,2495930.94,0.22,CRE,Mixed Use,531390,Fixed,5.53,2026-10-31,6,245,Jay Shah,NY,0,Multi-family CRE,2026-01-01
+OPP-00113,Maple Realty LLC,Underwriting,326611.14,0.66,Multifamily,Office,441310,SOFR,7.57,2026-03-30,6,230,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00114,Eastside Development Corp,Closing,2550133.94,0.94,CRE,Office,311919,SOFR,6.93,2026-12-15,5,279,Dennis Graham,NY,0,Multi-family CRE,2026-01-01
+OPP-00115,Midtown Realty LLC,Documentation,860393.43,0.79,C&I,1-4 Family,531120,SOFR,7.55,2026-06-08,4,215,Brett Bandazian,FL,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00116,Crown Capital LLC,Approved,879336.23,0.38,CRE,Mixed Use,531120,SOFR,4.57,2026-10-26,3,252,Luke Kaufman,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00117,Maple Partners LP,Lead,1229785.04,0.77,CRE,Multifamily,311919,Fixed,5.96,2026-06-13,2,202,Jeremy Romine,NY,0,Multi-family CRE,2026-01-01
+OPP-00118,Oak Healthcare Group,Documentation,706425.47,0.59,CRE,Industrial,311919,Fixed,7.76,2026-02-16,2,207,Jay Shah,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00119,Downtown Development Corp,Underwriting,1956093.6,0.59,CRE,1-4 Family,441310,Fixed,4.71,2026-08-04,2,226,Jay Shah,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00120,Highland Associates LLC,Term Sheet,1314192.87,0.84,CRE,Retail,531120,Prime,4.24,2026-12-04,3,235,Jeremy Romine,NJ,0,C&I CRE,2026-01-01
+OPP-00121,Eastside Limited Partnership,Lead,640802.89,0.33,CRE,Warehouse,531190,Prime,7.05,2026-02-26,3,260,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00122,Elm Development Corp,Underwriting,8045209.04,0.95,Other,Warehouse,423120,Fixed,5.11,2026-05-27,3,254,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00123,Elm Investments LLC,Term Sheet,197427.8,0.46,C&I,1-4 Family,531120,SOFR,7.08,2026-03-17,1,230,Vivek Baid,PA,0,Multi-family CRE,2026-01-01
+OPP-00124,Uptown Realty LLC,Documentation,1164933.05,0.25,Multifamily,1-4 Family,531311,Fixed,4.48,2026-02-28,5,239,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00125,Uptown Management LLC,Approved,1102787.99,0.27,CRE,Warehouse,531311,LIBOR,5.43,2026-10-14,6,286,Mark Scharfman,NY,1,Commercial Real Estate,2026-01-01
+OPP-00126,Metro Healthcare Group,Documentation,3409871.19,0.44,CRE,1-4 Family,531120,Prime,4.34,2026-12-15,4,282,Konstantin Grinberg,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00127,Riverside Corp,Approved,262329.47,0.52,Other,Multifamily,531120,Fixed,7.61,2026-05-01,6,219,Vivek Baid,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00128,Summit Ventures LLC,Documentation,1930867.99,0.25,C&I,Retail,423120,Fixed,5.17,2026-04-28,3,231,Mark Scharfman,NY,0,C&I CRE,2026-01-01
+OPP-00129,Summit Holdings LLC,Term Sheet,325516.34,0.31,CRE,Mixed Use,441310,SOFR,6.44,2026-12-26,4,206,Konstantin Grinberg,NY,0,Commercial Real Estate,2026-01-01
+OPP-00130,ABC Realty LLC,Approved,2720277.98,0.75,CRE,Warehouse,623110,Fixed,5.53,2026-05-20,5,264,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00131,Eastside Associates LLC,Lead,5934232.23,0.95,Multifamily,Warehouse,531190,SOFR,4.33,2026-09-02,6,202,Luke Kaufman,NY,0,Commercial Real Estate,2026-01-01
+OPP-00132,Lake Inc,Term Sheet,1990137.43,0.56,Multifamily,Office,447110,Prime,5.54,2026-08-10,4,283,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00133,Summit Corp,Underwriting,1129704.64,0.35,C&I,1-4 Family,531110,Prime,7.28,2026-06-29,4,257,Konstantin Grinberg,NY,0,Commercial Real Estate,2026-01-01
+OPP-00134,Eastside Associates LLC,Lead,231470.78,0.22,C&I,Warehouse,531120,SOFR,4.28,2026-07-13,1,210,Mark Scharfman,FL,0,Multi-family CRE,2026-01-01
+OPP-00135,Elm Investments LLC,Approved,22686133.75,0.42,C&I,Multifamily,531311,Fixed,5.76,2026-02-14,6,270,Vivek Baid,NY,0,Commercial Real Estate,2026-01-01
+OPP-00136,Downtown Capital LLC,Term Sheet,1676378.93,0.67,CRE,Retail,531110,Fixed,4.59,2026-05-03,1,243,Konstantin Grinberg,NY,1,C&I CRE,2026-01-01
+OPP-00137,Westside Healthcare Group,Underwriting,934724.5,0.31,CRE,1-4 Family,423120,Prime,7.41,2026-04-27,5,230,Konstantin Grinberg,MA,0,Commercial Real Estate,2026-01-01
+OPP-00138,Uptown Inc,Underwriting,34187175.53,0.45,CRE,Office,311919,Fixed,6.7,2026-12-08,6,236,Mark Scharfman,NY,0,Multi-family CRE,2026-01-01
+OPP-00139,Westside Inc,Term Sheet,804662.47,0.74,C&I,Retail,311919,SOFR,4.27,2026-07-19,2,242,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00140,Lake Corp,Approved,632375.99,0.33,CRE,Mixed Use,531311,Prime,6.73,2026-09-22,2,284,Brett Bandazian,CT,0,C&I CRE,2026-01-01
+OPP-00141,ABC Investments LLC,Approved,676501.76,0.85,C&I,Mixed Use,423120,SOFR,6.11,2026-09-06,3,247,Jay Shah,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00142,Oak Ventures LLC,Lead,2551905.15,0.73,CRE,Industrial,531390,Prime,5.67,2026-08-23,3,256,Mark Scharfman,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00143,Eastside Investments LLC,Approved,873786.51,0.23,CRE,Industrial,447110,Fixed,5.11,2026-03-23,1,231,Konstantin Grinberg,NY,0,C&I CRE,2026-01-01
+OPP-00144,Highland Associates LLC,Approved,1242230.66,0.23,Other,Office,531311,Fixed,6.51,2026-03-20,2,226,Luke Kaufman,CT,0,C&I CRE,2026-01-01
+OPP-00145,Westside Inc,Documentation,646072.45,0.37,C&I,Retail,623110,Prime,8.0,2026-12-07,1,236,Dennis Graham,NY,1,C&I CRE,2026-01-01
+OPP-00146,Eastside Equity LLC,Term Sheet,341484.2,0.7,CRE,Warehouse,531390,Prime,6.62,2026-08-31,3,232,Brett Bandazian,NY,1,Commercial Real Estate,2026-01-01
+OPP-00147,Uptown Healthcare Group,Documentation,4741035.63,0.83,C&I,Office,441310,Prime,5.85,2026-06-07,3,201,Jay Shah,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00148,Summit Capital LLC,Approved,2218166.67,0.37,C&I,Office,531190,SOFR,6.76,2026-03-23,2,209,Jay Shah,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00149,Metro Corp,Documentation,12482109.35,0.54,Other,1-4 Family,531120,Prime,7.2,2026-07-29,3,285,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00150,Highland Inc,Term Sheet,1365742.93,0.55,C&I,Industrial,531190,LIBOR,7.75,2026-02-03,2,282,Brett Bandazian,FL,1,Multi-family CRE,2026-01-01
+OPP-00151,Uptown Realty LLC,Lead,28331975.51,0.94,Multifamily,Mixed Use,531311,Fixed,6.17,2026-07-18,2,223,Brett Bandazian,NY,1,Multi-family CRE,2026-01-01
+OPP-00152,Westside Limited Partnership,Lead,886897.91,0.26,Multifamily,Mixed Use,311919,Fixed,7.13,2026-02-07,3,203,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00153,Harbor Ventures LLC,Lead,535551.01,0.76,Multifamily,1-4 Family,531390,LIBOR,7.06,2026-04-03,1,244,Jay Shah,NY,1,C&I CRE,2026-01-01
+OPP-00154,Metro Equity LLC,Lead,7757479.63,0.7,Multifamily,Mixed Use,623110,Fixed,7.74,2026-11-21,5,248,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00155,Downtown Corp,Documentation,2485254.73,0.89,Other,Office,623110,Prime,7.65,2026-11-21,1,279,Konstantin Grinberg,NY,0,Multi-family CRE,2026-01-01
+OPP-00156,Downtown Associates LLC,Approved,1215699.99,0.38,CRE,Mixed Use,623110,Prime,7.99,2026-08-19,3,205,Vivek Baid,PA,1,Commercial Real Estate,2026-01-01
+OPP-00157,Lake Partners LP,Documentation,1363306.28,0.27,CRE,Industrial,423120,LIBOR,7.37,2026-05-19,4,241,Mark Scharfman,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00158,Westside Investments LLC,Documentation,338760.69,0.81,CRE,Industrial,531190,Prime,6.76,2026-06-20,5,264,Luke Kaufman,PA,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00159,Westside Properties LLC,Closing,1305093.54,0.81,CRE,Mixed Use,531120,Fixed,7.37,2026-08-26,5,230,Vivek Baid,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00160,Harbor Corp,Documentation,216045.31,0.36,CRE,1-4 Family,423120,SOFR,6.61,2026-04-15,4,268,Brett Bandazian,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00161,Northgate Inc,Lead,4181082.14,0.64,C&I,Mixed Use,531120,LIBOR,7.52,2026-11-09,2,244,Jay Shah,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00162,Eastside Development Corp,Documentation,7838455.6,0.54,CRE,Warehouse,531190,Fixed,6.94,2026-06-18,1,213,Dennis Graham,PA,0,Multi-family CRE,2026-01-01
+OPP-00163,Metro Development Corp,Documentation,1379711.89,0.84,C&I,Warehouse,531110,Fixed,5.03,2026-03-20,5,243,Luke Kaufman,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00164,Uptown Development Corp,Lead,552535.05,0.5,C&I,Warehouse,531311,Fixed,6.66,2026-01-31,1,206,Konstantin Grinberg,NY,0,C&I CRE,2026-01-01
+OPP-00165,Westside Investments LLC,Lead,8649850.08,0.48,CRE,Office,531390,Prime,5.16,2026-03-12,4,218,Jeremy Romine,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00166,Oak Corp,Lead,2320083.65,0.52,Multifamily,Industrial,447110,Fixed,4.33,2026-09-12,3,232,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00167,Oak Limited Partnership,Term Sheet,2270888.98,0.26,CRE,Office,623110,Fixed,5.08,2026-07-16,3,279,Konstantin Grinberg,MA,0,C&I CRE,2026-01-01
+OPP-00168,Northgate Corp,Underwriting,442457.04,0.94,CRE,Office,623110,Prime,6.52,2026-03-07,2,264,Luke Kaufman,NY,0,Commercial Real Estate,2026-01-01
+OPP-00169,Pine Partners LP,Underwriting,16231484.93,0.32,CRE,Retail,623110,Prime,6.55,2026-03-01,2,237,Jay Shah,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00170,Summit Ventures LLC,Documentation,25383378.49,0.79,CRE,Mixed Use,623110,SOFR,7.83,2026-11-14,3,250,Konstantin Grinberg,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00171,Maple Properties LLC,Term Sheet,614591.18,0.35,Multifamily,1-4 Family,623110,Prime,5.26,2026-04-08,6,248,Konstantin Grinberg,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00172,Uptown Management LLC,Lead,503048.99,0.62,CRE,Industrial,531190,Prime,6.89,2026-10-19,5,236,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00173,Uptown Holdings LLC,Approved,1156257.15,0.41,C&I,Office,531390,SOFR,7.81,2026-11-13,3,220,Jay Shah,NJ,1,C&I CRE,2026-01-01
+OPP-00174,ABC Holdings LLC,Approved,242867.68,0.63,C&I,1-4 Family,531390,Fixed,5.66,2026-09-27,6,256,Dennis Graham,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00175,Midtown Capital LLC,Lead,1996309.07,0.28,C&I,Retail,531190,LIBOR,4.8,2026-03-09,5,244,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00176,Uptown Development Corp,Approved,648108.31,0.35,CRE,Multifamily,531110,SOFR,5.67,2026-05-26,6,271,Vivek Baid,MA,1,Multi-family CRE,2026-01-01
+OPP-00177,Lake Corp,Underwriting,3203871.77,0.27,C&I,Mixed Use,531190,LIBOR,7.92,2026-11-23,2,287,Jay Shah,NY,1,Commercial Real Estate,2026-01-01
+OPP-00178,Lake Development Corp,Documentation,835182.68,0.31,C&I,Multifamily,531390,LIBOR,7.74,2026-04-07,2,262,Luke Kaufman,CT,0,Multi-family CRE,2026-01-01
+OPP-00179,Midtown Realty LLC,Closing,597522.47,0.6,C&I,Multifamily,623110,SOFR,5.53,2026-04-12,5,206,Dennis Graham,NY,0,Commercial Real Estate,2026-01-01
+OPP-00180,ABC Equity LLC,Documentation,100000.0,0.69,C&I,Office,531120,Fixed,6.09,2026-11-20,5,227,Mark Scharfman,NY,0,Commercial Real Estate,2026-01-01
+OPP-00181,Pine Associates LLC,Lead,4461506.97,0.27,CRE,Industrial,447110,SOFR,5.74,2026-12-08,4,228,Brett Bandazian,NY,1,C&I CRE,2026-01-01
+OPP-00182,Pine Management LLC,Closing,13946257.27,0.44,Other,Industrial,531390,SOFR,7.53,2026-11-20,2,215,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00183,Midtown Partners LP,Term Sheet,436636.72,0.5,CRE,Multifamily,531311,Fixed,6.3,2026-08-06,1,244,Brett Bandazian,CT,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00184,Downtown Associates LLC,Underwriting,618796.58,0.81,C&I,Industrial,441310,SOFR,5.83,2026-08-06,1,210,Jay Shah,NY,0,Multi-family CRE,2026-01-01
+OPP-00185,Crown Inc,Approved,1215665.75,0.72,CRE,Multifamily,441310,Fixed,5.32,2026-05-25,1,224,Mark Scharfman,CT,1,Multi-family CRE,2026-01-01
+OPP-00186,Metro Healthcare Group,Approved,1341976.33,0.65,CRE,Warehouse,311919,Prime,7.11,2026-02-11,2,221,Konstantin Grinberg,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00187,Park Inc,Lead,1582716.93,0.86,CRE,Warehouse,423120,SOFR,7.73,2026-03-31,4,247,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00188,Harbor Corp,Term Sheet,477199.45,0.91,CRE,1-4 Family,311919,SOFR,4.14,2026-11-17,2,278,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00189,Harbor Investments LLC,Underwriting,1031124.8,0.34,CRE,Office,531110,SOFR,6.63,2026-12-29,6,239,Jeremy Romine,NY,0,C&I CRE,2026-01-01
+OPP-00190,Crown Inc,Underwriting,2564657.69,0.24,CRE,Mixed Use,531190,Fixed,7.74,2026-09-03,2,267,Luke Kaufman,FL,0,Commercial Real Estate,2026-01-01
+OPP-00191,Pine Limited Partnership,Term Sheet,340665.6,0.33,C&I,Warehouse,441310,Prime,4.17,2026-10-06,4,262,Konstantin Grinberg,FL,1,Commercial Real Estate,2026-01-01
+OPP-00192,Riverside Associates LLC,Term Sheet,1682960.45,0.23,CRE,Mixed Use,311919,LIBOR,6.26,2026-11-27,6,274,Dennis Graham,NY,0,C&I CRE,2026-01-01
+OPP-00193,Eastside Ventures LLC,Underwriting,1033101.97,0.31,CRE,Warehouse,531311,Fixed,4.1,2026-12-26,5,236,Vivek Baid,NY,0,Commercial Real Estate,2026-01-01
+OPP-00194,Summit Capital LLC,Documentation,6536615.43,0.28,C&I,Mixed Use,531390,Prime,7.68,2026-02-20,6,203,Vivek Baid,NY,0,C&I CRE,2026-01-01
+OPP-00195,Eastside Equity LLC,Documentation,357336.7,0.41,CRE,Multifamily,623110,LIBOR,5.08,2026-03-05,4,212,Jeremy Romine,NY,1,Commercial Real Estate,2026-01-01
+OPP-00196,Crown Capital LLC,Closing,4149964.81,0.31,Multifamily,Multifamily,311919,SOFR,5.25,2026-08-04,1,228,Luke Kaufman,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00197,Highland Properties LLC,Lead,4648226.18,0.58,Multifamily,Mixed Use,531190,SOFR,6.23,2026-03-12,6,246,Dennis Graham,NY,0,Multi-family CRE,2026-01-01
+OPP-00198,Brook Healthcare Group,Documentation,3012111.71,0.26,C&I,Warehouse,423120,LIBOR,5.89,2026-09-15,5,213,Brett Bandazian,NY,0,Multi-family CRE,2026-01-01
+OPP-00199,Lake Properties LLC,Closing,115628.55,0.71,CRE,Multifamily,623110,Prime,6.06,2026-08-10,3,240,Vivek Baid,NY,0,Multi-family CRE,2026-01-01
+OPP-00200,Harbor Investments LLC,Underwriting,1375215.85,0.38,C&I,Multifamily,531311,Fixed,5.06,2026-06-06,3,274,Brett Bandazian,CT,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00201,Elm Investments LLC,Closing,1026868.51,0.57,C&I,Mixed Use,423120,Fixed,4.22,2026-09-22,3,264,Jay Shah,NY,0,C&I CRE,2026-01-01
+OPP-00202,Harbor Investments LLC,Lead,2685894.68,0.7,CRE,Retail,531120,Prime,4.87,2026-03-13,1,223,Konstantin Grinberg,NJ,0,Multi-family CRE,2026-01-01
+OPP-00203,Riverside Partners LP,Term Sheet,2523095.36,0.67,CRE,Industrial,441310,LIBOR,5.56,2026-03-24,2,215,Jeremy Romine,NY,0,Commercial Real Estate,2026-01-01
+OPP-00204,Eastside Limited Partnership,Closing,690703.02,0.49,C&I,Warehouse,311919,LIBOR,5.7,2026-11-08,4,244,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00205,Midtown Ventures LLC,Approved,12137013.26,0.94,CRE,Mixed Use,531190,Fixed,6.76,2026-07-24,3,257,Mark Scharfman,NY,0,C&I CRE,2026-01-01
+OPP-00206,Maple Partners LP,Documentation,6465744.65,0.28,CRE,Warehouse,531390,LIBOR,4.98,2026-11-25,3,236,Jay Shah,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00207,Brook Properties LLC,Lead,689236.2,0.9,C&I,Mixed Use,531110,Prime,7.9,2026-07-19,3,227,Jay Shah,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00208,Elm Limited Partnership,Documentation,7794372.58,0.93,CRE,Office,531120,Prime,4.58,2026-02-10,3,254,Vivek Baid,NY,1,Commercial Real Estate,2026-01-01
+OPP-00209,Midtown Associates LLC,Underwriting,959653.14,0.43,Other,Multifamily,423120,Prime,5.4,2026-02-08,1,200,Jeremy Romine,CT,1,Commercial Real Estate,2026-01-01
+OPP-00210,Northgate Equity LLC,Documentation,2259969.18,0.61,CRE,Multifamily,531110,Prime,5.97,2026-09-30,5,283,Konstantin Grinberg,FL,0,Multi-family CRE,2026-01-01
+OPP-00211,Midtown Capital LLC,Underwriting,1474011.38,0.56,C&I,Industrial,531390,Fixed,7.45,2026-05-08,5,249,Vivek Baid,NJ,0,Multi-family CRE,2026-01-01
+OPP-00212,Harbor Development Corp,Underwriting,725574.44,0.24,CRE,Warehouse,311919,Fixed,4.14,2026-10-11,2,281,Mark Scharfman,NJ,0,C&I CRE,2026-01-01
+OPP-00213,Valley Limited Partnership,Term Sheet,8387368.12,0.8,CRE,Industrial,441310,Fixed,4.21,2026-12-30,1,245,Jay Shah,CT,0,Commercial Real Estate,2026-01-01
+OPP-00214,Park Holdings LLC,Approved,1628975.94,0.34,C&I,Retail,531390,Prime,7.74,2026-12-31,2,276,Luke Kaufman,NJ,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00215,Eastside Capital LLC,Documentation,4073530.3,0.46,C&I,Retail,531120,Prime,4.44,2026-06-05,2,210,Vivek Baid,CT,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00216,Westside Limited Partnership,Lead,1474906.33,0.5,CRE,Industrial,531311,Fixed,6.04,2026-07-02,2,215,Konstantin Grinberg,CT,0,Commercial Real Estate,2026-01-01
+OPP-00217,Riverside Equity LLC,Term Sheet,6680905.61,0.51,CRE,Warehouse,447110,Fixed,4.09,2026-09-19,2,234,Jeremy Romine,NY,0,Commercial Real Estate,2026-01-01
+OPP-00218,Northgate Equity LLC,Lead,374052.01,0.55,CRE,Industrial,531311,Fixed,7.4,2026-03-19,3,248,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00219,Eastside Limited Partnership,Underwriting,2098031.85,0.55,Other,Office,531120,Fixed,6.38,2026-02-08,2,257,Dennis Graham,NY,1,C&I CRE,2026-01-01
+OPP-00220,Pine Investments LLC,Underwriting,478474.99,0.34,CRE,Office,531390,LIBOR,7.48,2026-07-07,6,240,Jay Shah,NY,0,Commercial Real Estate,2026-01-01
+OPP-00221,Park Inc,Approved,1294792.08,0.51,CRE,Warehouse,531390,Prime,6.15,2026-09-25,6,205,Konstantin Grinberg,NY,0,C&I CRE,2026-01-01
+OPP-00222,Metro Realty LLC,Closing,3770058.66,0.9,C&I,Mixed Use,623110,LIBOR,6.22,2026-11-21,5,234,Konstantin Grinberg,NY,0,Commercial Real Estate,2026-01-01
+OPP-00223,Eastside Limited Partnership,Documentation,499874.96,0.33,C&I,Industrial,441310,LIBOR,6.69,2026-07-02,4,228,Konstantin Grinberg,NY,1,Multi-family CRE,2026-01-01
+OPP-00224,Midtown Holdings LLC,Underwriting,647099.85,0.3,CRE,Warehouse,531311,Fixed,5.19,2026-09-03,6,214,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00225,Crown Inc,Closing,1115355.65,0.5,CRE,Warehouse,311919,Fixed,5.86,2026-07-01,5,215,Jay Shah,PA,0,C&I CRE,2026-01-01
+OPP-00226,Westside Investments LLC,Underwriting,352961.73,0.35,C&I,Mixed Use,623110,LIBOR,5.71,2026-12-27,5,263,Vivek Baid,NJ,0,C&I CRE,2026-01-01
+OPP-00227,ABC Investments LLC,Documentation,2989636.38,0.6,Other,Office,531390,LIBOR,5.24,2026-02-08,1,240,Brett Bandazian,NY,0,C&I CRE,2026-01-01
+OPP-00228,Valley Associates LLC,Term Sheet,450734.47,0.63,Other,1-4 Family,311919,LIBOR,6.62,2026-04-30,2,224,Jay Shah,NY,0,Multi-family CRE,2026-01-01
+OPP-00229,Cedar Properties LLC,Approved,904718.0,0.69,Multifamily,Mixed Use,531311,Prime,6.48,2026-09-08,2,200,Brett Bandazian,NY,1,C&I CRE,2026-01-01
+OPP-00230,Park Associates LLC,Approved,4114947.64,0.21,Multifamily,Warehouse,531120,Fixed,5.29,2026-12-17,2,238,Jeremy Romine,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00231,Oak Ventures LLC,Closing,260831.44,0.69,C&I,Retail,531311,Fixed,4.27,2026-10-25,4,261,Vivek Baid,NY,0,Multi-family CRE,2026-01-01
+OPP-00232,Lake Properties LLC,Approved,1274006.9,0.28,Multifamily,Office,311919,Fixed,4.46,2026-05-11,1,212,Jay Shah,NY,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00233,Crown Investments LLC,Closing,2098645.3,0.66,C&I,Multifamily,311919,Prime,6.93,2026-10-20,5,212,Jeremy Romine,NY,1,Multi-family CRE,2026-01-01
+OPP-00234,Brook Associates LLC,Underwriting,10226735.63,0.33,CRE,Office,531390,Prime,5.52,2026-11-07,2,280,Mark Scharfman,NY,0,C&I CRE,2026-01-01
+OPP-00235,Uptown Inc,Lead,1103760.16,0.23,C&I,Industrial,531311,Prime,4.82,2026-12-30,5,217,Jeremy Romine,PA,0,Multi-family CRE,2026-01-01
+OPP-00236,Northgate Partners LP,Underwriting,795314.6,0.69,CRE,1-4 Family,531190,Prime,5.98,2026-05-26,6,265,Jeremy Romine,PA,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00237,Eastside Investments LLC,Lead,2305087.7,0.3,CRE,Retail,623110,Fixed,4.9,2026-04-02,3,209,Vivek Baid,NJ,1,Commercial Real Estate,2026-01-01
+OPP-00238,Riverside Development Corp,Lead,2913071.86,0.29,CRE,Warehouse,447110,Fixed,6.95,2026-12-04,2,257,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00239,Midtown Ventures LLC,Underwriting,1104133.66,0.49,Multifamily,Retail,531311,LIBOR,5.81,2026-03-15,3,202,Brett Bandazian,NY,1,Multi-family CRE,2026-01-01
+OPP-00240,Lake Partners LP,Term Sheet,3017865.42,0.46,C&I,1-4 Family,447110,LIBOR,5.32,2026-11-17,2,227,Vivek Baid,NY,0,Commercial Real Estate,2026-01-01
+OPP-00241,Eastside Investments LLC,Underwriting,1776484.55,0.42,Other,Warehouse,531120,Prime,4.25,2026-03-17,3,250,Konstantin Grinberg,NY,0,Multi-family CRE,2026-01-01
+OPP-00242,Metro Investments LLC,Approved,1731144.69,0.8,C&I,Office,441310,Fixed,6.0,2026-06-23,4,262,Vivek Baid,NJ,1,CRE secured by 1-4 Family,2026-01-01
+OPP-00243,Metro Investments LLC,Documentation,661876.05,0.38,C&I,Mixed Use,311919,Fixed,4.51,2026-04-25,3,225,Luke Kaufman,NY,0,C&I CRE,2026-01-01
+OPP-00244,Pine Investments LLC,Term Sheet,587227.65,0.32,CRE,Warehouse,531120,Fixed,7.49,2026-03-15,3,285,Dennis Graham,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00245,Harbor Healthcare Group,Closing,544656.15,0.5,C&I,1-4 Family,441310,Fixed,5.7,2026-07-03,1,279,Konstantin Grinberg,CT,0,C&I CRE,2026-01-01
+OPP-00246,Midtown Associates LLC,Underwriting,1451540.85,0.7,CRE,Industrial,311919,Fixed,7.27,2026-06-25,3,269,Vivek Baid,CT,0,C&I CRE,2026-01-01
+OPP-00247,Downtown Limited Partnership,Term Sheet,168270.23,0.28,CRE,Warehouse,423120,SOFR,7.34,2026-02-08,4,249,Dennis Graham,NY,1,C&I CRE,2026-01-01
+OPP-00248,Metro Healthcare Group,Lead,177658.86,0.65,Multifamily,Warehouse,531110,Fixed,7.64,2026-03-07,4,200,Mark Scharfman,NJ,0,Commercial Real Estate,2026-01-01
+OPP-00249,Northgate Holdings LLC,Term Sheet,207386.65,0.93,CRE,Retail,531190,Fixed,7.21,2026-03-20,6,288,Vivek Baid,NY,0,CRE secured by 1-4 Family,2026-01-01
+OPP-00250,Pine Realty LLC,Closing,4425621.92,0.93,Other,Mixed Use,531120,LIBOR,7.97,2026-08-21,6,223,Konstantin Grinberg,NY,1,Multi-family CRE,2026-01-01

@@ -1,0 +1,28 @@
+# Standard Preset — production run
+# 90-day stochastic, 100 paths, all Phase 2 modules
+simulation_horizon_days: 90
+num_paths: 100
+mode: stochastic
+ratings:
+  enabled: true
+  approach: matrix_hybrid
+valuation:
+  enabled: true
+  fair_value_mode: simple
+strategy:
+  enabled: false
+scenarios:
+  enabled: true
+  definitions:
+    - "config/scenarios/baseline.yaml"
+    - "config/scenarios/mild_recession.yaml"
+    - "config/scenarios/severe_stress.yaml"
+funded:
+  amortisation_enabled: true
+  renewal_enabled: true
+  prepayment_enabled: true
+  utilisation_sim_enabled: true
+output:
+  store_position_level_history: true
+  store_event_log: true
+  aggregate_frequency: daily

@@ -1,0 +1,130 @@
+# ============================================================================
+# Master Configuration — Portfolio Evolution Engine
+# ============================================================================
+# This file controls all simulation parameters. Override individual values
+# via CLI flags or use a preset (config/presets/) as a starting point.
+# ============================================================================
+
+# --- BASIC ---
+
+simulation_horizon_days: 90      # How many days to simulate forward
+num_paths: 100                   # Number of Monte Carlo paths (1 = deterministic)
+random_seed: 42                  # Seed for reproducibility
+time_step: daily                 # Only "daily" supported in Phase 1
+mode: stochastic                 # stochastic | deterministic_forecast
+
+# --- DATA ---
+
+funded_file: "data/sample/funded_portfolio.csv"
+pipeline_file: "data/sample/pipeline.csv"
+schema_mapping: "schemas/schema_mapping.yaml"
+source_schema: "schemas/source_schema.yaml"
+
+# Multi-portfolio support (overrides funded_file/pipeline_file if present)
+# portfolios:
+#   - name: "C&I"
+#     funded_file: "data/ci_funded.csv"
+#     pipeline_file: "data/ci_pipeline.csv"
+#     schema_mapping: "schemas/ci_mapping.yaml"
+#   - name: "CRE"
+#     funded_file: "data/cre_funded.csv"
+#     pipeline_file: "data/cre_pipeline.csv"
+
+# --- CALENDAR ---
+
+calendar:
+  business_days_only: true       # Skip weekends
+  country: US                    # Holiday calendar
+  start_date: null               # Defaults to as_of_date from data + 1 business day
+
+# --- DEPOSITS (Phase 1.1) ---
+
+deposits:
+  enabled: false               # Enable in Phase 1.1
+  deposits_file: "data/sample/deposits.csv"
+  schema_mapping: "schemas/deposit_schema_mapping.yaml"
+  relationships_file: null     # Optional — auto-inferred if null
+  capture_at_funding: true     # Generate deposits when pipeline loans fund
+  pricing_enabled: true        # Update deposit rates daily
+  liquidity_metrics: true      # Compute LDR, stability, LCR proxy
+
+# --- SCHEDULER ---
+
+scheduler:
+  enabled: false
+  mode: realtime
+  cadence: daily
+  run_time: "06:00"
+  accelerated_ratio: 5
+  catch_up_on_start: true
+
+# --- PIPELINE ---
+
+pipeline:
+  enabled: true
+  allow_partial_funding: true    # Revolvers fund partially on booking
+  new_pipeline_inflow: false     # Generate new pipeline deals during sim (Phase 2+)
+  inflow:
+    deals_per_week: 8
+    segment_weights:
+      cre: 0.40
+      c_and_i: 0.35
+      construction: 0.15
+      consumer: 0.10
+    avg_deal_size: 2500000
+    deal_size_std: 1500000
+    seasonality: true
+    rating_distribution: [0.05, 0.10, 0.20, 0.30, 0.20, 0.10, 0.03, 0.01, 0.01]
+
+# --- FUNDED PORTFOLIO ---
+
+funded:
+  amortisation_enabled: true
+  renewal_enabled: false         # Phase 2
+  prepayment_enabled: false      # Phase 2
+  utilisation_sim_enabled: false # Phase 2
+
+# --- RATINGS ---
+
+ratings:
+  enabled: false                 # Phase 2
+  approach: matrix_hybrid        # matrix | score | matrix_hybrid
+  migration_cadence: monthly     # monthly | daily
+
+# --- VALUATION ---
+
+valuation:
+  enabled: false                 # Phase 3
+  fair_value_mode: simple        # simple | full
+
+# --- STRATEGY ---
+
+strategy:
+  enabled: false                 # Phase 2
+  signals_file: null             # Path to strategy signals YAML
+  archetype: null                # Lender archetype to load
+
+# --- SCENARIOS ---
+
+scenarios:
+  enabled: false                 # Phase 2
+  definitions:
+    - "config/scenarios/baseline.yaml"
+
+# --- OUTPUT ---
+
+output:
+  directory: "outputs/"
+  store_position_level_history: true   # Full position state each day
+  store_event_log: true                # Explainability log
+  aggregate_frequency: daily           # daily | weekly | monthly
+  formats:
+    - csv                              # csv | parquet | json
+  target_schema: null                  # Path to target schema YAML (optional)
+
+# --- ADVANCED ---
+
+performance:
+  vectorize: true                # Use vectorized ops where possible
+  checkpoint_interval: 0        # Save checkpoint every N days (0 = disabled)
+  max_memory_gb: 8              # Warn if projected memory exceeds this

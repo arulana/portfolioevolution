@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\lazyframe\engine_config.py
+# hypothesis_version: 6.151.9
+
+['raise_on_fail']

@@ -1,0 +1,4 @@
+# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\__init__.py
+# hypothesis_version: 6.151.9
+
+['FileProviderArgs', 'PartitionBy', 'ScanCastOptions', 'defer', 'read_avro', 'read_clipboard', 'read_csv', 'read_csv_batched', 'read_database', 'read_database_uri', 'read_delta', 'read_excel', 'read_ipc', 'read_ipc_schema', 'read_ipc_stream', 'read_json', 'read_lines', 'read_ndjson', 'read_ods', 'read_parquet', 'read_parquet_schema', 'scan_csv', 'scan_delta', 'scan_iceberg', 'scan_ipc', 'scan_lines', 'scan_ndjson', 'scan_parquet', 'scan_pyarrow_dataset']
