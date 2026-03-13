@@ -303,6 +303,14 @@ class SimulationStore:
                 f"DELETE FROM {table} WHERE run_id = ? AND sim_day = ?",
                 [run_id, sim_day],
             )
+            # Reorder batch columns to match DDL column order
+            table_cols_df = self._conn.execute(
+                f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position"
+            ).pl()
+            table_cols = table_cols_df["column_name"].to_list()
+            # Only select columns that exist in both the batch and the table
+            common_cols = [c for c in table_cols if c in batch.columns]
+            batch = batch.select(common_cols)
             self._conn.register(batch_name, batch)
             self._conn.execute(f"INSERT INTO {table} SELECT * FROM {batch_name}")
             self._conn.unregister(batch_name)
