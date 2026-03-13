@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\iceberg\_utils.py
-# hypothesis_version: 6.151.9
-
-[1000, 'None', 'UTC', 'eval', 'field', 'file://', 'file:///', 'horizontal', 'is_nan', 'is_null', 'isin', 'len', 'little', 'scalar', 'to_py_date', 'to_py_datetime', 'us']

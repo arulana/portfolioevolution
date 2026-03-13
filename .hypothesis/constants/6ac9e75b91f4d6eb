@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\utils\transforms.py
-# hypothesis_version: 6.151.9
-
-[0.0, 1.0, 100.0, 10000.0, '$', '%Y-%m-%d', '%Y/%m/%d', '%d/%m/%Y', '%m-%d-%Y', '%m/%d/%Y', '(', ')', ',', '-', '1', '9', 'BALLOON', 'Bullet', 'I.O.', 'INTEREST', 'INTEREST ONLY', 'IO', 'Interest Only', 'OO', 'P&I', 'P+I', 'PRINCIPAL & INTEREST', 'T', 'TRUE', 'Y', 'YES', 'amort_type_map', 'base_path', 'bps_to_decimal', 'currency_to_float', 'default', 'default_if_null', 'deposit_type_map', 'factor', 'invert_bool', 'lowercase', 'mapping_file', 'multiply', 'owner_occ_to_bool', 'payment_freq_map', 'percent_to_decimal', 'product_type_map', 'property_type_map', 'rate_basis_to_bps', 'rate_type_map', 'rating_map', 'risk_bucket_map', 'schemas', 'segment_map', 'stage_map', 'strip', 'to_bool', 'to_date', 'to_float', 'to_int', 'uppercase']

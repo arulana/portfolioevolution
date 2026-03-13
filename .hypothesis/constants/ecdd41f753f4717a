@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\database\_utils.py
-# hypothesis_version: 6.151.9
-
-['0.0', '1.7.0', ':', '://***:***@', '://[^:]+:[^:]+@', 'ADBC', '__version__', 'adbc_driver_manager', 'arrow', 'arrow2', 'connectorx', 'driver not detected', 'duckdb', 'fetch_arrow', 'fetch_arrow_table', 'postgres', 'postgresql', 'pre_execution_query', 'snowflake', 'sqlite', 'vendor_name']

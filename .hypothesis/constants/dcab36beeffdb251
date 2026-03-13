@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\database\_executor.py
-# hypothesis_version: 6.151.9
-
-['.', '/\\*(.|[\\r\\n])*?\\*/', 'ALTER', 'ANALYZE', 'CREATE', 'DELETE', 'DROP', 'GRANT', 'INSERT', 'REPLACE', 'REVOKE', 'UPDATE', 'UPSERT', 'USE', 'VACUUM', '\\w{3,}', '__version__', '_metadata', 'adbc', 'adbc_', 'adbc_driver_manager', 'arrow_odbc_proxy', 'close', 'cursor', 'databricks', 'description', 'duckdb', 'duckdb_engine', 'exact_batch_size', 'exec_driver_sql', 'execute', 'fetch_all', 'fetch_batches', 'fetchall', 'minimum_version', 'parameters', 'params', 'repeat_batch_calls', 'row', 'sqlalchemy', 'surrealdb', 'sync_connection', 'version']

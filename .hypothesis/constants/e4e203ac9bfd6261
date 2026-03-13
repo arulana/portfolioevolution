@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\functions\range\__init__.py
-# hypothesis_version: 6.151.9
-
-['arange', 'date_range', 'date_ranges', 'datetime_range', 'datetime_ranges', 'int_range', 'int_ranges', 'linear_space', 'linear_spaces', 'time_range', 'time_ranges']

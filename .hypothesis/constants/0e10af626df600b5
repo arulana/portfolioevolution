@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\meta\versions.py
-# hypothesis_version: 6.151.9
-
-['<invalid install>', '<not installed>', 'Azure CLI', 'Index type', 'Platform', 'Polars', 'Python', 'Runtime', '__version__', 'adbc_driver_manager', 'altair', 'azure.identity', 'boto3', 'cloudpickle', 'connectorx', 'deltalake', 'fastexcel', 'fsspec', 'gevent', 'google.auth', 'great_tables', 'matplotlib', 'numpy', 'openpyxl', 'pandas', 'polars_cloud', 'pyarrow', 'pydantic', 'pyiceberg', 'sqlalchemy', 'torch', 'xlsx2csv', 'xlsxwriter']

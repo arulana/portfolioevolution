@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\ipc\__init__.py
-# hypothesis_version: 6.151.9
-
-['read_ipc', 'read_ipc_schema', 'read_ipc_stream', 'scan_ipc']

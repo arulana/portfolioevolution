@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\models\__init__.py
-# hypothesis_version: 6.151.9
-
-['BankRelationship', 'ColumnMapping', 'DepositPosition', 'InstrumentPosition', 'ScenarioDefinition', 'SchemaMapping', 'SimulationEvent', 'SourceSchemaConfig', 'StrategySignal', 'TransitionEvent']

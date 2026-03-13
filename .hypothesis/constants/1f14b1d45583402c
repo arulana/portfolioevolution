@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\_cpu_check.py
-# hypothesis_version: 6.151.9
-
-[124, 137, 139, 162, 193, 195, 201, 208, 209, 240, 4096, 8192, 32768, 2147483649, '+', ',', '-', 'Darwin', 'amd64', 'avx', 'avx2', 'bmi1', 'bmi2', 'c', 'cmpxchg16b', 'ctr-static', 'eax', 'ebx', 'ecx', 'edx', 'fma', 'i368', 'i686', 'i686-64', 'kernel32.dll', 'libc.dylib', 'libc.so.6', 'lzcnt', 'movbe', 'nt', 'pclmulqdq', 'popcnt', 'sse3', 'sse4.1', 'sse4.2', 'ssse3', 'x64', 'x86', 'x86_64']

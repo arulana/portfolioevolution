@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\cloud\credential_provider\_builder.py
-# hypothesis_version: 6.151.9
-
-['account_name', 'allow_http', 'authority_id', 'auto', 'aws_default_region', 'aws_endpoint', 'aws_endpoint_url', 'aws_profile', 'aws_region', 'aws_request_payer', 'azure_authority_id', 'azure_tenant_id', 'azure_use_azure_cli', 'bearer_token', 'bucket', 'bucket_name', 'connect_timeout', 'default_content_type', 'default_region', 'endpoint', 'endpoint_url', 'google_bucket', 'google_bucket_name', 'http1_only', 'http2_max_frame_size', 'http2_only', 'pool_idle_timeout', 'profile', 'proxy_ca_certificate', 'proxy_excludes', 'proxy_url', 'region', 'request_payer', 'tenant_id', 'timeout', 'token', 'use_azure_cli', 'user_agent']

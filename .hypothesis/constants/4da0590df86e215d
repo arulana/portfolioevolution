@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\datatypes\_parse.py
-# hypothesis_version: 6.151.9
-
-['Decimal', 'NoneType', '__args__', '__origin__', 'bool', 'bytes', 'date', 'datetime', 'float', 'int', 'list', 'object', 'str', 'time', 'timedelta', 'tuple', 'us']

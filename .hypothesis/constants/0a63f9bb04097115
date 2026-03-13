@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\scan_options\cast_options.py
-# hypothesis_version: 6.151.9
-
-['allow', 'allow-float', 'convert-timezone', 'downcast', 'forbid', 'ignore', 'insert', 'nanosecond-downcast', 'raise', 'upcast']

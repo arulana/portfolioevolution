@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\datatypes\__init__.py
-# hypothesis_version: 6.151.9
-
-['Array', 'BaseExtension', 'Binary', 'Boolean', 'Categorical', 'Categories', 'DTYPE_TEMPORAL_UNITS', 'DataType', 'DataTypeClass', 'Date', 'Datetime', 'Decimal', 'Duration', 'Enum', 'Extension', 'Field', 'Float16', 'Float32', 'Float64', 'FloatType', 'Int128', 'Int16', 'Int32', 'Int64', 'Int8', 'IntegerType', 'List', 'N_INFER_DEFAULT', 'Null', 'Object', 'String', 'Struct', 'TemporalType', 'Time', 'UInt128', 'UInt16', 'UInt32', 'UInt64', 'UInt8', 'Unknown', 'Utf8', 'dtype_to_ffiname', 'dtype_to_py_type', 'is_polars_dtype', 'maybe_cast', 'parse_into_dtype', 'try_parse_into_dtype', 'unpack_dtypes']

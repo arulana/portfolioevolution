@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\iceberg\_dataset.py
-# hypothesis_version: 6.151.9
-
-['*', '.', 'None', 'REDACTED', 'Some(<redacted>)', 'adls.account-host', 'adls.account-key', 'adls.account-name', 'adls.client-id', 'adls.client-secret', 'adls.sas-token', 'adls.tenant-id', 'adls.token', 'aws_access_key_id', 'aws_endpoint_url', 'aws_region', 'aws_session_token', 'azure_storage_token', 'bearer_token', 'connect_timeout', 'gcs.oauth2.token', 'hf.token', 'iceberg', 'ignore', 'insert', 'native', 'proxy_url', 'pyiceberg', 's', 's3.access-key-id', 's3.connect-timeout', 's3.endpoint', 's3.proxy-uri', 's3.region', 's3.request-timeout', 's3.secret-access-key', 's3.session-token', 'scan_iceberg', 'sink_iceberg', 'timeout', 'token']

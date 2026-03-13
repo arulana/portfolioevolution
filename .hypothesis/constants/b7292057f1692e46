@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\deposit_engine.py
-# hypothesis_version: 6.151.9
-
-[0.0, 0.001, 0.15, 0.5, 0.9, 1.0, 100.0, 10000.0, 'as_of_date', 'baseline', 'current_balance', 'decay', 'enabled', 'operating', 'rate_sensitivity', 'utilisation_linkage', 'withdrawal_base']

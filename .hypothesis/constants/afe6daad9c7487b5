@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\catalog\unity\__init__.py
-# hypothesis_version: 6.151.9
-
-['Catalog', 'CatalogInfo', 'ColumnInfo', 'DataSourceFormat', 'NamespaceInfo', 'TableInfo', 'TableType']

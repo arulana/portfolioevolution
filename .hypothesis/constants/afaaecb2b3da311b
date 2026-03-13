@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\functions\aggregation\__init__.py
-# hypothesis_version: 6.151.9
-
-['all', 'all_horizontal', 'any', 'any_horizontal', 'cum_sum', 'cum_sum_horizontal', 'max', 'max_horizontal', 'mean_horizontal', 'min', 'min_horizontal', 'sum', 'sum_horizontal']

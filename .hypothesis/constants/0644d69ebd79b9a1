@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\io\_utils.py
-# hypothesis_version: 6.151.9
-
-['*', '-lossy', '?', 'BytesIO', 'StringIO', '[', '^(ht|f)tps?://', 'bytes', 'encoding', 'errors', 'file', 'protocol', 'replace', 'strict', 'utf8', 'utf8-lossy']

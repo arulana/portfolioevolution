@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\Documents\Cursor Projects\portfolio-evolution\src\portfolio_evolution\engines\simulation_runner.py
-# hypothesis_version: 6.151.9
-
-[0.0, 0.01, 'US', 'archetype', 'archetypes', 'as_of_date', 'business_days_only', 'cadence', 'calendar', 'config', 'country', 'daily', 'days_in_stage', 'definitions', 'deposits', 'dropped_deals', 'enabled', 'funded_count', 'funded_matured', 'instrument_id', 'internal_rating', 'json', 'maturities', 'maturity_amount', 'monthly', 'net_origination', 'net_runoff', 'new_funding_amount', 'new_fundings', 'pipeline_count', 'pipeline_dropped', 'pipeline_funded', 'pipeline_stage', 'position_type', 'random_seed', 'ratings', 'run_id', 'scenarios', 'sim_date', 'sim_day', 'start_date', 'strategy', 'total_committed', 'total_funded_balance', 'total_pipeline_value']

@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\string_cache.py
-# hypothesis_version: 6.151.9
-
-['StringCache', 'disable_string_cache', 'enable_string_cache', 'using_string_cache']

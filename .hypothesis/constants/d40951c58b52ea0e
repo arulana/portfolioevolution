@@ -1,4 +1,0 @@
-# file: C:\Users\cannona\AppData\Roaming\Python\Python314\site-packages\polars\catalog\unity\client.py
-# hypothesis_version: 6.151.9
-
-['/', '1', 'Authorization', 'Catalog.scan_table', 'Catalog.write_table', 'Config', 'DELTA', 'DELTASHARING', 'DefaultCredentials', 'POLARS_VERBOSE', 'append', 'auto', 'databricks-sdk', 'databricks.sdk', 'databricks.sdk.core', 'error', 'https://', 'ignore', 'max_retries', 'merge', 'overwrite', 'scan table']
