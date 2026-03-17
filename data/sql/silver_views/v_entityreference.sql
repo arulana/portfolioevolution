@@ -2,10 +2,10 @@
 -- Derives from raw core_funded + los_underwriting tables.
 -- Replicates translate.py logic: translate_to_entity_reference
 --
--- Usage: CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.entityreference AS ...
+-- Usage: CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.v_entityreference AS ...
 -- Parameters: ${catalog}, ${raw_schema}, ${silver_schema}
 
-CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.entityreference AS
+CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.v_entityreference AS
 
 WITH crd_entities AS (
     SELECT DISTINCT
@@ -26,7 +26,7 @@ cl_entities AS (
         SEGMENT         AS customIndustrySector,
         STATE           AS incorporationState,
         'USA'           AS incorporationCountryCode,
-        AS_OF_DATE      AS asOfDate,
+        EXPECTED_CLOSE_DATE AS asOfDate,
         'CREDITLENS'    AS importSource
     FROM ${catalog}.${raw_schema}.los_underwriting
 )

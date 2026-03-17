@@ -50,33 +50,60 @@ def deploy_views(
             for line in sql.strip().split("\n")[:5]:
                 print(f"      {line}")
             print(f"      ... ({len(sql)} chars total)")
+            print(f"    Done.")
         else:
-            _execute_sql(catalog, sql)
-
-        print(f"    Done.")
+            try:
+                _execute_sql(catalog, sql)
+                print(f"    Done.")
+            except Exception as e:
+                print(f"    FAILED: {e}")
+                print(f"    (Skipping — deploy remaining views)")
 
     print(f"\nAll views deployed.")
 
 
 def _execute_sql(catalog: str, sql: str) -> None:
-    """Execute SQL on Databricks via the SQL connector."""
-    from databricks import sql as dbsql
+    """Execute SQL on Databricks via the REST API."""
+    import json
+    import time
+    import requests
+    import yaml
 
-    token = os.environ.get("DATABRICKS_TOKEN")
-    host = os.environ.get("DATABRICKS_HOST", "adb-2235240675498194.14.azuredatabricks.net")
-    http_path = os.environ.get("DATABRICKS_HTTP_PATH", "/sql/1.0/warehouses/cd3a01c18e0d7516")
+    config_path = Path(__file__).resolve().parent.parent.parent.parent / "silver-layer" / "config.yaml"
+    if config_path.exists():
+        with open(config_path) as f:
+            cfg = yaml.safe_load(f)
+        host = cfg["databricks"]["host"]
+        token = cfg["databricks"]["token"]
+        warehouse_id = cfg["databricks"]["warehouse_id"]
+    else:
+        token = os.environ.get("DATABRICKS_TOKEN")
+        host = os.environ.get("DATABRICKS_HOST", "https://banking-ci-data.cloud.databricks.com")
+        warehouse_id = os.environ.get("DATABRICKS_WAREHOUSE_ID", "0e815dadc27740bc")
 
     if not token:
-        raise ValueError("DATABRICKS_TOKEN env var required")
+        raise ValueError("DATABRICKS_TOKEN env var or silver-layer/config.yaml required")
 
-    with dbsql.connect(
-        server_hostname=host,
-        http_path=http_path,
-        access_token=token,
-    ) as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(f"USE CATALOG {catalog}")
-            cursor.execute(sql)
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    url = f"{host}/api/2.0/sql/statements"
+
+    full_sql = f"USE CATALOG {catalog};\n{sql}"
+    for stmt in [f"USE CATALOG {catalog}", sql]:
+        payload = {"warehouse_id": warehouse_id, "statement": stmt, "wait_timeout": "30s"}
+        resp = requests.post(url, headers=headers, json=payload, verify=False)
+        resp.raise_for_status()
+        data = resp.json()
+        status = data.get("status", {}).get("state", "UNKNOWN")
+        if status == "FAILED":
+            err = data.get("status", {}).get("error", {}).get("message", "Unknown error")
+            raise RuntimeError(f"SQL failed: {err}")
+        while status in ("PENDING", "RUNNING"):
+            time.sleep(2)
+            stmt_id = data["statement_id"]
+            poll = requests.get(f"{url}/{stmt_id}", headers=headers, verify=False)
+            poll.raise_for_status()
+            data = poll.json()
+            status = data.get("status", {}).get("state", "UNKNOWN")
 
 
 if __name__ == "__main__":

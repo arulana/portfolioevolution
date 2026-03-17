@@ -2,10 +2,10 @@
 -- Derives from raw financial_spreads table.
 -- Replicates translate.py logic: translate_financial_spreads (SCREAMING_SNAKE_CASE -> camelCase)
 --
--- Usage: CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.entityfinancialstatement AS ...
+-- Usage: CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.v_entityfinancialstatement AS ...
 -- Parameters: ${catalog}, ${raw_schema}, ${silver_schema}
 
-CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.entityfinancialstatement AS
+CREATE OR REPLACE VIEW ${catalog}.${silver_schema}.v_entityfinancialstatement AS
 
 SELECT
     ENTITY_IDENTIFIER                       AS entityIdentifier,
