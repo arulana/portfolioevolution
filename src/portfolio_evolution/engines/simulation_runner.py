@@ -28,6 +28,10 @@ from portfolio_evolution.engines.rating_engine import migrate_rating
 from portfolio_evolution.engines.deposit_engine import evolve_deposit_day
 from portfolio_evolution.engines.deposit_capture import capture_deposits_at_funding
 from portfolio_evolution.engines.deposit_pricing import reprice_deposit
+from portfolio_evolution.engines.financial_model import (
+    perturb_entity_financials,
+    clone_and_perturb,
+)
 from portfolio_evolution.engines.pipeline_generator import (
     PipelineInflowConfig,
     parse_inflow_config,
@@ -62,6 +66,7 @@ class SimulationState:
     funded: list[InstrumentPosition]
     pipeline: list[InstrumentPosition]
     deposits: list[DepositPosition] = field(default_factory=list)
+    financial_statements: Any = field(default=None)  # pd.DataFrame or None
     daily_aggregates: list[dict[str, Any]] = field(default_factory=list)
     balance_sheet_snapshots: list[Any] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
@@ -90,6 +95,7 @@ def run_deterministic(
     config: dict[str, Any],
     config_dir: Path | None = None,
     deposits: list[DepositPosition] | None = None,
+    financial_statements: Any = None,
     store: SimulationStore | None = None,
 ) -> SimulationResult:
     """Run a single deterministic simulation path.
@@ -163,10 +169,19 @@ def run_deterministic(
     # Pipeline inflow
     inflow_config = parse_inflow_config(config)
 
+    # Financial model config (defaults for perturbation parameters)
+    financial_config = config.get("financial_model", {
+        "revenue_growth_range": [-0.05, 0.05],
+        "cogs_margin_drift": 0.005,
+        "expense_growth_multiplier": 0.7,
+        "asset_growth_multiplier": 0.5,
+    })
+
     state = SimulationState(
         funded=list(funded),
         pipeline=list(pipeline),
         deposits=list(deposits or []),
+        financial_statements=financial_statements,
     )
 
     for day in calendar:
@@ -177,6 +192,7 @@ def run_deterministic(
             funded_config=funded_config,
             rating_config=rating_config,
             deposit_config=deposit_config,
+            financial_config=financial_config,
             rng=rng,
             ratings_enabled=ratings_enabled,
             rating_cadence=rating_cadence,
@@ -277,6 +293,7 @@ def _step_day(
     funded_config: dict,
     rating_config: dict,
     deposit_config: dict,
+    financial_config: dict,
     rng: SeededRNG,
     ratings_enabled: bool,
     rating_cadence: str,
@@ -379,6 +396,52 @@ def _step_day(
             surviving_funded.append(result.position)
 
     state.funded = surviving_funded
+
+    # --- Financial statement perturbation at renewal ---
+    import pandas as pd
+
+    if state.financial_statements is not None and len(state.financial_statements) > 0:
+        renewed_entity_ids = [
+            r.counterparty_id for r in state.renewal_submissions
+            if r.as_of_date == day.date and r.counterparty_id
+        ]
+        if renewed_entity_ids:
+            np_rng = rng.get_generator()
+            new_stmts = perturb_entity_financials(
+                financials_df=state.financial_statements,
+                entity_ids=renewed_entity_ids,
+                new_statement_date=str(day.date),
+                config=financial_config,
+                rng=np_rng,
+            )
+            if len(new_stmts) > 0:
+                state.financial_statements = pd.concat(
+                    [state.financial_statements, new_stmts], ignore_index=True)
+
+        # Clone financials for newly funded originations (not renewals)
+        new_orig_entities = [
+            p.counterparty_id for p in new_funded_today
+            if p.counterparty_id and not getattr(p, "is_renewal", False)
+        ]
+        if new_orig_entities:
+            all_entity_ids = state.financial_statements["ENTITY_IDENTIFIER"].unique().tolist()
+            if all_entity_ids:
+                np_rng2 = rng.get_generator()
+                for new_eid in new_orig_entities:
+                    if new_eid in all_entity_ids:
+                        continue
+                    source_eid = str(np_rng2.choice(all_entity_ids))
+                    cloned = clone_and_perturb(
+                        financials_df=state.financial_statements,
+                        source_entity_id=source_eid,
+                        new_entity_id=new_eid,
+                        statement_date=str(day.date),
+                        config=financial_config,
+                        rng=np_rng2,
+                    )
+                    if len(cloned) > 0:
+                        state.financial_statements = pd.concat(
+                            [state.financial_statements, cloned], ignore_index=True)
 
     # --- Rating engine (if enabled, on correct cadence) ---
     if ratings_enabled:

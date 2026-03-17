@@ -68,6 +68,10 @@ deposits_df = spark.sql(f"""
     WHERE sim_day = (SELECT MAX(sim_day) FROM {CATALOG}.{SCHEMA}.core_deposits)
 """)
 
+financial_spreads_df = spark.sql(f"""
+    SELECT * FROM {CATALOG}.{SCHEMA}.financial_spreads
+""")
+
 current_sim_day = core_funded_df.select("sim_day").first()[0] if core_funded_df.count() > 0 else -1
 current_run_id = core_funded_df.select("run_id").first()[0] if core_funded_df.count() > 0 else "init"
 
@@ -77,6 +81,7 @@ print(f"Funded positions: {core_funded_df.count()}")
 print(f"LOS positions: {los_df.count()}")
 print(f"CRM positions: {crm_df.count()}")
 print(f"Deposit accounts: {deposits_df.count()}")
+print(f"Financial statements: {financial_spreads_df.count()}")
 
 # COMMAND ----------
 
@@ -99,6 +104,8 @@ core_funded_pl = pl.from_pandas(core_funded_pd) if len(core_funded_pd) > 0 else 
 los_pl = pl.from_pandas(los_pd) if len(los_pd) > 0 else pl.DataFrame()
 crm_pl = pl.from_pandas(crm_pd) if len(crm_pd) > 0 else pl.DataFrame()
 deposits_pl = pl.from_pandas(deposits_pd) if len(deposits_pd) > 0 else pl.DataFrame()
+
+financial_spreads_pd = financial_spreads_df.toPandas()
 
 # Reconstruct InstrumentPositions from the system view DataFrames
 from portfolio_evolution.models.instrument import InstrumentPosition
@@ -145,36 +152,75 @@ import importlib.resources
 # Load config from the installed package or use defaults
 default_config = {
     "pipeline": {"enabled": True, "new_pipeline_inflow": True, "inflow": {
-        "deals_per_week": 50,
-        "segment_weights": {"cre": 0.28, "c_and_i": 0.48, "multifamily": 0.12, "construction": 0.07, "specialty": 0.05},
+        "deals_per_week": 250,
+        "segment_weights": {
+            "real_estate_and_leasing": 0.38,
+            "agriculture": 0.03, "manufacturing": 0.07, "mining_and_extraction": 0.02,
+            "wholesale_trade": 0.04, "retail_trade": 0.05, "transportation": 0.03,
+            "information": 0.03, "technology": 0.05, "professional_services": 0.05,
+            "admin_and_waste_mgmt": 0.03, "other_services": 0.04,
+            "holding_companies": 0.03, "utilities": 0.03,
+            "construction": 0.08,
+            "government": 0.005, "education": 0.005, "healthcare": 0.015,
+            "finance_and_insurance": 0.005, "arts_and_recreation": 0.005,
+            "food_and_accommodation": 0.005,
+        },
         "avg_deal_size": 4000000, "deal_size_std": 3000000,
         "seasonality": True,
         "rating_distribution": [0.03, 0.08, 0.18, 0.32, 0.22, 0.12, 0.03, 0.01, 0.01],
     }},
     "funded": {"renewal_enabled": True, "prepayment_enabled": True, "amortisation_enabled": True},
+    "deposits": {"enabled": True},
+    "ratings": {"enabled": True, "approach": "matrix_hybrid", "migration_cadence": "monthly"},
+    "financial_model": {
+        "revenue_growth_range": [-0.05, 0.05],
+        "cogs_margin_drift": 0.005,
+        "expense_growth_multiplier": 0.7,
+        "asset_growth_multiplier": 0.5,
+    },
     "random_seed": 42,
 }
+
+# Karen's rating descriptors → engine letter grades + numeric
+RATING_DESCRIPTOR_TO_LETTER = {
+    "Pass": "BBB", "Watch": "B", "Substandard": "CCC", "Doubtful": "CC", "Loss": "D",
+}
+RATING_DESCRIPTOR_TO_NUMERIC = {
+    "Pass": 4, "Watch": 6, "Substandard": 7, "Doubtful": 8, "Loss": 9,
+}
+
+# Karen's RATE_TYPE → engine coupon_type
+RATE_TYPE_MAP = {"fixed": "fixed", "variable": "floating"}
+
+# Karen's AMORT_TYPE → engine amortisation_type
+AMORT_TYPE_MAP = {"interest only": "interest_only", "bullet": "bullet"}
 
 # Reconstruct funded positions from core_funded view
 funded_positions = []
 for row in core_funded_pl.iter_rows(named=True):
     try:
+        raw_rate_type = (row.get("RATE_TYPE") or "").strip().lower()
+        raw_amort = (row.get("AMORT_TYPE") or "").strip().lower()
+        raw_rating = (row.get("RISK_RATING") or "").strip()
+
         pos = InstrumentPosition(
             instrument_id=row.get("ACCT_NO", ""),
-            counterparty_id=row.get("ACCT_NO", ""),
+            counterparty_id=row.get("ENTITY_ID") or row.get("ACCT_NO", ""),
             counterparty_name=row.get("BORROWER", ""),
             position_type="funded",
             source_system="core",
             segment=row.get("SEGMENT", ""),
             committed_amount=row.get("COMMITTED_AMT", 0),
             funded_amount=row.get("CURRENT_BAL", 0),
-            coupon_type="fixed" if row.get("RATE_TYPE") == "fixed" else "floating",
+            coupon_type=RATE_TYPE_MAP.get(raw_rate_type, "floating"),
             coupon_rate=row.get("INT_RATE", 0),
             origination_date=row.get("ORIG_DATE"),
             maturity_date=row.get("MATURITY_DATE"),
-            amortisation_type=row.get("AMORT_TYPE", "linear"),
-            internal_rating_numeric=row.get("RISK_RATING_NUM", 5),
-            internal_rating=row.get("RISK_RATING", "BB"),
+            amortisation_type=AMORT_TYPE_MAP.get(raw_amort, raw_amort or "linear"),
+            internal_rating_numeric=RATING_DESCRIPTOR_TO_NUMERIC.get(
+                raw_rating, row.get("RISK_RATING_NUM", 5)),
+            internal_rating=RATING_DESCRIPTOR_TO_LETTER.get(
+                raw_rating, raw_rating or "BB"),
             as_of_date=str(next_date),
         )
         funded_positions.append(pos)
@@ -204,21 +250,26 @@ for row in crm_pl.iter_rows(named=True):
 
 for row in los_pl.iter_rows(named=True):
     try:
+        raw_rate_type = (row.get("RATE_TYPE") or "").strip().lower()
+        raw_rating = (row.get("RISK_RATING") or "").strip()
+
         pos = InstrumentPosition(
             instrument_id=row.get("APP_ID", ""),
-            counterparty_id=row.get("APP_ID", ""),
+            counterparty_id=row.get("ENTITY_ID") or row.get("APP_ID", ""),
             counterparty_name=row.get("BORROWER_NAME", ""),
             position_type="pipeline_los",
             source_system="los",
             segment=row.get("SEGMENT", ""),
             committed_amount=row.get("REQUESTED_AMOUNT", 0),
             funded_amount=0,
-            coupon_type="fixed" if row.get("RATE_TYPE") == "fixed" else "floating",
+            coupon_type=RATE_TYPE_MAP.get(raw_rate_type, "floating"),
             coupon_rate=row.get("EXPECTED_RATE", 0),
             pipeline_stage=row.get("UW_STAGE", "underwriting"),
             is_renewal=bool(row.get("IS_RENEWAL", False)),
-            internal_rating_numeric=row.get("RATING_NUMERIC", 5),
-            internal_rating=row.get("RISK_RATING", "BB"),
+            internal_rating_numeric=RATING_DESCRIPTOR_TO_NUMERIC.get(
+                raw_rating, row.get("RATING_NUMERIC", 5)),
+            internal_rating=RATING_DESCRIPTOR_TO_LETTER.get(
+                raw_rating, raw_rating or "BB"),
             as_of_date=str(next_date),
         )
         pipeline_positions.append(pos)
@@ -247,14 +298,17 @@ sim_config = {
     "ratings": {"enabled": True, "approach": "matrix_hybrid", "migration_cadence": "monthly"},
 }
 
-# We pass deposits as empty — they'll be carried from the previous snapshot
-# The engine will evolve them if deposit evolution is implemented
+import pandas as pd
+
+fs_df = financial_spreads_pd if len(financial_spreads_pd) > 0 else None
+
 result = run_deterministic(
     funded=funded_positions,
     pipeline=pipeline_positions,
     config=sim_config,
     config_dir=None,
     deposits=None,
+    financial_statements=fs_df,
 )
 
 state = result.state
@@ -330,6 +384,16 @@ counts["los_underwriting"] = write_polars_to_delta(los_new, "los_underwriting", 
 counts["core_funded"] = write_polars_to_delta(core_new, "core_funded", new_run_id, next_sim_day)
 counts["core_deposits"] = write_polars_to_delta(deposits_new, "core_deposits", new_run_id, next_sim_day)
 
+# Write evolved financial statements (if new statements were generated)
+if state.financial_statements is not None and len(state.financial_statements) > 0:
+    fs_sdf = spark.createDataFrame(state.financial_statements)
+    fqn = f"{CATALOG}.{SCHEMA}.financial_spreads"
+    spark.sql(f"DELETE FROM {fqn} WHERE AS_OF_DATE = '{next_date}'")
+    fs_sdf.write.format("delta").mode("append").saveAsTable(fqn)
+    fs_count = fs_sdf.count()
+    counts["financial_spreads"] = fs_count
+    print(f"  financial_spreads: {fs_count} rows written")
+
 print(f"\nTotal rows written: {sum(counts.values())}")
 
 # COMMAND ----------
@@ -347,6 +411,8 @@ print(f"")
 print(f"Funded: {len(state.funded)} positions")
 print(f"Pipeline: {len(state.pipeline)} deals")
 print(f"Deposits: {len(state.deposits)} accounts")
+fs_count = len(state.financial_statements) if state.financial_statements is not None else 0
+print(f"Financial statements: {fs_count} rows")
 print(f"")
 print(f"Events: {len(state.matured_positions)} matured, {len(state.renewal_submissions)} renewed, {len(state.prepaid_positions)} prepaid, {len(state.dropped_deals)} dropped")
 print(f"")

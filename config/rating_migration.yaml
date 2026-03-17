@@ -1,21 +1,19 @@
 # ============================================================================
 # Rating Migration Configuration
 # ============================================================================
-# Defines rating transition matrices and migration rules.
-# Phase 2 feature — included here for completeness.
-#
+# Sector keys = Karen's 21 industry sectors (normalized).
 # The bank uses a 1-9 numeric scale mapped to canonical letter grades:
 #   1=AAA, 2=AA, 3=A, 4=BBB, 5=BB, 6=B, 7=CCC, 8=CC, 9=D
+#
+# Karen's data uses regulatory descriptors mapped at ingestion:
+#   Pass → BBB (4), Watch → B (6), Substandard → CCC (7),
+#   Doubtful → CC (8), Loss → D (9)
 # ============================================================================
 
-approach: matrix_hybrid   # matrix | score | matrix_hybrid
-cadence: monthly          # monthly | daily
-absorbing_states: ["D"]   # Default is absorbing — no migration out
+approach: matrix_hybrid
+cadence: monthly
+absorbing_states: ["D"]
 
-# Annual transition matrix (rows = from, columns = to)
-# Converted to daily probabilities by the engine.
-# Calibrated from Moody's published corporate transition data,
-# adjusted for community bank portfolio characteristics.
 annual_transition_matrix:
   ratings: ["AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "D"]
   matrix:
@@ -30,23 +28,59 @@ annual_transition_matrix:
     CC:   [0.0000, 0.0001, 0.0005, 0.0010, 0.0050, 0.0200, 0.0800, 0.7000, 0.1934]
     D:    [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 1.0000]
 
-# Watchlist effect: multiplier on downgrade probability
 watchlist_downgrade_multiplier: 1.5
 
-# Scenario stress overlay: multiply downgrade/default columns
-# Applied on top of the base matrix
 scenario_stress_multipliers:
   baseline: 1.0
   mild_recession: 1.3
   severe_stress: 2.0
 
-# Segment-specific adjustments
+# Sector-level downgrade multipliers derived from lending category base:
+#   CRE=1.1, C&I=1.0, Construction=1.3, Specialty=1.05
 segment_adjustments:
-  cre:
-    downgrade_multiplier: 1.1
-    description: "CRE slightly more volatile in migration"
-  c_and_i:
-    downgrade_multiplier: 1.0
+  # CRE
+  real_estate_and_leasing:
+    downgrade_multiplier: 1.10
+  # C&I (base 1.0, slight variation by cyclicality)
+  agriculture:
+    downgrade_multiplier: 1.05
+  manufacturing:
+    downgrade_multiplier: 1.00
+  mining_and_extraction:
+    downgrade_multiplier: 1.15
+  wholesale_trade:
+    downgrade_multiplier: 1.00
+  retail_trade:
+    downgrade_multiplier: 1.05
+  transportation:
+    downgrade_multiplier: 1.00
+  information:
+    downgrade_multiplier: 0.95
+  technology:
+    downgrade_multiplier: 1.05
+  professional_services:
+    downgrade_multiplier: 0.95
+  admin_and_waste_mgmt:
+    downgrade_multiplier: 1.00
+  other_services:
+    downgrade_multiplier: 1.00
+  holding_companies:
+    downgrade_multiplier: 1.05
+  utilities:
+    downgrade_multiplier: 0.90
+  # Construction
   construction:
-    downgrade_multiplier: 1.3
-    description: "Construction has higher migration volatility"
+    downgrade_multiplier: 1.30
+  # Specialty (base 1.05, slight variation)
+  government:
+    downgrade_multiplier: 0.85
+  education:
+    downgrade_multiplier: 0.90
+  healthcare:
+    downgrade_multiplier: 1.00
+  finance_and_insurance:
+    downgrade_multiplier: 1.10
+  arts_and_recreation:
+    downgrade_multiplier: 1.15
+  food_and_accommodation:
+    downgrade_multiplier: 1.20

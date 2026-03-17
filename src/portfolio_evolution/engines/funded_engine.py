@@ -7,6 +7,7 @@ from datetime import date, timedelta
 from typing import TYPE_CHECKING
 
 from portfolio_evolution.models.instrument import InstrumentPosition
+from portfolio_evolution.utils.transforms import normalize_segment_key
 
 if TYPE_CHECKING:
     from portfolio_evolution.utils.rng import SeededRNG
@@ -100,10 +101,9 @@ def _get_prepayment_probability(
     base = prepay_cfg.get("base_daily_probability", 0.0005)
 
     seg_overrides = prepay_cfg.get("segment_overrides", {})
-    if position.segment:
-        seg_key = position.segment.lower().replace(" ", "_")
-        if seg_key in seg_overrides:
-            base = float(seg_overrides[seg_key])
+    seg_key = normalize_segment_key(position.segment)
+    if seg_key and seg_key in seg_overrides:
+        base = float(seg_overrides[seg_key])
 
     return base
 
@@ -183,10 +183,9 @@ def _get_renewal_probability(
     base = renewal_cfg.get("base_renewal_probability", 0.65)
 
     seg_overrides = renewal_cfg.get("segment_overrides", {})
-    if position.segment:
-        seg_key = position.segment.lower().replace(" ", "_")
-        if seg_key in seg_overrides:
-            base = float(seg_overrides[seg_key])
+    seg_key = normalize_segment_key(position.segment)
+    if seg_key and seg_key in seg_overrides:
+        base = float(seg_overrides[seg_key])
 
     rat_overrides = renewal_cfg.get("rating_overrides", {})
     if position.internal_rating_numeric is not None:
@@ -231,12 +230,14 @@ def attempt_renewal(
     if renewal_term is None:
         renewal_term = position.tenor_months or 60
 
+    renewal_entry_stage = renewal_cfg.get("renewal_entry_stage", "documentation")
+
     data = position.model_dump()
     data.update(
         instrument_id=f"RNW-{position.instrument_id}-{sim_date.isoformat()}",
         position_type="pipeline_los",
         source_system="los",
-        pipeline_stage="underwriting",
+        pipeline_stage=renewal_entry_stage,
         days_in_stage=0,
         is_renewal=True,
         renewed_flag=True,

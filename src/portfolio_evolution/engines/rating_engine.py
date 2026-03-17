@@ -8,6 +8,7 @@ from typing import Any
 
 from portfolio_evolution.models.instrument import InstrumentPosition
 from portfolio_evolution.utils.rng import SeededRNG
+from portfolio_evolution.utils.transforms import normalize_segment_key
 
 
 @dataclass
@@ -94,8 +95,9 @@ def get_transition_probs(
     )
     segment_adjustments = config.get("segment_adjustments", {})
     segment_mult = 1.0
-    if segment and segment in segment_adjustments:
-        seg_cfg = segment_adjustments[segment]
+    seg_key = normalize_segment_key(segment)
+    if seg_key and seg_key in segment_adjustments:
+        seg_cfg = segment_adjustments[seg_key]
         if isinstance(seg_cfg, dict):
             segment_mult = seg_cfg.get("downgrade_multiplier", 1.0)
         else:

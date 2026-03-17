@@ -9,6 +9,7 @@ from portfolio_evolution.models.deposit import DepositPosition
 from portfolio_evolution.models.instrument import InstrumentPosition
 from portfolio_evolution.models.relationship import BankRelationship
 from portfolio_evolution.utils.rng import SeededRNG
+from portfolio_evolution.utils.transforms import normalize_segment_key
 
 
 @dataclass
@@ -48,8 +49,8 @@ def capture_deposits_at_funding(
         )
 
     base_probs = capture_config.get("base_probability", {})
-    segment = funded_position.segment or "middle_market"
-    base_prob = base_probs.get(segment, base_probs.get("middle_market", 0.5))
+    segment = normalize_segment_key(funded_position.segment) or "other_services"
+    base_prob = base_probs.get(segment, 0.5)
 
     factors = capture_config.get("factors", {})
     probability = base_prob
@@ -84,7 +85,7 @@ def capture_deposits_at_funding(
         counterparty_id=counterparty_id,
         relationship_id=relationship_id,
         deposit_type="operating",
-        segment=segment or "middle_market",
+        segment=segment or "other_services",
         current_balance=operating_balance,
         average_balance_30d=operating_balance,
         interest_rate=0.0,
@@ -112,7 +113,7 @@ def capture_deposits_at_funding(
             counterparty_id=counterparty_id,
             relationship_id=relationship_id,
             deposit_type="term_deposit",
-            segment=segment or "middle_market",
+            segment=segment or "other_services",
             current_balance=term_balance,
             average_balance_30d=term_balance,
             interest_rate=0.0,

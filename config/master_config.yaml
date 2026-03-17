@@ -2,6 +2,8 @@
 # Master Configuration — Portfolio Evolution Engine
 # ============================================================================
 # Calibrated for a US superregional bank ($50-200B assets, ~$63B commercial).
+# Sector keys = Karen's 21 industry sectors (normalized).
+# Portfolio composition: 38% CRE, 50% C&I, 8% Construction, 4% Specialty.
 # ============================================================================
 
 # --- BASIC ---
@@ -61,13 +63,35 @@ pipeline:
   allow_partial_funding: true
   new_pipeline_inflow: true
   inflow:
-    deals_per_week: 50
+    deals_per_week: 250
+    # Weights across Karen's 21 industry sectors.
+    # CRE total 38%, C&I total 50%, Construction 8%, Specialty 4%.
     segment_weights:
-      cre: 0.28
-      c_and_i: 0.48
-      multifamily: 0.12
-      construction: 0.07
-      specialty: 0.05
+      # CRE (38% — includes former multifamily allocation)
+      real_estate_and_leasing: 0.38
+      # C&I (50% distributed across 13 sectors)
+      agriculture: 0.03
+      manufacturing: 0.07
+      mining_and_extraction: 0.02
+      wholesale_trade: 0.04
+      retail_trade: 0.05
+      transportation: 0.03
+      information: 0.03
+      technology: 0.05
+      professional_services: 0.05
+      admin_and_waste_mgmt: 0.03
+      other_services: 0.04
+      holding_companies: 0.03
+      utilities: 0.03
+      # Construction (8%)
+      construction: 0.08
+      # Specialty (4% distributed across 6 sectors)
+      government: 0.005
+      education: 0.005
+      healthcare: 0.015
+      finance_and_insurance: 0.005
+      arts_and_recreation: 0.005
+      food_and_accommodation: 0.005
     avg_deal_size: 4000000
     deal_size_std: 3000000
     seasonality: true

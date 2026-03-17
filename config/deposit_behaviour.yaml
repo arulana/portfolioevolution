@@ -2,20 +2,20 @@
 # Deposit Behaviour Configuration
 # ============================================================================
 # Controls how deposit balances evolve daily.
-# Deposits are behavioural balances, not contractual instruments.
+# Sector keys in capture section = Karen's 21 industry sectors (normalized).
 # ============================================================================
 
 decay:
   enabled: true
   default_half_life_days:
-    operating: 720           # ~2 years — very sticky
+    operating: 720
     corporate_transaction: 540
     escrow: 360
-    term_deposit: null       # No decay — fixed duration, matures on schedule
+    term_deposit: null
     savings: 540
-    retail_checking: 1080    # ~3 years — stickiest
-    sweep: 90                # Very short-lived
-    brokered: 180            # 6 months
+    retail_checking: 1080
+    sweep: 90
+    brokered: 180
 
 rate_sensitivity:
   enabled: true
@@ -36,27 +36,41 @@ rate_sensitivity:
     retail_checking: 0.001
     escrow: 0.0005
     term_deposit: 0.0
-      # Term deposits don't withdraw early (simplification)
     sweep: 0.008
     brokered: 0.005
 
 utilisation_linkage:
   enabled: true
   operating_balance_ratio: 0.15
-  description: >
-    Operating deposits linked to credit line utilisation.
-    operating_balance = loan_utilisation × operating_balance_ratio
 
 capture:
   enabled: true
   base_probability:
-    middle_market: 0.70
-    sponsor_finance: 0.35
-    large_corporate: 0.55
-    cre: 0.40
-    c_and_i: 0.60
-    consumer: 0.80
+    # CRE
+    real_estate_and_leasing: 0.40
+    # C&I sectors (base ~0.60, sector variation)
+    agriculture: 0.55
+    manufacturing: 0.60
+    mining_and_extraction: 0.50
+    wholesale_trade: 0.58
+    retail_trade: 0.62
+    transportation: 0.55
+    information: 0.60
+    technology: 0.65
+    professional_services: 0.65
+    admin_and_waste_mgmt: 0.55
+    other_services: 0.60
+    holding_companies: 0.58
+    utilities: 0.52
+    # Construction
     construction: 0.30
+    # Specialty sectors (base ~0.50, sector variation)
+    government: 0.45
+    education: 0.48
+    healthcare: 0.55
+    finance_and_insurance: 0.42
+    arts_and_recreation: 0.40
+    food_and_accommodation: 0.50
   factors:
     relationship_multiplier: 1.15
     treasury_product_presence: 1.20
@@ -71,7 +85,6 @@ liquidity_classification:
     - volatile
     - brokered
 
-# Stressed outflow rates for LCR proxy computation
 stressed_outflow_rates:
   stable_operational: 0.05
   non_operational: 0.10

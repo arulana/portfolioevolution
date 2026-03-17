@@ -17,6 +17,15 @@ import polars as pl
 from portfolio_evolution.models import InstrumentPosition
 from portfolio_evolution.models.deposit import DepositPosition
 
+# Engine internal → Karen's output vocabulary
+_COUPON_TO_RATE_TYPE = {"fixed": "Fixed", "floating": "Variable"}
+_AMORT_TO_DISPLAY = {"interest_only": "Interest Only", "bullet": "Bullet", "linear": "Linear", "revolving": "Revolving"}
+_LETTER_TO_DESCRIPTOR: dict[str, str] = {
+    "AAA": "Pass", "AA": "Pass", "A": "Pass", "BBB": "Pass",
+    "BB": "Watch", "B": "Watch",
+    "CCC": "Substandard", "CC": "Doubtful", "D": "Loss",
+}
+
 
 def format_crm_view(
     positions: list[InstrumentPosition],
@@ -73,7 +82,8 @@ def format_los_view(
 
     if not los_positions:
         return pl.DataFrame(schema={
-            "APP_ID": pl.Utf8, "BORROWER_NAME": pl.Utf8, "UW_STAGE": pl.Utf8,
+            "APP_ID": pl.Utf8, "ENTITY_ID": pl.Utf8,
+            "BORROWER_NAME": pl.Utf8, "UW_STAGE": pl.Utf8,
             "REQUESTED_AMOUNT": pl.Float64, "APPROVED_AMOUNT": pl.Float64,
             "RISK_RATING": pl.Utf8, "RATING_NUMERIC": pl.Int64,
             "ANALYST_CODE": pl.Utf8, "APPROVAL_DATE": pl.Utf8,
@@ -91,16 +101,17 @@ def format_los_view(
 
         rows.append({
             "APP_ID": p.instrument_id,
+            "ENTITY_ID": p.counterparty_id,
             "BORROWER_NAME": p.counterparty_name or p.counterparty_id,
             "UW_STAGE": stage_display,
             "REQUESTED_AMOUNT": p.committed_amount,
             "APPROVED_AMOUNT": approved_amt,
-            "RISK_RATING": p.internal_rating,
+            "RISK_RATING": _LETTER_TO_DESCRIPTOR.get(p.internal_rating or "", p.internal_rating or ""),
             "RATING_NUMERIC": p.internal_rating_numeric,
             "ANALYST_CODE": p.relationship_manager_id,
             "APPROVAL_DATE": approval_date,
             "EXPECTED_CLOSE_DATE": str(p.expected_close_date) if p.expected_close_date else None,
-            "RATE_TYPE": p.coupon_type,
+            "RATE_TYPE": _COUPON_TO_RATE_TYPE.get(p.coupon_type or "", p.coupon_type or ""),
             "EXPECTED_RATE": p.coupon_rate,
             "SEGMENT": p.segment,
             "STATE": p.geography,
@@ -125,7 +136,8 @@ def format_core_view(
 
     if not funded_positions:
         return pl.DataFrame(schema={
-            "ACCT_NO": pl.Utf8, "BORROWER": pl.Utf8, "CURRENT_BAL": pl.Float64,
+            "ACCT_NO": pl.Utf8, "ENTITY_ID": pl.Utf8,
+            "BORROWER": pl.Utf8, "CURRENT_BAL": pl.Float64,
             "COMMITTED_AMT": pl.Float64, "INT_RATE": pl.Float64,
             "RATE_TYPE": pl.Utf8, "ORIG_DATE": pl.Utf8, "MATURITY_DATE": pl.Utf8,
             "AMORT_TYPE": pl.Utf8, "PMT_FREQ": pl.Utf8,
@@ -141,16 +153,17 @@ def format_core_view(
     for p in funded_positions:
         rows.append({
             "ACCT_NO": p.instrument_id,
+            "ENTITY_ID": p.counterparty_id,
             "BORROWER": p.counterparty_name or p.counterparty_id,
             "CURRENT_BAL": p.funded_amount,
             "COMMITTED_AMT": p.committed_amount,
             "INT_RATE": p.coupon_rate,
-            "RATE_TYPE": (p.coupon_type or "").upper(),
+            "RATE_TYPE": _COUPON_TO_RATE_TYPE.get(p.coupon_type or "", p.coupon_type or ""),
             "ORIG_DATE": str(p.origination_date) if p.origination_date else None,
             "MATURITY_DATE": str(p.maturity_date) if p.maturity_date else None,
-            "AMORT_TYPE": p.amortisation_type,
+            "AMORT_TYPE": _AMORT_TO_DISPLAY.get(p.amortisation_type or "", p.amortisation_type or ""),
             "PMT_FREQ": p.payment_frequency,
-            "RISK_RATING": p.internal_rating,
+            "RISK_RATING": _LETTER_TO_DESCRIPTOR.get(p.internal_rating or "", p.internal_rating or ""),
             "RISK_RATING_NUM": p.internal_rating_numeric,
             "SEGMENT": p.segment,
             "PRODUCT_TYPE": p.product_type,

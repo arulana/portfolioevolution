@@ -3,17 +3,7 @@
 # ============================================================================
 # Calibrated for a US superregional bank ($50-200B assets).
 # Target: ~18% lead-to-fund conversion rate over 60-75 day average cycle.
-#
-# For each stage, define transitions to possible next stages.
-# Probabilities are per-day and should sum to < 1.0 (remainder = stay in stage).
-#
-# Modifiers are applied multiplicatively:
-#   adjusted_prob = base_daily_prob
-#                   x stage_age_factor(days_in_stage)
-#                   x segment_factor
-#                   x rating_factor
-#                   x strategy_multiplier
-#                   x scenario_multiplier
+# Sector keys = Karen's 21 industry sectors (normalized).
 # ============================================================================
 
 transitions:
@@ -65,8 +55,6 @@ transitions:
       base_daily_prob: 0.003
       description: "Last-minute fallout — very rare at this stage"
 
-# Stage age factor: as deals sit longer, probability changes.
-# Early stages decay (stale leads), later stages accelerate (pressure to close).
 stage_age_factors:
   lead:
     model: decay
@@ -90,25 +78,80 @@ stage_age_factors:
     ramp_days: 5
     max_multiplier: 2.0
 
-# Segment factors: C&I moves faster, CRE/Construction slower
+# Sector-level advance/fallout multipliers derived from lending category base:
+#   CRE:          advance=0.85, fallout=1.15
+#   C&I:          advance=1.15, fallout=0.85
+#   Construction: advance=0.75, fallout=1.25
+#   Specialty:    advance=0.80, fallout=1.10
 segment_factors:
-  cre:
+  # CRE
+  real_estate_and_leasing:
     advance_multiplier: 0.85
     fallout_multiplier: 1.15
-  c_and_i:
+  # C&I sectors (base advance=1.15, fallout=0.85, ±5%)
+  agriculture:
+    advance_multiplier: 1.10
+    fallout_multiplier: 0.90
+  manufacturing:
     advance_multiplier: 1.15
     fallout_multiplier: 0.85
-  multifamily:
-    advance_multiplier: 0.90
-    fallout_multiplier: 1.05
+  mining_and_extraction:
+    advance_multiplier: 1.05
+    fallout_multiplier: 0.95
+  wholesale_trade:
+    advance_multiplier: 1.15
+    fallout_multiplier: 0.85
+  retail_trade:
+    advance_multiplier: 1.18
+    fallout_multiplier: 0.82
+  transportation:
+    advance_multiplier: 1.12
+    fallout_multiplier: 0.88
+  information:
+    advance_multiplier: 1.15
+    fallout_multiplier: 0.85
+  technology:
+    advance_multiplier: 1.20
+    fallout_multiplier: 0.80
+  professional_services:
+    advance_multiplier: 1.18
+    fallout_multiplier: 0.82
+  admin_and_waste_mgmt:
+    advance_multiplier: 1.12
+    fallout_multiplier: 0.88
+  other_services:
+    advance_multiplier: 1.15
+    fallout_multiplier: 0.85
+  holding_companies:
+    advance_multiplier: 1.10
+    fallout_multiplier: 0.90
+  utilities:
+    advance_multiplier: 1.08
+    fallout_multiplier: 0.92
+  # Construction
   construction:
     advance_multiplier: 0.75
     fallout_multiplier: 1.25
-  specialty:
+  # Specialty sectors (base advance=0.80, fallout=1.10, ±5%)
+  government:
+    advance_multiplier: 0.82
+    fallout_multiplier: 1.08
+  education:
     advance_multiplier: 0.80
     fallout_multiplier: 1.10
+  healthcare:
+    advance_multiplier: 0.85
+    fallout_multiplier: 1.05
+  finance_and_insurance:
+    advance_multiplier: 0.78
+    fallout_multiplier: 1.12
+  arts_and_recreation:
+    advance_multiplier: 0.75
+    fallout_multiplier: 1.15
+  food_and_accommodation:
+    advance_multiplier: 0.77
+    fallout_multiplier: 1.13
 
-# Rating factors: better-rated deals close faster, weaker ones fall out more
 rating_factors:
   "1": { advance_multiplier: 1.30, fallout_multiplier: 0.50 }
   "2": { advance_multiplier: 1.20, fallout_multiplier: 0.60 }
@@ -120,7 +163,6 @@ rating_factors:
   "8": { advance_multiplier: 0.30, fallout_multiplier: 2.50 }
   "9": { advance_multiplier: 0.10, fallout_multiplier: 4.00 }
 
-# Expiry: deals that sit too long auto-expire
 expiry:
   enabled: true
   max_days_in_stage:

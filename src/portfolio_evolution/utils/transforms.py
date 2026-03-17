@@ -45,6 +45,49 @@ def _strip_currency(value: Any) -> float:
     return -result if negative else result
 
 
+def normalize_segment_key(segment: str | None) -> str | None:
+    """Normalize a segment name to a clean YAML-safe config key.
+
+    Handles Karen's industry sector names (e.g. 'Admin & Waste Mgmt')
+    and legacy lending categories (e.g. 'cre', 'C&I').
+    """
+    if not segment:
+        return None
+    key = segment.lower().strip()
+    key = key.replace("&", "_and_")
+    key = key.replace(" ", "_")
+    while "__" in key:
+        key = key.replace("__", "_")
+    return key.strip("_")
+
+
+# Lending category groupings — maps normalized sector key to its category.
+# Used for reporting / aggregation, not for config lookup.
+SECTOR_TO_LENDING_CATEGORY: dict[str, str] = {
+    "real_estate_and_leasing": "cre",
+    "agriculture": "c_and_i",
+    "manufacturing": "c_and_i",
+    "mining_and_extraction": "c_and_i",
+    "wholesale_trade": "c_and_i",
+    "retail_trade": "c_and_i",
+    "transportation": "c_and_i",
+    "information": "c_and_i",
+    "technology": "c_and_i",
+    "professional_services": "c_and_i",
+    "admin_and_waste_mgmt": "c_and_i",
+    "other_services": "c_and_i",
+    "holding_companies": "c_and_i",
+    "utilities": "c_and_i",
+    "construction": "construction",
+    "government": "specialty",
+    "education": "specialty",
+    "healthcare": "specialty",
+    "finance_and_insurance": "specialty",
+    "arts_and_recreation": "specialty",
+    "food_and_accommodation": "specialty",
+}
+
+
 # --- Transform implementations ---
 
 

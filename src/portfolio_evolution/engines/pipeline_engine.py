@@ -6,17 +6,36 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import TYPE_CHECKING
 
+from portfolio_evolution.utils.transforms import normalize_segment_key
+
 if TYPE_CHECKING:
     from portfolio_evolution.models.instrument import InstrumentPosition
     from portfolio_evolution.utils.rng import SeededRNG
 
-# Segment aliases for config key lookup (normalized lowercase)
+# Karen's 21 industry sectors (normalized config keys).
+# Each key maps to a list of alternative input forms that should resolve to it.
 _SEGMENT_ALIASES: dict[str, list[str]] = {
-    "cre": ["cre", "commercial_real_estate", "commercial real estate", "commercialrealestate"],
-    "c_and_i": ["c_and_i", "c&i", "c and i", "candi"],
+    "admin_and_waste_mgmt": ["admin_and_waste_mgmt"],
+    "agriculture": ["agriculture", "ag"],
+    "arts_and_recreation": ["arts_and_recreation"],
     "construction": ["construction"],
-    "multifamily": ["multifamily", "multi_family", "multi-family", "mf"],
-    "specialty": ["specialty", "specialized", "special"],
+    "education": ["education"],
+    "finance_and_insurance": ["finance_and_insurance"],
+    "food_and_accommodation": ["food_and_accommodation", "hospitality"],
+    "government": ["government", "govt"],
+    "healthcare": ["healthcare", "health_care"],
+    "holding_companies": ["holding_companies"],
+    "information": ["information"],
+    "manufacturing": ["manufacturing", "mfg"],
+    "mining_and_extraction": ["mining_and_extraction", "mining"],
+    "other_services": ["other_services"],
+    "professional_services": ["professional_services"],
+    "real_estate_and_leasing": ["real_estate_and_leasing", "cre", "commercial_real_estate"],
+    "retail_trade": ["retail_trade", "retail"],
+    "technology": ["technology", "tech"],
+    "transportation": ["transportation", "transport"],
+    "utilities": ["utilities"],
+    "wholesale_trade": ["wholesale_trade", "wholesale"],
 }
 
 
@@ -78,14 +97,16 @@ def compute_age_factor(stage: str, days_in_stage: int, config: dict) -> float:
 
 
 def _segment_to_config_key(segment: str | None) -> str | None:
-    """Map segment string to config key (cre, c_and_i, construction)."""
-    if not segment:
+    """Map segment string to a normalized config key via normalize + alias lookup."""
+    normalized = normalize_segment_key(segment)
+    if not normalized:
         return None
-    normalized = segment.lower().strip()
+    if normalized in _SEGMENT_ALIASES:
+        return normalized
     for key, aliases in _SEGMENT_ALIASES.items():
-        if normalized in aliases or normalized == key:
+        if normalized in aliases:
             return key
-    return None
+    return normalized
 
 
 def compute_segment_factor(segment: str | None, config: dict, is_advance: bool) -> float:
@@ -213,13 +234,20 @@ def advance_pipeline_day(
     age_factor = compute_age_factor(stage, days, config)
     segment = position.segment
     rating = position.internal_rating_numeric
+    is_renewal = getattr(position, "is_renewal", False)
 
     transitions: list[tuple[str, float, float]] = []  # (next_stage, base_prob, adjusted_prob)
     for next_stage, base_prob in base_probs.items():
         is_advance = next_stage not in ("dropped", "expired")
         seg_factor = compute_segment_factor(segment, config, is_advance)
         rating_factor = compute_rating_factor(rating, config, is_advance)
-        adjusted = base_prob * age_factor * seg_factor * rating_factor
+        
+        # Renewals have a much lower fallout rate and faster advance rate
+        renewal_factor = 1.0
+        if is_renewal:
+            renewal_factor = 2.0 if is_advance else 0.1
+            
+        adjusted = base_prob * age_factor * seg_factor * rating_factor * renewal_factor
         transitions.append((next_stage, base_prob, adjusted))
 
     # 4. Draw uniform random

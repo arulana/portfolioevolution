@@ -2,8 +2,16 @@
 # Funded Portfolio Behaviour Rules
 # ============================================================================
 # Calibrated for a US superregional bank ($50-200B assets).
-# Renewal: 75-85% of maturing performing loans renew.
-# Prepayment: 10-25% annualized CPR depending on segment.
+# Sector keys = Karen's 21 industry sectors (normalized).
+# Calibration parameters derived from lending category groupings:
+#   CRE: real_estate_and_leasing
+#   C&I: agriculture, manufacturing, mining_and_extraction, wholesale_trade,
+#        retail_trade, transportation, information, technology,
+#        professional_services, admin_and_waste_mgmt, other_services,
+#        holding_companies, utilities
+#   Construction: construction
+#   Specialty: government, education, healthcare, finance_and_insurance,
+#              arts_and_recreation, food_and_accommodation
 # ============================================================================
 
 amortisation:
@@ -30,13 +38,33 @@ maturity:
 
 renewal:
   enabled: true
-  base_renewal_probability: 0.80
+  base_renewal_probability: 0.78
   segment_overrides:
-    cre: 0.82
-    c_and_i: 0.78
-    multifamily: 0.85
+    # CRE
+    real_estate_and_leasing: 0.82
+    # C&I (base ~0.78, sector variation)
+    agriculture: 0.80
+    manufacturing: 0.78
+    mining_and_extraction: 0.72
+    wholesale_trade: 0.77
+    retail_trade: 0.76
+    transportation: 0.79
+    information: 0.76
+    technology: 0.74
+    professional_services: 0.80
+    admin_and_waste_mgmt: 0.77
+    other_services: 0.78
+    holding_companies: 0.75
+    utilities: 0.84
+    # Construction
     construction: 0.50
-    specialty: 0.65
+    # Specialty (base ~0.65, sector variation)
+    government: 0.72
+    education: 0.70
+    healthcare: 0.68
+    finance_and_insurance: 0.65
+    arts_and_recreation: 0.58
+    food_and_accommodation: 0.55
   rating_overrides:
     "1": 0.92
     "2": 0.90
@@ -49,17 +77,43 @@ renewal:
     "9": 0.00
   renewal_term_months: null
   renewal_rate_adjustment_bps: 15
+  # Renewals skip early pipeline stages — the bank already knows the borrower.
+  # documentation: credit is pre-approved, just needs doc prep + closing (~2-3 weeks).
+  renewal_entry_stage: documentation
 
 prepayment:
   enabled: true
-  base_daily_probability: 0.0005
+  # Target blended annual CPR ~8-10%.
+  # Formula: annual_cpr = 1 - (1 - daily_prob)^252
+  # 0.00035 daily -> ~8.4% annual; 0.00050 -> ~11.8% annual
+  base_daily_probability: 0.00035
   rate_sensitivity: -0.5
   segment_overrides:
-    cre: 0.00040
-    c_and_i: 0.00080
-    multifamily: 0.00073
-    construction: 0.0012
-    specialty: 0.0005
+    # CRE: 5-7% annual CPR (long-dated, locked in)
+    real_estate_and_leasing: 0.00025
+    # C&I: 10-14% annual CPR (shorter tenor, more optionality)
+    agriculture: 0.00042
+    manufacturing: 0.00050
+    mining_and_extraction: 0.00038
+    wholesale_trade: 0.00048
+    retail_trade: 0.00052
+    transportation: 0.00044
+    information: 0.00050
+    technology: 0.00055
+    professional_services: 0.00052
+    admin_and_waste_mgmt: 0.00046
+    other_services: 0.00048
+    holding_companies: 0.00042
+    utilities: 0.00035
+    # Construction: 15-18% annual CPR (project-based, pay off at completion)
+    construction: 0.00070
+    # Specialty: 4-6% annual CPR (sticky, relationship-driven)
+    government: 0.00020
+    education: 0.00022
+    healthcare: 0.00030
+    finance_and_insurance: 0.00025
+    arts_and_recreation: 0.00035
+    food_and_accommodation: 0.00032
   minimum_age_days: 90
 
 utilisation:
